@@ -1,0 +1,20 @@
+.footer {
+  padding: 80px 0;
+  background-color: var(--main-layout);
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 49px;
+  }
+
+  &__copyright {
+    font-family: 'Roboto';
+    font-size: 17px;
+    color: var(--gray);
+  }
+}
