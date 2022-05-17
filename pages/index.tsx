@@ -1,14 +1,11 @@
 import type { NextPage } from 'next';
-import Footer from '../components/Footer/Footer';
-import Header from '../components/Header/Header';
+import MainLayout from '../layout/MainLayout';
 
 const Home: NextPage = () => {
   return (
-    <>
-      <Header primary />
+    <MainLayout>
       <div style={{ height: 400 }}></div>
-      <Footer />
-    </>
+    </MainLayout>
   );
 };
 
