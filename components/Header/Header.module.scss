@@ -1,0 +1,51 @@
+.header {
+  height: 100px;
+  background: rgba(0, 0, 0, 0.2);
+
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 38px;
+    color: #f1ebff;
+
+    &.primary {
+      justify-content: center;
+    }
+  }
+
+  &__link {
+    cursor: pointer;
+    transition: all 0.15s linear;
+
+    &:hover {
+      color: rgb(32, 177, 177);
+    }
+
+    &:hover .header__arrow {
+      transform: translateX(-5px);
+      fill: rgb(32, 177, 177);
+    }
+
+    &.primary {
+      display: none;
+    }
+  }
+
+  &__logo {
+    transform: translateY(47px);
+  }
+
+  &__arrow {
+    margin-right: 10px;
+    width: 28px;
+    fill: var(--white);
+    transition: all 0.15s linear;
+  }
+}

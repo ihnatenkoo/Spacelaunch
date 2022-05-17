@@ -1,0 +1,43 @@
+:root {
+  --white: #f1ebff;
+  --gray: #c0c0c0;
+  --purple: #4a00e0;
+  --main-layout: #181b48;
+  --content-layout: #1c2056;
+
+  --main-background: linear-gradient(1.22deg, #181b48 3.9%, rgba(24, 27, 72, 0) 98.66%);
+  --btn-background: linear-gradient(94.97deg, #8e2de2 3.92%, #4a00e0 52.92%);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.container {
+  padding: 0 5px;
+  margin: 0 auto;
+  max-width: 1190px;
+  width: 100%;
+}
