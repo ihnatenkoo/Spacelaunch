@@ -13,8 +13,12 @@ html,
 body {
   padding: 0;
   margin: 0;
+
   font-family: 'Montserrat', sans-serif;
   font-size: 17px;
+  color: var(--white);
+
+  background-color: var(--main-layout);
 }
 
 a {
@@ -40,4 +44,25 @@ h6 {
   margin: 0 auto;
   max-width: 1190px;
   width: 100%;
+
+  &.fill {
+    margin-top: 110px;
+    margin-bottom: 100px;
+    position: relative;
+    z-index: 1;
+
+    &::after {
+      content: '';
+      display: block;
+      width: calc(100% + 260px - 10px);
+      height: calc(100% + 210px);
+      background: var(--content-layout);
+
+      position: absolute;
+      left: 50%;
+      bottom: -52%;
+      z-index: -1;
+      transform: translateX(-50%);
+    }
+  }
 }
