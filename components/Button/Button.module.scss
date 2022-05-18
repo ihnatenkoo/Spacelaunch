@@ -1,0 +1,24 @@
+.btn {
+  display: inline-block;
+
+  background: var(--btn-background);
+  border: none;
+  border-radius: 50px;
+
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  color: var(--white);
+  text-transform: capitalize;
+  cursor: pointer;
+
+  &:hover {
+    background: linear-gradient(94.97deg, #4a00e0 2.92%, #8e2de2 52.92%);
+    text-decoration: underline;
+  }
+
+  & a {
+    padding: 30px 80px;
+    display: block;
+  }
+}
