@@ -57,12 +57,12 @@ h6 {
       content: '';
       display: block;
       width: calc(100% + 260px - 10px);
-      height: calc(100% + 210px);
+      height: calc(100% + 215px);
       background: var(--content-layout);
 
       position: absolute;
       left: 50%;
-      bottom: -52%;
+      bottom: -100px;
       z-index: -1;
       transform: translateX(-50%);
     }
