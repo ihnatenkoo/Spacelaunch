@@ -1,14 +1,15 @@
-import React, { FC, ReactNode } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode, FC } from 'react';
 import cn from 'classnames';
 import styles from './Tag.module.scss';
 
-interface TagProps {
+interface TagProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   children: ReactNode;
   gradient?: boolean;
 }
 
-const Tag: FC<TagProps> = ({ children, gradient }) => {
-  const tagStyle = cn(styles.tag, {
+const Tag: FC<TagProps> = ({ children, gradient, className }) => {
+  const tagStyle = cn(styles.tag, className, {
     [styles.gradient]: gradient
   });
 
