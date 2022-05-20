@@ -22,7 +22,7 @@ const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
         powerful search filters.
       </h2>
       <Button>
-        <Link href={'#'}>Show All Launches</Link>
+        <Link href={'#launches'}>Show All Launches</Link>
       </Button>
     </IntroLayout>
   );
