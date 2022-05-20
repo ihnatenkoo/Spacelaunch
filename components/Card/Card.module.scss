@@ -1,0 +1,39 @@
+.card {
+  display: block;
+  margin-bottom: 50px;
+  max-width: 580px;
+  cursor: pointer;
+
+  &__header {
+    position: relative;
+  }
+
+  &__title {
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 38px;
+    text-align: center;
+  }
+
+  &__tag {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+  }
+
+  &.small {
+    max-width: 380px;
+    .card__tag {
+      margin: 20px 0;
+      position: static;
+      transform: none;
+    }
+
+    .card__title {
+      margin: 0;
+      text-align: left;
+    }
+  }
+}
