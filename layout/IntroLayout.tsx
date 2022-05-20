@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { StaticImageData } from 'next/image';
 import { LayoutProps } from './LayoutProps';
 import styles from './IntroLayout.module.scss';
 
-interface IntroLayoutProps extends LayoutProps {
+interface IntroLayoutProps {
+  children: ReactNode;
   image: StaticImageData;
 }
 

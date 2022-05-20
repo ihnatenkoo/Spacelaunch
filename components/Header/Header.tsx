@@ -3,29 +3,32 @@ import styles from './Header.module.scss';
 import Logo from '../../public/images/main-logo.svg';
 import ArrowLeft from '../../public/images/arrow-left.svg';
 import cn from 'classnames';
+import Link from 'next/link';
 
 interface HeaderProps {
-  primary?: boolean;
+  header: 'homepage' | 'secondary';
 }
 
-const Header: FC<HeaderProps> = ({ primary }) => {
+const Header: FC<HeaderProps> = ({ header }) => {
   return (
     <header className={styles.header}>
       <div className="container">
         <div
           className={cn(styles.header__inner, {
-            [styles.primary]: primary
+            [styles.homepage]: header === 'homepage'
           })}
         >
-          <a
-            href="#"
-            className={cn(styles.header__link, {
-              [styles.primary]: primary
-            })}
-          >
-            <ArrowLeft className={styles.header__arrow} />
-            Back to home
-          </a>
+          <Link href="/">
+            <div
+              className={cn(styles.header__link, {
+                [styles.homepage]: header === 'homepage'
+              })}
+            >
+              <ArrowLeft className={styles.header__arrow} />
+              Back to home
+            </div>
+          </Link>
+
           <Logo className={styles.header__logo} />
         </div>
       </div>

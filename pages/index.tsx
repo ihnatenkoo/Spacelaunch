@@ -8,7 +8,7 @@ import introImage from '../public/images/home-intro.jpg';
 
 const Home: NextPage<HomeProps> = ({ launchesData }) => {
   return (
-    <MainLayout>
+    <MainLayout header="homepage">
       <HomeIntro image={introImage} />
       <div className="container fill">
         <HomeLaunches launchesData={launchesData} />
