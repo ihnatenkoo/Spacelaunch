@@ -5,11 +5,11 @@ import IntroLayout from '../../layout/IntroLayout';
 import Button from '../Button/Button';
 import styles from './HomeIntro.module.scss';
 
-interface IHomeProps {
+interface HomeIntroProps {
   image: StaticImageData;
 }
 
-const HomeIntro: FC<IHomeProps> = ({ image }) => {
+const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
   return (
     <IntroLayout image={image}>
       <h1 className={styles.title}>

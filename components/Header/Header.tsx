@@ -4,11 +4,11 @@ import Logo from '../../public/images/main-logo.svg';
 import ArrowLeft from '../../public/images/arrow-left.svg';
 import cn from 'classnames';
 
-interface IAppearance {
+interface HeaderProps {
   primary?: boolean;
 }
 
-const Header: FC<IAppearance> = ({ primary }) => {
+const Header: FC<HeaderProps> = ({ primary }) => {
   return (
     <header className={styles.header}>
       <div className="container">

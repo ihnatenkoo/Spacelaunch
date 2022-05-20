@@ -7,6 +7,9 @@ const nextConfig = {
     });
 
     return config;
+  },
+  images: {
+    domains: ['spacelaunchnow-prod-east.nyc3.cdn.digitaloceanspaces.com']
   }
 };
 
