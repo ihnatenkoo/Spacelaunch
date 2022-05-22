@@ -4,6 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { MainLayout } from '../../layout';
 import LaunchIntro from '../../components/LaunchIntro/LaunchIntro';
 import LaunchInfo from '../../components/LaunchInfo/LaunchInfo';
+import LaunchRocket from '../../components/LaunchRocket/LaunchRocket';
 
 interface LaunchProps {
   name: string;
@@ -15,6 +16,11 @@ interface LaunchProps {
   launchComplex: string;
   rocketName: string;
   missionDescr: string;
+  rocketFamily: string;
+  rocketVariant: string;
+  rocketDescr: string;
+  rocketLink: string;
+  rocketWiki: string;
   date: Date;
 }
 
@@ -28,7 +34,12 @@ const Launch = ({
   location,
   launchComplex,
   rocketName,
-  missionDescr
+  missionDescr,
+  rocketFamily,
+  rocketVariant,
+  rocketDescr,
+  rocketLink,
+  rocketWiki
 }: LaunchProps) => {
   return (
     <MainLayout header="secondary">
@@ -38,10 +49,18 @@ const Launch = ({
           type={type}
           orbit={orbit}
           location={location}
-          launchComplex={launchComplex}
-          rocketName={rocketName}
-          missionDescr={missionDescr}
+          complex={launchComplex}
+          rocket={rocketName}
+          description={missionDescr}
         />
+        <LaunchRocket
+          rocket={rocketName}
+          family={rocketFamily}
+          variant={rocketVariant}
+          description={rocketDescr}
+          officialLink={rocketLink}
+          wikiLink={rocketWiki}
+        ></LaunchRocket>
       </div>
     </MainLayout>
   );
@@ -63,10 +82,18 @@ export const getServerSideProps: GetServerSideProps = async ({
   );
 
   const { name, net: date } = data;
-  const { image_url: image, name: rocketName } = data.rocket.configuration;
   const { map_url: map, name: launchComplex } = data.pad;
-  const { type, orbit, description: missionDescr } = data.mission;
   const { name: location } = data.pad.location;
+  const { type, orbit, description: missionDescr } = data.mission;
+  const {
+    image_url: image,
+    name: rocketName,
+    family: rocketFamily,
+    variant: rocketVariant,
+    description: rocketDescr,
+    info_url: rocketLink,
+    wiki_url: rocketWiki
+  } = data.rocket.configuration;
 
   const launchData = {
     name,
@@ -78,7 +105,12 @@ export const getServerSideProps: GetServerSideProps = async ({
     location,
     launchComplex,
     rocketName,
-    missionDescr
+    missionDescr,
+    rocketFamily,
+    rocketVariant,
+    rocketDescr,
+    rocketLink,
+    rocketWiki
   };
 
   return {

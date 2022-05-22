@@ -3,21 +3,21 @@ import Tag from '../Tag/Tag';
 import styles from './LaunchInfo.module.scss';
 
 interface LaunchInfoProps {
+  rocket: string;
   type: string;
   orbit: string;
   location: string;
-  launchComplex: string;
-  rocketName: string;
-  missionDescr: string;
+  complex: string;
+  description: string;
 }
 
 const LaunchInfo: FC<LaunchInfoProps> = ({
+  rocket,
   type,
   orbit,
   location,
-  launchComplex,
-  rocketName,
-  missionDescr
+  complex,
+  description
 }) => {
   return (
     <div className={styles.launch}>
@@ -30,17 +30,17 @@ const LaunchInfo: FC<LaunchInfoProps> = ({
       </h3>
       <div className={styles.launch__info}>
         <Tag gradient className={styles.tag}>
-          {launchComplex}
+          {complex}
         </Tag>
         <Tag gradient className={styles.tag}>
           {orbit}
         </Tag>
         <Tag gradient className={styles.tag}>
-          {rocketName}
+          {rocket}
         </Tag>
       </div>
       <Tag className={styles.launch__location}>{location}</Tag>
-      <div className={styles.launch__description}>{missionDescr}</div>
+      <div className={styles.launch__description}>{description}</div>
     </div>
   );
 };

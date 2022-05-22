@@ -1,4 +1,4 @@
-.launch {
+.rocket {
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;
@@ -25,25 +25,8 @@
     }
   }
 
-  &__info {
-    margin: 15px 0 10px;
-
-    .tag {
-      margin-right: 20px;
-      margin-bottom: 10px;
-    }
-
-    .tag:last-child {
-      margin-right: 0;
-    }
-  }
-
-  &__location {
-    margin-bottom: 30px;
-    font-style: italic;
-  }
-
   &__description {
+    margin: 25px 0 30px;
     max-width: 865px;
 
     font-family: 'Roboto';
