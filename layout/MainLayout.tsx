@@ -7,7 +7,7 @@ export interface MainLayoutProps {
   header: 'homepage' | 'secondary';
 }
 
-const MainLayout: FC<MainLayoutProps> = ({ children, header }) => {
+export const MainLayout: FC<MainLayoutProps> = ({ children, header }) => {
   return (
     <>
       <Header header={header} />
@@ -16,5 +16,3 @@ const MainLayout: FC<MainLayoutProps> = ({ children, header }) => {
     </>
   );
 };
-
-export default MainLayout;

@@ -1,12 +1,11 @@
-import { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
-import IntroLayout from '../../layout/IntroLayout';
+import { IntroLayout } from '../../layout/';
 import Button from '../Button/Button';
 import styles from './HomeIntro.module.scss';
 
 interface HomeIntroProps {
-  image: StaticImageData;
+  image?: string;
 }
 
 const HomeIntro: FC<HomeIntroProps> = ({ image }) => {

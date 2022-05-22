@@ -1,0 +1,32 @@
+.title {
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: 76px;
+  line-height: 92px;
+  color: var(--white);
+  text-align: center;
+}
+
+.subtitle {
+  margin-bottom: 40px;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 38px;
+  text-align: center;
+  color: var(--white);
+}
+
+.start {
+  margin: 0 auto;
+  padding: 50px 70px;
+  max-width: 780px;
+
+  display: flex;
+  justify-content: space-between;
+
+  background-color: var(--purple);
+  font-weight: 900;
+  font-size: 76px;
+  line-height: 92px;
+  color: var(--white);
+}

@@ -8,7 +8,7 @@ export interface LaunchesData {
   name: string;
   image: string;
   id: string;
-  date: string;
+  date: Date;
 }
 export interface HomeProps {
   launchesData: Array<LaunchesData>;

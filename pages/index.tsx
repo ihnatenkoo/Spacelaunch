@@ -3,13 +3,12 @@ import type { GetStaticProps, NextPage } from 'next';
 import { LaunchesRequestData, HomeProps } from '../Interfaces';
 import HomeIntro from '../components/HomeIntro/HomeIntro';
 import HomeLaunches from '../components/HomeLaunches/HomeLaunches';
-import MainLayout from '../layout/MainLayout';
-import introImage from '../public/images/home-intro.jpg';
+import { MainLayout } from '../layout/';
 
 const Home: NextPage<HomeProps> = ({ launchesData }) => {
   return (
     <MainLayout header="homepage">
-      <HomeIntro image={introImage} />
+      <HomeIntro />
       <div className="container fill">
         <HomeLaunches launchesData={launchesData} />
       </div>
