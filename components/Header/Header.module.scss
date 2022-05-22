@@ -25,12 +25,11 @@
     transition: all 0.15s linear;
 
     &:hover {
-      color: rgb(32, 177, 177);
+      text-decoration: underline;
     }
 
     &:hover .header__arrow {
-      transform: translateX(-5px);
-      fill: rgb(32, 177, 177);
+      transform: translateX(-7px);
     }
 
     &.homepage {
