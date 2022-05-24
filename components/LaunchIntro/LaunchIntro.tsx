@@ -9,7 +9,6 @@ interface LaunchIntroProps {
 }
 
 const LaunchIntro: FC<LaunchIntroProps> = ({ name, image, date }) => {
-  console.log(date);
   return (
     <IntroLayout image={image}>
       <h1 className={styles.title}>{name}</h1>

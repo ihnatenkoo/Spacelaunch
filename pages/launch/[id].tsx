@@ -5,6 +5,7 @@ import { MainLayout } from '../../layout';
 import LaunchIntro from '../../components/LaunchIntro/LaunchIntro';
 import LaunchInfo from '../../components/LaunchInfo/LaunchInfo';
 import LaunchRocket from '../../components/LaunchRocket/LaunchRocket';
+import Map from '../../components/Map/Map';
 
 interface LaunchProps {
   name: string;
@@ -21,6 +22,7 @@ interface LaunchProps {
   rocketDescr: string;
   rocketLink: string;
   rocketWiki: string;
+  eventCoordinates: { lat: number; lng: number };
   date: Date;
 }
 
@@ -28,7 +30,6 @@ const Launch = ({
   name,
   image,
   date,
-  map,
   type,
   orbit,
   location,
@@ -39,7 +40,8 @@ const Launch = ({
   rocketVariant,
   rocketDescr,
   rocketLink,
-  rocketWiki
+  rocketWiki,
+  eventCoordinates
 }: LaunchProps) => {
   return (
     <MainLayout header="secondary">
@@ -61,6 +63,7 @@ const Launch = ({
           officialLink={rocketLink}
           wikiLink={rocketWiki}
         ></LaunchRocket>
+        <Map eventCoordinates={eventCoordinates} />
       </div>
     </MainLayout>
   );
@@ -82,7 +85,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   );
 
   const { name, net: date } = data;
-  const { map_url: map, name: launchComplex } = data.pad;
+  const { latitude, longitude, name: launchComplex } = data.pad;
   const { name: location } = data.pad.location;
   const { type, orbit, description: missionDescr } = data.mission;
   const {
@@ -99,7 +102,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     name,
     image,
     date,
-    map,
     type,
     orbit,
     location,
@@ -110,7 +112,8 @@ export const getServerSideProps: GetServerSideProps = async ({
     rocketVariant,
     rocketDescr,
     rocketLink,
-    rocketWiki
+    rocketWiki,
+    eventCoordinates: { lat: +latitude, lng: +longitude }
   };
 
   return {
