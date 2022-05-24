@@ -1,9 +1,12 @@
 import { FC } from 'react';
-import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
 import { LaunchesData } from '../../Interfaces';
 import Tag from '../Tag/Tag';
+import dayjs from 'dayjs';
+// @ts-ignore
+import dayjsPluginUTC from 'dayjs-plugin-utc';
+dayjs.extend(dayjsPluginUTC);
 
 import placeholder from '../../public/images/img-placeholder.jpg';
 import styles from './Card.module.scss';
@@ -29,7 +32,7 @@ const Card: FC<CardProps> = ({ launch, size }) => {
             height={size === 's' ? 264 : 324}
           />
           <Tag className={styles.card__tag} gradient>
-            {moment.utc(date).format('MMM D, YYYY, h:mm a')}
+            {dayjs.utc(date).format('MMM DD, YYYY, h:mm a')}
           </Tag>
         </div>
         <h3 className={styles.card__title}>{name}</h3>
