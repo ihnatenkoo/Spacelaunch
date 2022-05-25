@@ -1,0 +1,32 @@
+.rocket {
+  text-align: center;
+  color: var(--white);
+
+  &__title {
+    margin-bottom: 10px;
+    font-weight: 800;
+    font-size: 76px;
+    line-height: 92px;
+  }
+
+  &__subtitle {
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 38px;
+  }
+
+  &__age {
+    margin-bottom: 40px;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 38px;
+  }
+
+  &__description {
+    font-family: 'Roboto';
+    font-size: 17px;
+    line-height: 28px;
+    color: var(--gray);
+  }
+}
