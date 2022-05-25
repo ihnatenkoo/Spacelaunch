@@ -10,12 +10,12 @@ interface HomeIntroProps {
 
 const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
   return (
-    <IntroLayout image={image}>
-      <h1 className={styles.title}>
+    <IntroLayout image={image} className={styles.home}>
+      <h1 className={styles.home__title}>
         Upcoming <br />
         Spaceflight Launches
       </h1>
-      <h2 className={styles.subtitle}>
+      <h2 className={styles.home__subtitle}>
         View all launches available - including launches from the past and utilize
         <br />
         powerful search filters.

@@ -10,18 +10,16 @@ interface LaunchRocketProps {
   description: string;
   officialLink: string;
   wikiLink: string;
+  id: string;
 }
 
 const LaunchRocket: FC<LaunchRocketProps> = ({
+  id,
   rocket,
   family,
   variant,
-  description,
-  officialLink,
-  wikiLink
+  description
 }) => {
-  const rocketLink = wikiLink || officialLink || '#';
-
   return (
     <div className={styles.rocket}>
       <h2 className={styles.rocket__title}>{rocket}</h2>
@@ -33,11 +31,7 @@ const LaunchRocket: FC<LaunchRocketProps> = ({
       </h3>
       <div className={styles.rocket__description}>{description}</div>
       <Button>
-        <Link href={rocketLink} passHref>
-          <a target="_blank" rel="noopener noreferrer">
-            See Rocket Details
-          </a>
-        </Link>
+        <Link href={`/rocket/${[id]}`}>See Rocket Details</Link>
       </Button>
     </div>
   );

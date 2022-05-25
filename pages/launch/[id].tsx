@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { MainLayout } from '../../layout';
 import LaunchIntro from '../../components/LaunchIntro/LaunchIntro';
@@ -23,10 +23,11 @@ interface LaunchProps {
   rocketLink: string;
   rocketWiki: string;
   eventCoordinates: { lat: number; lng: number };
+  rocketId: string;
   date: Date;
 }
 
-const Launch = ({
+const Launch: NextPage<LaunchProps> = ({
   name,
   image,
   date,
@@ -36,13 +37,14 @@ const Launch = ({
   launchComplex,
   rocketName,
   missionDescr,
+  rocketId,
   rocketFamily,
   rocketVariant,
   rocketDescr,
   rocketLink,
   rocketWiki,
   eventCoordinates
-}: LaunchProps) => {
+}) => {
   return (
     <MainLayout header="secondary">
       <LaunchIntro name={name} image={image} date={date} />
@@ -62,6 +64,7 @@ const Launch = ({
           description={rocketDescr}
           officialLink={rocketLink}
           wikiLink={rocketWiki}
+          id={rocketId}
         ></LaunchRocket>
         <Map eventCoordinates={eventCoordinates} />
       </div>
@@ -89,6 +92,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const { name: location } = data.pad.location;
   const { type, orbit, description: missionDescr } = data.mission;
   const {
+    id: rocketId,
     image_url: image,
     name: rocketName,
     family: rocketFamily,
@@ -113,7 +117,8 @@ export const getServerSideProps: GetServerSideProps = async ({
     rocketDescr,
     rocketLink,
     rocketWiki,
-    eventCoordinates: { lat: +latitude, lng: +longitude }
+    eventCoordinates: { lat: +latitude, lng: +longitude },
+    rocketId
   };
 
   return {
