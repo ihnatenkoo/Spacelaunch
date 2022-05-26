@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Header.module.scss';
-import Logo from '../../public/images/main-logo.svg';
-import ArrowLeft from '../../public/images/arrow-left.svg';
+import Logo from '../../public/icons/main-logo.svg';
+import ArrowLeft from '../../public/icons/arrow-left.svg';
 import cn from 'classnames';
 import Link from 'next/link';
 
@@ -9,7 +9,7 @@ interface HeaderProps {
   header: 'homepage' | 'secondary';
 }
 
-const Header: FC<HeaderProps> = ({ header }) => {
+export const Header: FC<HeaderProps> = ({ header }) => {
   return (
     <header className={styles.header}>
       <div className="container">
@@ -35,5 +35,3 @@ const Header: FC<HeaderProps> = ({ header }) => {
     </header>
   );
 };
-
-export default Header;

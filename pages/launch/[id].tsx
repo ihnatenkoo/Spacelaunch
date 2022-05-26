@@ -2,10 +2,7 @@ import axios from 'axios';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { MainLayout } from '../../layout';
-import LaunchIntro from '../../components/LaunchIntro/LaunchIntro';
-import LaunchInfo from '../../components/LaunchInfo/LaunchInfo';
-import LaunchRocket from '../../components/LaunchRocket/LaunchRocket';
-import Map from '../../components/Map/Map';
+import { LaunchIntro, LaunchInfo, LaunchRocket, Map } from '../../components';
 
 interface LaunchProps {
   name: string;

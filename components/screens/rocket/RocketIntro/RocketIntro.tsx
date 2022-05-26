@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import dayjs from 'dayjs';
-import { IntroLayout } from '../../layout';
+import { IntroLayout } from '../../../../layout/IntroLayout';
 import styles from './RocketIntro.module.scss';
 
 interface RocketIntroProps {
@@ -12,7 +12,7 @@ interface RocketIntroProps {
   abbrevCompany: string;
 }
 
-const RocketIntro: FC<RocketIntroProps> = ({
+export const RocketIntro: FC<RocketIntroProps> = ({
   name,
   image,
   description,
@@ -31,5 +31,3 @@ const RocketIntro: FC<RocketIntroProps> = ({
     </IntroLayout>
   );
 };
-
-export default RocketIntro;

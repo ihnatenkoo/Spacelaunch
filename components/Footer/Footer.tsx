@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import Logo from '../../public/images/main-logo.svg';
+import Logo from '../../public/icons/main-logo.svg';
 import styles from './Footer.module.scss';
 
-const Footer: FC = () => {
+export const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
       <div className="container">
@@ -14,5 +14,3 @@ const Footer: FC = () => {
     </footer>
   );
 };
-
-export default Footer;

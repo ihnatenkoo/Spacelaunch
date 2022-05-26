@@ -1,9 +1,8 @@
 import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
 import { LaunchesRequestData, HomeProps } from '../Interfaces';
-import HomeIntro from '../components/HomeIntro/HomeIntro';
-import HomeLaunches from '../components/HomeLaunches/HomeLaunches';
 import { MainLayout } from '../layout/';
+import { HomeIntro, HomeLaunches } from '../components';
 
 const Home: NextPage<HomeProps> = ({ launchesData }) => {
   return (

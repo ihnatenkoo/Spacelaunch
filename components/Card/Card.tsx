@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { LaunchesData } from '../../Interfaces';
-import Tag from '../Tag/Tag';
+import { Tag } from '../../components';
 import dayjs from 'dayjs';
 // @ts-ignore
 import dayjsPluginUTC from 'dayjs-plugin-utc';
@@ -17,7 +17,7 @@ interface CardProps {
   size: 's' | 'm';
 }
 
-const Card: FC<CardProps> = ({ launch, size }) => {
+export const Card: FC<CardProps> = ({ launch, size }) => {
   const { id, image, date, name } = launch;
   const launchImg = image || placeholder;
 
@@ -40,5 +40,3 @@ const Card: FC<CardProps> = ({ launch, size }) => {
     </Link>
   );
 };
-
-export default Card;

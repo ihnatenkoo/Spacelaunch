@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import Button from '../Button/Button';
+import { Button } from '../../../../components';
 import styles from './LaunchRocker.module.scss';
 
 interface LaunchRocketProps {
@@ -13,7 +13,7 @@ interface LaunchRocketProps {
   id: string;
 }
 
-const LaunchRocket: FC<LaunchRocketProps> = ({
+export const LaunchRocket: FC<LaunchRocketProps> = ({
   id,
   rocket,
   family,
@@ -36,5 +36,3 @@ const LaunchRocket: FC<LaunchRocketProps> = ({
     </div>
   );
 };
-
-export default LaunchRocket;

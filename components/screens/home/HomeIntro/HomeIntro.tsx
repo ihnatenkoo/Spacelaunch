@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { IntroLayout } from '../../layout/';
-import Button from '../Button/Button';
+import { IntroLayout } from '../../../../layout';
+import { Button } from '../../../../components';
 import styles from './HomeIntro.module.scss';
 
 interface HomeIntroProps {
   image?: string;
 }
 
-const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
+export const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
   return (
     <IntroLayout image={image} className={styles.home}>
       <h1 className={styles.home__title}>
@@ -26,5 +26,3 @@ const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
     </IntroLayout>
   );
 };
-
-export default HomeIntro;

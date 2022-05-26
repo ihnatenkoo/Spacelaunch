@@ -1,4 +1,4 @@
-import Tag from '../Tag/Tag';
+import { Tag } from '../../../../components';
 import styles from './RocketInfo.module.scss';
 import RocketIcon from '/public/icons/rocket-icon.svg';
 import SpecificationIcon from '/public/icons/spec-icon.svg';
@@ -27,7 +27,7 @@ interface RocketInfoProps {
   failed_launches: string;
 }
 
-const RocketInfo: FC<RocketInfoProps> = ({
+export const RocketInfo: FC<RocketInfoProps> = ({
   type,
   countryCode,
   nameRocket,
@@ -150,5 +150,3 @@ const RocketInfo: FC<RocketInfoProps> = ({
     </section>
   );
 };
-
-export default RocketInfo;

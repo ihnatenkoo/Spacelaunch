@@ -5,8 +5,6 @@ interface ButtonProps {
   children: ReactNode;
 }
 
-const Button: FC<ButtonProps> = ({ children }) => {
+export const Button: FC<ButtonProps> = ({ children }) => {
   return <button className={styles.btn}>{children}</button>;
 };
-
-export default Button;

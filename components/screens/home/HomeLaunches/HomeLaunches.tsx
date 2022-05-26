@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { LaunchesData, HomeProps } from '../../Interfaces';
-import Card from '../Card/Card';
+import { LaunchesData, HomeProps } from '../../../../Interfaces';
+import { Card } from '../../../../components';
 import styles from './HomeLaunches.module.scss';
 
-const HomeLaunches: FC<HomeProps> = ({ launchesData }) => {
+export const HomeLaunches: FC<HomeProps> = ({ launchesData }) => {
   return (
     <>
       <h2 id="launches" className={styles.title}>
@@ -17,5 +17,3 @@ const HomeLaunches: FC<HomeProps> = ({ launchesData }) => {
     </>
   );
 };
-
-export default HomeLaunches;

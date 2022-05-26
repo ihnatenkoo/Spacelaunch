@@ -8,12 +8,10 @@ interface TagProps
   gradient?: boolean;
 }
 
-const Tag: FC<TagProps> = ({ children, gradient, className }) => {
+export const Tag: FC<TagProps> = ({ children, gradient, className }) => {
   const tagStyle = cn(styles.tag, className, {
     [styles.gradient]: gradient
   });
 
   return <div className={tagStyle}>{children}</div>;
 };
-
-export default Tag;

@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import RocketInfo from '../../components/RocketInfo/RocketInfo';
-import RocketIntro from '../../components/RocketIntro/RocketIntro';
 import { MainLayout } from '../../layout';
+import { RocketInfo, RocketIntro } from '../../components';
 
 interface RocketProps {
   name: string;

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IntroLayout } from '../../layout';
+import { IntroLayout } from '../../../../layout';
 import styles from './LaunchIntro.module.scss';
 
 interface LaunchIntroProps {
@@ -8,7 +8,7 @@ interface LaunchIntroProps {
   date: Date;
 }
 
-const LaunchIntro: FC<LaunchIntroProps> = ({ name, image, date }) => {
+export const LaunchIntro: FC<LaunchIntroProps> = ({ name, image, date }) => {
   return (
     <IntroLayout image={image} className={styles.launch}>
       <h1 className={styles.launch__title}>{name}</h1>
@@ -19,5 +19,3 @@ const LaunchIntro: FC<LaunchIntroProps> = ({ name, image, date }) => {
     </IntroLayout>
   );
 };
-
-export default LaunchIntro;

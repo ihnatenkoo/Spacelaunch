@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Tag from '../Tag/Tag';
+import { Tag } from '../../../../components';
 import styles from './LaunchInfo.module.scss';
 
 interface LaunchInfoProps {
@@ -11,7 +11,7 @@ interface LaunchInfoProps {
   description: string;
 }
 
-const LaunchInfo: FC<LaunchInfoProps> = ({
+export const LaunchInfo: FC<LaunchInfoProps> = ({
   rocket,
   type,
   orbit,
@@ -44,5 +44,3 @@ const LaunchInfo: FC<LaunchInfoProps> = ({
     </div>
   );
 };
-
-export default LaunchInfo;

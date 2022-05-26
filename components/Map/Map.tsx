@@ -19,7 +19,7 @@ interface MapProps {
   };
 }
 
-const Map: FC<MapProps> = ({ eventCoordinates }) => {
+export const Map: FC<MapProps> = ({ eventCoordinates }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: String(process.env.NEXT_PUBLIC_MAPS_API_KEY)
@@ -50,5 +50,3 @@ const Map: FC<MapProps> = ({ eventCoordinates }) => {
     <h2>Loading map....</h2>
   );
 };
-
-export default Map;
