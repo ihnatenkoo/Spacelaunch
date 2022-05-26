@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import RocketInfo from '../../components/RocketInfo/RocketInfo';
 import RocketIntro from '../../components/RocketIntro/RocketIntro';
 import { MainLayout } from '../../layout';
 
@@ -11,6 +12,24 @@ interface RocketProps {
   firstFlight: string;
   nameCompany: string;
   abbrevCompany: string;
+  type: string;
+  country_code: string;
+  family: string;
+  fullName: string;
+  variant: string;
+  alias: string;
+  min_stage: string;
+  max_stage: string;
+  length: string;
+  diameter: string;
+  launch_mass: string;
+  to_thrust: string;
+  apogee: string;
+  leo_capacity: string;
+  vehicle_range: string;
+  total_launch_count: string;
+  successful_launches: string;
+  failed_launches: string;
 }
 
 const Rocket: NextPage<RocketProps> = ({
@@ -19,7 +38,25 @@ const Rocket: NextPage<RocketProps> = ({
   image,
   firstFlight,
   nameCompany,
-  abbrevCompany
+  abbrevCompany,
+  type,
+  country_code,
+  family,
+  fullName,
+  variant,
+  alias,
+  min_stage,
+  max_stage,
+  length,
+  diameter,
+  launch_mass,
+  to_thrust,
+  apogee,
+  leo_capacity,
+  vehicle_range,
+  total_launch_count,
+  successful_launches,
+  failed_launches
 }) => {
   return (
     <MainLayout header="secondary">
@@ -31,7 +68,29 @@ const Rocket: NextPage<RocketProps> = ({
         nameCompany={nameCompany}
         abbrevCompany={abbrevCompany}
       />
-      <div className="container fill">Info about Rocket</div>
+      <div className="container fill">
+        <RocketInfo
+          nameRocket={name}
+          fullNameRocket={fullName}
+          family={family}
+          type={type}
+          countryCode={country_code}
+          variant={variant}
+          alias={alias}
+          min_stage={min_stage}
+          max_stage={max_stage}
+          length={length}
+          diameter={diameter}
+          launch_mass={launch_mass}
+          to_thrust={to_thrust}
+          apogee={apogee}
+          leo_capacity={leo_capacity}
+          vehicle_range={vehicle_range}
+          total_launch_count={total_launch_count}
+          successful_launches={successful_launches}
+          failed_launches={failed_launches}
+        />
+      </div>
     </MainLayout>
   );
 };
@@ -53,13 +112,60 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const {
     image_url: image,
-    full_name: name,
+    name,
+    full_name: fullName,
     maiden_flight: firstFlight,
-    description
+    description,
+    family,
+    variant,
+    alias,
+    min_stage,
+    max_stage,
+    length,
+    diameter,
+    launch_mass,
+    to_thrust,
+    apogee,
+    leo_capacity,
+    vehicle_range,
+    total_launch_count,
+    successful_launches,
+    failed_launches
   } = data;
 
-  const { name: nameCompany, abbrev: abbrevCompany } = data.manufacturer;
+  const {
+    name: nameCompany,
+    abbrev: abbrevCompany,
+    type,
+    country_code
+  } = data.manufacturer;
+
   return {
-    props: { name, description, image, firstFlight, nameCompany, abbrevCompany }
+    props: {
+      name,
+      fullName,
+      description,
+      image,
+      firstFlight,
+      nameCompany,
+      abbrevCompany,
+      type,
+      country_code,
+      family,
+      variant,
+      alias,
+      min_stage,
+      max_stage,
+      length,
+      diameter,
+      launch_mass,
+      to_thrust,
+      apogee,
+      leo_capacity,
+      vehicle_range,
+      total_launch_count,
+      successful_launches,
+      failed_launches
+    }
   };
 };

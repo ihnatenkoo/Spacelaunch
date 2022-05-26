@@ -90,7 +90,12 @@ export const getServerSideProps: GetServerSideProps = async ({
   const { name, net: date } = data;
   const { latitude, longitude, name: launchComplex } = data.pad;
   const { name: location } = data.pad.location;
-  const { type, orbit, description: missionDescr } = data.mission;
+  const {
+    type = 'No info',
+    orbit = 'No info',
+    description: missionDescr = 'Description not available'
+  } = data.mission || {};
+
   const {
     id: rocketId,
     image_url: image,

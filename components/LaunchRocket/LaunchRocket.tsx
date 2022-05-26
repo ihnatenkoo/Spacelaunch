@@ -27,7 +27,7 @@ const LaunchRocket: FC<LaunchRocketProps> = ({
         Family: <span>{family}</span>
       </h3>
       <h3 className={styles.rocket__subtitle}>
-        Configuration: <span>{variant}</span>
+        Configuration: <span>{variant || 'No info'}</span>
       </h3>
       <div className={styles.rocket__description}>{description}</div>
       <Button>

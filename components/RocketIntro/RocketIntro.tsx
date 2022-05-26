@@ -25,7 +25,7 @@ const RocketIntro: FC<RocketIntroProps> = ({
       <h1 className={styles.rocket__title}>{name}</h1>
       <h2 className={styles.rocket__subtitle}>{`${nameCompany} (${abbrevCompany})`}</h2>
       <div className={styles.rocket__age}>
-        {dayjs(firstFlight).format('MMMM DD, YYYY')}
+        {firstFlight ? dayjs(firstFlight).format('MMMM DD, YYYY') : <></>}
       </div>
       <div className={styles.rocket__description}>{description}</div>
     </IntroLayout>
