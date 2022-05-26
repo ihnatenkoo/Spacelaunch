@@ -21,7 +21,7 @@ interface LaunchProps {
   rocketWiki: string;
   eventCoordinates: { lat: number; lng: number };
   rocketId: string;
-  date: Date;
+  date: string;
 }
 
 const Launch: NextPage<LaunchProps> = ({
