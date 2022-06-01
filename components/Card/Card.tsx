@@ -4,9 +4,8 @@ import Link from 'next/link';
 import { LaunchesData } from '../../Interfaces';
 import { Tag } from '../../components';
 import dayjs from 'dayjs';
-// @ts-ignore
-import dayjsPluginUTC from 'dayjs-plugin-utc';
-dayjs.extend(dayjsPluginUTC);
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
 
 import placeholder from '../../public/images/img-placeholder.jpg';
 import styles from './Card.module.scss';
@@ -14,8 +13,10 @@ import cn from 'classnames';
 
 interface CardProps {
   launch: LaunchesData;
-  size: 's' | 'm';
+  size: CardSize;
 }
+
+type CardSize = 's' | 'm';
 
 export const Card: FC<CardProps> = ({ launch, size }) => {
   const { id, image, date, name } = launch;

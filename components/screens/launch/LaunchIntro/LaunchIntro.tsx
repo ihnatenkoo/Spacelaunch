@@ -8,7 +8,7 @@ interface LaunchIntroProps {
   date: string;
 }
 interface timeState {
-  total: number;
+  total: number | string;
   days: number | string;
   hours: number | string;
   minutes: number | string;
@@ -24,11 +24,21 @@ export const LaunchIntro: FC<LaunchIntroProps> = ({ name, image, date }) => {
     seconds: 0
   });
 
-  const getTimeLeft = () => {
-    // @ts-ignore
-    const currentDate = Date.parse(new Date());
+  const getTimeLeft = (date: string) => {
+    const currentDate = Date.parse(new Date().toISOString());
     const startDate = Date.parse(date);
     const timeToStart = startDate - currentDate;
+
+    if (timeToStart <= 0) {
+      setTime({
+        total: '00',
+        days: '00',
+        hours: '00',
+        minutes: '00',
+        seconds: '00'
+      });
+      return;
+    }
 
     let days: string | number = Math.floor(timeToStart / (1000 * 60 * 60 * 24));
     let hours: string | number = Math.floor((timeToStart / (1000 * 60 * 60)) % 24);
@@ -50,11 +60,11 @@ export const LaunchIntro: FC<LaunchIntroProps> = ({ name, image, date }) => {
   };
 
   useEffect(() => {
-    getTimeLeft();
-  }, []);
+    getTimeLeft(date);
+  }, [date]);
 
   useEffect(() => {
-    const timer = setInterval(getTimeLeft, 1000);
+    const timer = setInterval(() => getTimeLeft(date), 1000);
 
     return () => clearInterval(timer);
   }, []);
