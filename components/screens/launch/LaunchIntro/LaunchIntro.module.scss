@@ -30,7 +30,10 @@
     line-height: 92px;
 
     span {
-      width: 100px;
+      &:first-child {
+        width: 140px;
+      }
+      width: 120px;
     }
   }
 }

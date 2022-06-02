@@ -1,32 +1,69 @@
 import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
-import { LaunchesRequestData, HomeProps } from '../Interfaces';
+import { LaunchesRequestData, HomeProps, LaunchesData } from '../Interfaces';
 import { MainLayout } from '../layout/';
 import { HomeIntro, HomeLaunches } from '../components';
 import { useEffect, useState } from 'react';
 
 const Home: NextPage<HomeProps> = ({ launchesData }) => {
-  const initialLaunchesData = launchesData.slice(0, 6);
+  const [data, setData] = useState<Array<LaunchesData>>(launchesData.slice(0, 6));
+  const [offset, setOffset] = useState<number>(12);
+  const [loadingTrigger, setLoadingTrigger] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isEnd, setIsEnd] = useState<boolean>(false);
 
-  const [data, setData] = useState(initialLaunchesData);
-  const [offset, setOffset] = useState(12);
-  const [newData, setNewData] = useState(false);
+  const getLaunchesDataServer = async (offset: number) => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get(
+        `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
+      );
 
-  const event = () => {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 200) {
-      setNewData(true);
+      const launchesData = data.results.map((item: LaunchesRequestData) => {
+        const { id, name, net: date } = item;
+        const { image_url: image } = item.rocket.configuration;
+
+        return {
+          name,
+          image,
+          id,
+          date
+        };
+      });
+
+      if (launchesData.length < 6) setIsEnd(true);
+      setData((data) => [...data, ...launchesData]);
+      setOffset((offset) => offset + 6);
+      setIsLoading(false);
+      setLoadingTrigger(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+      setLoadingTrigger(false);
     }
   };
 
+  const getLaunchesDataStatic = () => {
+    const newData = launchesData.slice(0, offset);
+    setData(newData);
+    setOffset((offset) => offset + 6);
+    setLoadingTrigger(false);
+  };
+
   useEffect(() => {
-    if (newData) {
-      const newData = launchesData.slice(0, offset);
-      setData(newData);
-      setOffset((offset) => offset + 6);
-      console.log(newData);
+    if (loadingTrigger && offset <= 24 && !isEnd) {
+      getLaunchesDataStatic();
     }
-    setNewData(false);
-  }, [newData]);
+    if (loadingTrigger && offset > 24 && !isEnd) {
+      getLaunchesDataServer(offset);
+    }
+  }, [loadingTrigger]);
+
+  const event = () => {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 75) {
+      setLoadingTrigger(true);
+    }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', event);
@@ -37,7 +74,7 @@ const Home: NextPage<HomeProps> = ({ launchesData }) => {
     <MainLayout header="homepage">
       <HomeIntro />
       <div className="container fill">
-        <HomeLaunches launchesData={data} />
+        <HomeLaunches launchesData={data} isLoading={isLoading} isEnd={isEnd} />
       </div>
     </MainLayout>
   );
@@ -46,24 +83,31 @@ const Home: NextPage<HomeProps> = ({ launchesData }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await axios.get(
-    `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=96&offset=0`
-  );
+  try {
+    const { data } = await axios.get(
+      `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=24&offset=0`
+    );
 
-  const launchesData = data.results.map((item: LaunchesRequestData) => {
-    const { id, name, net: date } = item;
-    const { image_url: image } = item.rocket.configuration;
+    const launchesData = data.results.map((item: LaunchesRequestData) => {
+      const { id, name, net: date } = item;
+      const { image_url: image } = item.rocket.configuration;
+
+      return {
+        name,
+        image,
+        id,
+        date
+      };
+    });
 
     return {
-      name,
-      image,
-      id,
-      date
+      props: { launchesData },
+      revalidate: 43200
     };
-  });
-
-  return {
-    props: { launchesData },
-    revalidate: 43200
-  };
+  } catch (error) {
+    console.error(error);
+    return {
+      notFound: true
+    };
+  }
 };

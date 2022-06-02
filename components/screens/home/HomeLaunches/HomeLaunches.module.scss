@@ -10,3 +10,12 @@
   font-size: 54px;
   text-align: center;
 }
+
+.end {
+  text-align: center;
+  &__title {
+    display: inline-block;
+    padding: 25px 50px;
+    border: 1px solid var(--white);
+  }
+}
