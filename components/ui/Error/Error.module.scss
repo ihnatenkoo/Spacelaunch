@@ -1,0 +1,19 @@
+.error {
+  &__title {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  &__link {
+    margin-top: 20px;
+    display: block;
+    font-size: 25px;
+    font-weight: 700;
+    text-decoration: underline;
+    transition: color 0.1s linear;
+
+    &:hover {
+      color: rgb(158, 177, 211);
+    }
+  }
+}
