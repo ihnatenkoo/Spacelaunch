@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import styles from './Spinner.module.scss';
 
-const Spinner = () => {
+export const Spinner: FC = () => {
   return (
     <>
       <div className={styles['lds-default']}>
@@ -21,5 +22,3 @@ const Spinner = () => {
     </>
   );
 };
-
-export default Spinner;

@@ -1,5 +1,7 @@
 .btn {
+  padding: 30px 80px;
   display: inline-block;
+  min-width: 320px;
 
   background: var(--btn-background);
   border: none;
@@ -15,10 +17,5 @@
   &:hover {
     background: linear-gradient(94.97deg, #4a00e0 2.92%, #8e2de2 52.92%);
     text-decoration: underline;
-  }
-
-  & a {
-    padding: 30px 80px;
-    display: block;
   }
 }

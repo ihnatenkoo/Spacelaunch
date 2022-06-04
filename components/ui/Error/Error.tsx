@@ -1,13 +1,11 @@
 import { FC } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import errorImage from './error.gif';
 import styles from './Error.module.scss';
+import { useActions } from '../../../hooks';
 
 export const Error: FC = () => {
-  const refreshPage = () => {
-    window.location.reload();
-  };
+  const { setLoadingTrigger } = useActions();
 
   return (
     <>
@@ -21,11 +19,9 @@ export const Error: FC = () => {
 
       <h2 className={styles.error__title}>Data loading error</h2>
 
-      <Link href="/#">
-        <a onClick={refreshPage} className={styles.error__link}>
-          Reload Page
-        </a>
-      </Link>
+      <a onClick={() => setLoadingTrigger(true)} className={styles.error__link}>
+        Upload again
+      </a>
     </>
   );
 };

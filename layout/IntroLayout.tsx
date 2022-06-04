@@ -7,7 +7,7 @@ import introImage from '../public/images/home-intro.jpg';
 interface IntroLayoutProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   children: ReactNode;
-  image: string;
+  image: string | undefined;
 }
 
 export const IntroLayout: FC<IntroLayoutProps> = ({

@@ -4,6 +4,8 @@ export * from './Header/Header';
 export * from './Map/Map';
 export * from './ui/Button/Button';
 export * from './ui/Tag/Tag';
+export * from './ui/Spinner/Spinner';
+export * from './ui/Error/Error';
 export * from './screens/home/HomeIntro/HomeIntro';
 export * from './screens/home/HomeLaunches/HomeLaunches';
 export * from './screens/launch/LaunchInfo/LaunchInfo';

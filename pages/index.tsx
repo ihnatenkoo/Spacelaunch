@@ -1,20 +1,34 @@
-import axios from 'axios';
+import { useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
+import axios from 'axios';
+import { useActions, useAppSelector } from '../hooks';
 import { LaunchesRequestData, HomeProps, LaunchesData } from '../Interfaces';
 import { MainLayout } from '../layout/';
 import { HomeIntro, HomeLaunches } from '../components';
-import { useEffect, useState } from 'react';
 
-const Home: NextPage<HomeProps> = ({ launchesData }) => {
-  const [data, setData] = useState<Array<LaunchesData>>(launchesData.slice(0, 6));
-  const [offset, setOffset] = useState<number>(12);
-  const [loadingTrigger, setLoadingTrigger] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isEnd, setIsEnd] = useState<boolean>(false);
+const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
+  const [initialData, setInitialData] = useState<Array<LaunchesData>>(
+    staticLaunchesData.slice(0, 6)
+  );
+  const { loadingTrigger, offset, isError, isEnd } = useAppSelector((state) => state);
+  const {
+    fetchLaunchesData,
+    setLaunchesDataStatic,
+    setOffset,
+    setLoading,
+    setLoadingTrigger,
+    setError,
+    setEnd
+  } = useActions();
+
+  useEffect(() => {
+    setLaunchesDataStatic(initialData);
+  }, []);
 
   const getLaunchesDataServer = async (offset: number) => {
     try {
-      setIsLoading(true);
+      setError(false);
+      setLoading(true);
       const { data } = await axios.get(
         `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
       );
@@ -31,22 +45,22 @@ const Home: NextPage<HomeProps> = ({ launchesData }) => {
         };
       });
 
-      if (launchesData.length < 6) setIsEnd(true);
-      setData((data) => [...data, ...launchesData]);
-      setOffset((offset) => offset + 6);
-      setIsLoading(false);
-      setLoadingTrigger(false);
+      if (launchesData.length < 6) setEnd();
+      fetchLaunchesData(launchesData);
+      setOffset(6);
     } catch (error) {
       console.error(error);
-      setIsLoading(false);
+      setError(true);
+    } finally {
+      setLoading(false);
       setLoadingTrigger(false);
     }
   };
 
   const getLaunchesDataStatic = () => {
-    const newData = launchesData.slice(0, offset);
-    setData(newData);
-    setOffset((offset) => offset + 6);
+    const launchesData = staticLaunchesData.slice(0, offset);
+    setLaunchesDataStatic(launchesData);
+    setOffset(6);
     setLoadingTrigger(false);
   };
 
@@ -60,7 +74,9 @@ const Home: NextPage<HomeProps> = ({ launchesData }) => {
   }, [loadingTrigger]);
 
   const event = () => {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 75) {
+    if (isError) return;
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
+      console.log(isError);
       setLoadingTrigger(true);
     }
   };
@@ -74,7 +90,7 @@ const Home: NextPage<HomeProps> = ({ launchesData }) => {
     <MainLayout header="homepage">
       <HomeIntro />
       <div className="container fill">
-        <HomeLaunches launchesData={data} isLoading={isLoading} isEnd={isEnd} />
+        <HomeLaunches />
       </div>
     </MainLayout>
   );
@@ -88,7 +104,7 @@ export const getStaticProps: GetStaticProps = async () => {
       `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=24&offset=0`
     );
 
-    const launchesData = data.results.map((item: LaunchesRequestData) => {
+    const staticLaunchesData = data.results.map((item: LaunchesRequestData) => {
       const { id, name, net: date } = item;
       const { image_url: image } = item.rocket.configuration;
 
@@ -101,7 +117,7 @@ export const getStaticProps: GetStaticProps = async () => {
     });
 
     return {
-      props: { launchesData },
+      props: { staticLaunchesData },
       revalidate: 43200
     };
   } catch (error) {

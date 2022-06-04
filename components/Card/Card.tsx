@@ -31,6 +31,7 @@ export const Card: FC<CardProps> = ({ launch, size }) => {
             alt={name}
             width={size === 's' ? 380 : 580}
             height={size === 's' ? 264 : 324}
+            draggable="false"
           />
           <Tag className={styles.card__tag} gradient>
             {dayjs.utc(date).format('MMM DD, YYYY, h:mm a')}

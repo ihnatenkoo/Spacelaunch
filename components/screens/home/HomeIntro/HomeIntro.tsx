@@ -5,7 +5,7 @@ import { Button } from '../../../../components';
 import styles from './HomeIntro.module.scss';
 
 interface HomeIntroProps {
-  image?: string;
+  image?: string | undefined;
 }
 
 export const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
@@ -21,7 +21,9 @@ export const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
         powerful search filters.
       </h2>
       <Button>
-        <Link href={'#launches'}>Show All Launches</Link>
+        <Link href={'#launches'}>
+          <a>Show All Launches</a>
+        </Link>
       </Button>
     </IntroLayout>
   );

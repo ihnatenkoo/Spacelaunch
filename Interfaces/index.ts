@@ -11,5 +11,5 @@ export interface LaunchesData {
   date: Date;
 }
 export interface HomeProps {
-  launchesData: Array<LaunchesData>;
+  staticLaunchesData: Array<LaunchesData>;
 }
