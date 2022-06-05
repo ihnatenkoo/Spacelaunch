@@ -7,12 +7,13 @@ import { useAppDispatch } from '../../../hooks';
 
 export const Error: FC = () => {
   const dispatch = useAppDispatch();
+
   return (
     <>
       <Image
         src={errorImage}
-        width="225"
-        height="225"
+        width="200"
+        height="200"
         alt="error picture"
         style={{ borderRadius: '30%' }}
       />

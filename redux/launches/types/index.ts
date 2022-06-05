@@ -1,4 +1,4 @@
-import { LaunchesData } from '../../Interfaces';
+import { LaunchesData } from '../../../Interfaces';
 
 export interface InitialStateProps {
   launches: LaunchesState;
@@ -19,7 +19,7 @@ export type LaunchesActionProps =
   | LaunchesOffsetAction;
 
 interface LaunchesFetchActions {
-  type?: ActionTypes.SET_LAUNCHES_DATA_STATIC | ActionTypes.FETCH_LAUNCHES_DATA;
+  type?: ActionTypes.SET_LAUNCHES_DATA_STATIC | ActionTypes.FETCH_LAUNCHES_DATA_SUCCESS;
   payload: Array<LaunchesData>;
 }
 interface LaunchesStatusActions {
@@ -37,7 +37,7 @@ interface LaunchesOffsetAction {
 
 export enum ActionTypes {
   SET_LAUNCHES_DATA_STATIC = 'launchesData/SET_DATA_STATIC',
-  FETCH_LAUNCHES_DATA = 'launchesData/FETCH',
+  FETCH_LAUNCHES_DATA_SUCCESS = 'launchesData/FETCH_SUCCESS',
   SET_OFFSET = 'launchesData/SET_OFFSET',
   SET_LOADING = 'launchesData/SET_LOADING',
   SET_LOADING_TRIGGER = 'launchesData/SET_LOADING_TRIGGER',

@@ -9,10 +9,7 @@ import {
   fetchLaunchesData,
   setLaunchesDataStatic,
   setOffset,
-  setLoading,
-  setLoadingTrigger,
-  setError,
-  setEnd
+  setLoadingTrigger
 } from '../redux/launches/actions/';
 
 const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
@@ -27,38 +24,6 @@ const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
     dispatch(setLaunchesDataStatic(initialData));
   }, []);
 
-  const getLaunchesDataServer = async (offset: number) => {
-    try {
-      dispatch(setError(false));
-      dispatch(setLoading(true));
-      const { data } = await axios.get(
-        `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
-      );
-
-      const launchesData = data.results.map((item: LaunchesRequestData) => {
-        const { id, name, net: date } = item;
-        const { image_url: image } = item.rocket.configuration;
-
-        return {
-          name,
-          image,
-          id,
-          date
-        };
-      });
-
-      if (launchesData.length < 6) setEnd();
-      dispatch(fetchLaunchesData(launchesData));
-      dispatch(setOffset(6));
-    } catch (error) {
-      console.error(error);
-      dispatch(setError(true));
-    } finally {
-      dispatch(setLoading(false));
-      dispatch(setLoadingTrigger(false));
-    }
-  };
-
   const getLaunchesDataStatic = () => {
     const launchesData = staticLaunchesData.slice(0, offset);
     dispatch(setLaunchesDataStatic(launchesData));
@@ -71,22 +36,21 @@ const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
       getLaunchesDataStatic();
     }
     if (loadingTrigger && offset > 24 && !isEnd) {
-      getLaunchesDataServer(offset);
+      dispatch(fetchLaunchesData(offset));
     }
   }, [loadingTrigger]);
 
   const event = () => {
-    if (isError) return;
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
-      console.log(isError);
       dispatch(setLoadingTrigger(true));
     }
   };
 
   useEffect(() => {
     window.addEventListener('scroll', event);
+    if (isError || isEnd) window.removeEventListener('scroll', event);
     return () => window.removeEventListener('scroll', event);
-  }, []);
+  }, [isError, isEnd]);
 
   return (
     <MainLayout header="homepage">

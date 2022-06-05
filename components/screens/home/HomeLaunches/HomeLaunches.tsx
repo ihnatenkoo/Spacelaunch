@@ -19,8 +19,8 @@ export const HomeLaunches: FC = () => {
         })}
       </div>
       <div className={styles.end}>
+        {isError && <Error />}
         {isLoading && <Spinner />}
-        {isError && !isLoading && <Error />}
         {isEnd && <h2 className={styles.end__title}>All launches have been uploaded</h2>}
       </div>
     </>

@@ -1,16 +1,52 @@
-import { LaunchesData } from '../../../Interfaces';
+import { Dispatch } from 'redux';
+import axios from 'axios';
 import { ActionTypes } from '../types/';
+import { LaunchesData, LaunchesRequestData } from '../../../Interfaces';
 
-export const setLaunchesDataStatic = (launchesData: Array<LaunchesData>) => {
+export const fetchLaunchesData = (offset: number) => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(setLoading(true));
+      const { data } = await axios.get(
+        `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
+      );
+
+      const launchesData = data.results.map((item: LaunchesRequestData) => {
+        const { id, name, net: date } = item;
+        const { image_url: image } = item.rocket.configuration;
+
+        return {
+          name,
+          image,
+          id,
+          date
+        };
+      });
+      console.log(launchesData.length);
+      if (launchesData.length < 6) dispatch(setEnd());
+      dispatch(fetchLaunchesDataSuccess(launchesData));
+      dispatch(setOffset(6));
+      dispatch(setError(false));
+    } catch (error) {
+      console.error(error);
+      dispatch(setError(true));
+    } finally {
+      dispatch(setLoading(false));
+      dispatch(setLoadingTrigger(false));
+    }
+  };
+};
+
+export const fetchLaunchesDataSuccess = (launchesData: Array<LaunchesData>) => {
   return {
-    type: ActionTypes.SET_LAUNCHES_DATA_STATIC,
+    type: ActionTypes.FETCH_LAUNCHES_DATA_SUCCESS,
     payload: launchesData
   };
 };
 
-export const fetchLaunchesData = (launchesData: Array<LaunchesData>) => {
+export const setLaunchesDataStatic = (launchesData: Array<LaunchesData>) => {
   return {
-    type: ActionTypes.FETCH_LAUNCHES_DATA,
+    type: ActionTypes.SET_LAUNCHES_DATA_STATIC,
     payload: launchesData
   };
 };
