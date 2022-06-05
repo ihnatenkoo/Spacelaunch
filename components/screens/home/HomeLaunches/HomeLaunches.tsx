@@ -6,7 +6,7 @@ import { Spinner, Error } from '../../../../components';
 import { useAppSelector } from '../../../../hooks/';
 
 export const HomeLaunches: FC = () => {
-  const { launchesData, isLoading, isError, isEnd } = useAppSelector((state) => state);
+  const { launchesData, isLoading, isError, isEnd } = useAppSelector((state) => state.launches);
 
   return (
     <>
@@ -15,7 +15,7 @@ export const HomeLaunches: FC = () => {
       </h2>
       <div className={styles.inner}>
         {launchesData.map((launch: LaunchesData) => {
-          return <Card size="m" key={launch.id} launch={launch}></Card>;
+          return <Card size="m" key={launch.id} launch={launch} />;
         })}
       </div>
       <div className={styles.end}>

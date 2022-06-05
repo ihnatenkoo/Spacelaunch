@@ -1,4 +1,4 @@
-import { InitialStateProps, ActionTypes, LaunchesActionProps } from '../types';
+import { ActionTypes, LaunchesActionProps, LaunchesState } from '../types';
 
 const initialState = {
   launchesData: [],
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const launchesReducer = (
-  state: InitialStateProps = initialState,
+  state: LaunchesState = initialState,
   action: LaunchesActionProps
 ) => {
   switch (action.type) {

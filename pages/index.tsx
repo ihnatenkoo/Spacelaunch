@@ -1,34 +1,36 @@
 import { useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import axios from 'axios';
-import { useActions, useAppSelector } from '../hooks';
+import { useAppSelector, useAppDispatch } from '../hooks';
 import { LaunchesRequestData, HomeProps, LaunchesData } from '../Interfaces';
 import { MainLayout } from '../layout/';
 import { HomeIntro, HomeLaunches } from '../components';
+import {
+  fetchLaunchesData,
+  setLaunchesDataStatic,
+  setOffset,
+  setLoading,
+  setLoadingTrigger,
+  setError,
+  setEnd
+} from '../redux/launches/actions/';
 
 const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
   const [initialData, setInitialData] = useState<Array<LaunchesData>>(
     staticLaunchesData.slice(0, 6)
   );
-  const { loadingTrigger, offset, isError, isEnd } = useAppSelector((state) => state);
-  const {
-    fetchLaunchesData,
-    setLaunchesDataStatic,
-    setOffset,
-    setLoading,
-    setLoadingTrigger,
-    setError,
-    setEnd
-  } = useActions();
+
+  const dispatch = useAppDispatch();
+  const { loadingTrigger, offset, isError, isEnd } = useAppSelector((state) => state.launches);
 
   useEffect(() => {
-    setLaunchesDataStatic(initialData);
+    dispatch(setLaunchesDataStatic(initialData));
   }, []);
 
   const getLaunchesDataServer = async (offset: number) => {
     try {
-      setError(false);
-      setLoading(true);
+      dispatch(setError(false));
+      dispatch(setLoading(true));
       const { data } = await axios.get(
         `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
       );
@@ -46,22 +48,22 @@ const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
       });
 
       if (launchesData.length < 6) setEnd();
-      fetchLaunchesData(launchesData);
-      setOffset(6);
+      dispatch(fetchLaunchesData(launchesData));
+      dispatch(setOffset(6));
     } catch (error) {
       console.error(error);
-      setError(true);
+      dispatch(setError(true));
     } finally {
-      setLoading(false);
-      setLoadingTrigger(false);
+      dispatch(setLoading(false));
+      dispatch(setLoadingTrigger(false));
     }
   };
 
   const getLaunchesDataStatic = () => {
     const launchesData = staticLaunchesData.slice(0, offset);
-    setLaunchesDataStatic(launchesData);
-    setOffset(6);
-    setLoadingTrigger(false);
+    dispatch(setLaunchesDataStatic(launchesData));
+    dispatch(setOffset(6));
+    dispatch(setLoadingTrigger(false));
   };
 
   useEffect(() => {
@@ -77,7 +79,7 @@ const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
     if (isError) return;
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
       console.log(isError);
-      setLoadingTrigger(true);
+      dispatch(setLoadingTrigger(true));
     }
   };
 

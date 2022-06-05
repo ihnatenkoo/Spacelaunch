@@ -1,5 +1,5 @@
-import { LaunchesData } from '../../Interfaces';
-import { ActionTypes } from '../types';
+import { LaunchesData } from '../../../Interfaces';
+import { ActionTypes } from '../types/';
 
 export const setLaunchesDataStatic = (launchesData: Array<LaunchesData>) => {
   return {

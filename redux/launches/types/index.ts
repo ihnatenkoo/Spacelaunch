@@ -1,6 +1,10 @@
 import { LaunchesData } from '../../Interfaces';
 
 export interface InitialStateProps {
+  launches: LaunchesState;
+}
+
+export interface LaunchesState {
   launchesData: Array<LaunchesData>;
   offset: number;
   loadingTrigger: boolean;
@@ -32,11 +36,11 @@ interface LaunchesOffsetAction {
 }
 
 export enum ActionTypes {
-  SET_LAUNCHES_DATA_STATIC = 'SET_LAUNCHES_DATA_STATIC',
-  FETCH_LAUNCHES_DATA = 'FETCH_LAUNCHES_DATA',
-  SET_OFFSET = 'SET_OFFSET',
-  SET_LOADING = 'SET_LOADING',
-  SET_LOADING_TRIGGER = 'SET_LOADING_TRIGGER',
-  SET_ERROR = 'SET_ERROR',
-  SET_END = 'SET_END'
+  SET_LAUNCHES_DATA_STATIC = 'launchesData/SET_DATA_STATIC',
+  FETCH_LAUNCHES_DATA = 'launchesData/FETCH',
+  SET_OFFSET = 'launchesData/SET_OFFSET',
+  SET_LOADING = 'launchesData/SET_LOADING',
+  SET_LOADING_TRIGGER = 'launchesData/SET_LOADING_TRIGGER',
+  SET_ERROR = 'launchesData/SET_ERROR',
+  SET_END = 'launchesData/SET_END'
 }
