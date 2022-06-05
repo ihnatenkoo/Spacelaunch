@@ -1,7 +1,8 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
 import { ActionTypes } from '../types/';
-import { LaunchesData, LaunchesRequestData } from '../../../Interfaces';
+import { LaunchesData } from '../../../Interfaces';
+import { transformLaunchesData } from '../../../utils/getLaunchesData';
 
 export const fetchLaunchesData = (offset: number) => {
   return async (dispatch: any) => {
@@ -11,18 +12,8 @@ export const fetchLaunchesData = (offset: number) => {
         `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
       );
 
-      const launchesData = data.results.map((item: LaunchesRequestData) => {
-        const { id, name, net: date } = item;
-        const { image_url: image } = item.rocket.configuration;
+      const launchesData = transformLaunchesData(data.results);
 
-        return {
-          name,
-          image,
-          id,
-          date
-        };
-      });
-      console.log(launchesData.length);
       if (launchesData.length < 6) dispatch(setEnd());
       dispatch(fetchLaunchesDataSuccess(launchesData));
       dispatch(setOffset(6));

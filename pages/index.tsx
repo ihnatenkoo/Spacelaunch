@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import axios from 'axios';
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { LaunchesRequestData, HomeProps, LaunchesData } from '../Interfaces';
+import { HomeProps, LaunchesData } from '../Interfaces';
 import { MainLayout } from '../layout/';
 import { HomeIntro, HomeLaunches } from '../components';
 import {
@@ -11,6 +11,7 @@ import {
   setOffset,
   setLoadingTrigger
 } from '../redux/launches/actions/';
+import { transformLaunchesData } from '../utils/getLaunchesData';
 
 const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
   const [initialData, setInitialData] = useState<Array<LaunchesData>>(
@@ -70,17 +71,7 @@ export const getStaticProps: GetStaticProps = async () => {
       `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=24&offset=0`
     );
 
-    const staticLaunchesData = data.results.map((item: LaunchesRequestData) => {
-      const { id, name, net: date } = item;
-      const { image_url: image } = item.rocket.configuration;
-
-      return {
-        name,
-        image,
-        id,
-        date
-      };
-    });
+    const staticLaunchesData = transformLaunchesData(data.results);
 
     return {
       props: { staticLaunchesData },
