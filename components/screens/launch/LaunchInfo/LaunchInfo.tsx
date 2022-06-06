@@ -1,24 +1,13 @@
 import React, { FC } from 'react';
 import { Tag } from '../../../../components';
+import { useAppSelector } from '../../../../hooks';
 import styles from './LaunchInfo.module.scss';
 
-interface LaunchInfoProps {
-  rocket: string;
-  type: string;
-  orbit: string;
-  location: string;
-  complex: string;
-  description: string;
-}
+export const LaunchInfo: FC = () => {
+  const { orbit, type, launchComplex, rocketName, location, missionDescr } = useAppSelector(
+    (state) => state.singleLaunch
+  );
 
-export const LaunchInfo: FC<LaunchInfoProps> = ({
-  rocket,
-  type,
-  orbit,
-  location,
-  complex,
-  description
-}) => {
   return (
     <div className={styles.launch}>
       <h2 className={styles.launch__title}>Overview</h2>
@@ -30,17 +19,17 @@ export const LaunchInfo: FC<LaunchInfoProps> = ({
       </h3>
       <div className={styles.launch__info}>
         <Tag gradient className={styles.tag}>
-          {complex}
+          {launchComplex}
         </Tag>
         <Tag gradient className={styles.tag}>
           {orbit}
         </Tag>
         <Tag gradient className={styles.tag}>
-          {rocket}
+          {rocketName}
         </Tag>
       </div>
       <Tag className={styles.launch__location}>{location}</Tag>
-      <div className={styles.launch__description}>{description}</div>
+      <div className={styles.launch__description}>{missionDescr}</div>
     </div>
   );
 };

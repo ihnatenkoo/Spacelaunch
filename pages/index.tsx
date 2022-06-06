@@ -11,7 +11,7 @@ import {
   setOffset,
   setLoadingTrigger
 } from '../redux/launches/actions/';
-import { transformLaunchesData } from '../utils/getLaunchesData';
+import { transformLaunchesData } from '../utils';
 
 const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
   const [initialData, setInitialData] = useState<Array<LaunchesData>>(

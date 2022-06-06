@@ -1,9 +1,4 @@
 import { LaunchesData } from '../../../Interfaces';
-
-export interface InitialStateProps {
-  launches: LaunchesState;
-}
-
 export interface LaunchesState {
   launchesData: Array<LaunchesData>;
   offset: number;

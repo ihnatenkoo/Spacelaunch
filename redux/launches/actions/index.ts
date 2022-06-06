@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import axios from 'axios';
 import { ActionTypes } from '../types/';
 import { LaunchesData } from '../../../Interfaces';
-import { transformLaunchesData } from '../../../utils/getLaunchesData';
+import { transformLaunchesData } from '../../../utils';
 
 export const fetchLaunchesData = (offset: number) => {
   return async (dispatch: any) => {

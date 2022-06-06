@@ -1,12 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useAppSelector } from '../../../../hooks';
 import { IntroLayout } from '../../../../layout';
 import styles from './LaunchIntro.module.scss';
 
-interface LaunchIntroProps {
-  name: string;
-  image: string;
-  date: string;
-}
 interface timeState {
   total: number | string;
   days: number | string;
@@ -15,7 +11,9 @@ interface timeState {
   seconds: number | string;
 }
 
-export const LaunchIntro: FC<LaunchIntroProps> = ({ name, image, date }) => {
+export const LaunchIntro: FC = () => {
+  const { date, image, name } = useAppSelector((state) => state.singleLaunch);
+
   const [time, setTime] = useState<timeState>({
     total: 0,
     days: 0,

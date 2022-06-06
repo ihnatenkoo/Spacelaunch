@@ -1,37 +1,28 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { Button } from '../../../../components';
+import { useAppSelector } from '../../../../hooks';
 import styles from './LaunchRocker.module.scss';
 
-interface LaunchRocketProps {
-  rocket: string;
-  family: string;
-  variant: string;
-  description: string;
-  officialLink: string;
-  wikiLink: string;
-  id: string;
-}
+export const LaunchRocket: FC = () => {
+  const { rocketName, rocketFamily, rocketVariant, rocketDescr, rocketId } = useAppSelector(
+    (state) => state.singleLaunch
+  );
 
-export const LaunchRocket: FC<LaunchRocketProps> = ({
-  id,
-  rocket,
-  family,
-  variant,
-  description
-}) => {
   return (
     <div className={styles.rocket}>
-      <h2 className={styles.rocket__title}>{rocket}</h2>
+      <h2 className={styles.rocket__title}>{rocketName}</h2>
       <h3 className={styles.rocket__subtitle}>
-        Family: <span>{family}</span>
+        Family: <span>{rocketFamily}</span>
       </h3>
       <h3 className={styles.rocket__subtitle}>
-        Configuration: <span>{variant || 'No info'}</span>
+        Configuration: <span>{rocketVariant || 'No info'}</span>
       </h3>
-      <div className={styles.rocket__description}>{description}</div>
+      <div className={styles.rocket__description}>{rocketDescr}</div>
       <Button>
-        <Link href={`/rocket/${[id]}`}>See Rocket Details</Link>
+        <Link href={`/rocket/${[rocketId]}`}>
+          <a>See Rocket Details</a>
+        </Link>
       </Button>
     </div>
   );

@@ -16,8 +16,6 @@ export interface SingleLaunchData {
   rocketFamily: string;
   rocketVariant: string;
   rocketDescr: string;
-  rocketLink: string;
-  rocketWiki: string;
   eventCoordinates: { lat: number; lng: number };
   rocketId: string;
   date: string;

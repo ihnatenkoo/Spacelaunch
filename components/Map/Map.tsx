@@ -1,5 +1,6 @@
 import React, { FC, useRef } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { useAppSelector } from '../../hooks';
 
 const containerStyle = {
   width: '100%',
@@ -12,14 +13,9 @@ const defaultOptions = {
   panControl: false
 };
 
-interface MapProps {
-  eventCoordinates: {
-    lat: number;
-    lng: number;
-  };
-}
+export const Map: FC = () => {
+  const { eventCoordinates } = useAppSelector((state) => state.singleLaunch);
 
-export const Map: FC<MapProps> = ({ eventCoordinates }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: String(process.env.NEXT_PUBLIC_MAPS_API_KEY)
@@ -39,7 +35,7 @@ export const Map: FC<MapProps> = ({ eventCoordinates }) => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={eventCoordinates}
-      zoom={7}
+      zoom={9}
       onLoad={onLoad}
       onUnmount={onUnmount}
       options={defaultOptions}

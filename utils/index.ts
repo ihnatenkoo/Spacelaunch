@@ -32,9 +32,7 @@ export const transformSingleLaunchData = (data: any): SingleLaunchData => {
     name: rocketName,
     family: rocketFamily,
     variant: rocketVariant,
-    description: rocketDescr,
-    info_url: rocketLink,
-    wiki_url: rocketWiki
+    description: rocketDescr
   } = data.rocket.configuration;
 
   const singleLaunchData = {
@@ -50,8 +48,6 @@ export const transformSingleLaunchData = (data: any): SingleLaunchData => {
     rocketFamily,
     rocketVariant,
     rocketDescr,
-    rocketLink,
-    rocketWiki,
     eventCoordinates: { lat: +latitude, lng: +longitude },
     rocketId
   };
