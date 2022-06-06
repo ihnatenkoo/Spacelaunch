@@ -2,24 +2,12 @@ import React, { FC } from 'react';
 import dayjs from 'dayjs';
 import { IntroLayout } from '../../../../layout/IntroLayout';
 import styles from './RocketIntro.module.scss';
+import { useAppSelector } from '../../../../hooks';
 
-interface RocketIntroProps {
-  name: string;
-  image: string;
-  description: string;
-  firstFlight: string;
-  nameCompany: string;
-  abbrevCompany: string;
-}
-
-export const RocketIntro: FC<RocketIntroProps> = ({
-  name,
-  image,
-  description,
-  firstFlight,
-  nameCompany,
-  abbrevCompany
-}) => {
+export const RocketIntro: FC = () => {
+  const { name, image, description, firstFlight, nameCompany, abbrevCompany } = useAppSelector(
+    (state) => state.singleRocket
+  );
   return (
     <IntroLayout image={image} className={styles.rocket}>
       <h1 className={styles.rocket__title}>{name}</h1>

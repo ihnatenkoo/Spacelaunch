@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import axios from 'axios';
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { HomeProps, LaunchesData } from '../Interfaces';
+import { HomePageProps, LaunchesData } from '../Interfaces';
 import { MainLayout } from '../layout/';
 import { HomeIntro, HomeLaunches } from '../components';
 import {
@@ -13,7 +13,7 @@ import {
 } from '../redux/launches/actions/';
 import { transformLaunchesData } from '../utils';
 
-const Home: NextPage<HomeProps> = ({ staticLaunchesData }) => {
+const Home: NextPage<HomePageProps> = ({ staticLaunchesData }) => {
   const [initialData, setInitialData] = useState<Array<LaunchesData>>(
     staticLaunchesData.slice(0, 6)
   );

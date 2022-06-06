@@ -3,12 +3,12 @@ import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { MainLayout } from '../../layout';
 import { LaunchIntro, LaunchInfo, LaunchRocket, Map } from '../../components';
-import { SingleLaunchData } from '../../Interfaces';
+import { LaunchPageProps } from '../../Interfaces';
 import { transformSingleLaunchData } from '../../utils';
 import { useAppDispatch } from '../../hooks';
 import { setLaunchData } from '../../redux/singleLaunch/actions';
 
-const Launch: NextPage<SingleLaunchData> = ({ singleLaunchData }: any) => {
+const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
   const dispatch = useAppDispatch();
 
   dispatch(setLaunchData(singleLaunchData));
