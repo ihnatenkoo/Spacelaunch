@@ -31,11 +31,11 @@ interface LaunchesOffsetAction {
 }
 
 export enum ActionTypes {
-  SET_LAUNCHES_DATA_STATIC = 'launchesData/SET_DATA_STATIC',
-  FETCH_LAUNCHES_DATA_SUCCESS = 'launchesData/FETCH_SUCCESS',
-  SET_OFFSET = 'launchesData/SET_OFFSET',
-  SET_LOADING = 'launchesData/SET_LOADING',
-  SET_LOADING_TRIGGER = 'launchesData/SET_LOADING_TRIGGER',
-  SET_ERROR = 'launchesData/SET_ERROR',
-  SET_END = 'launchesData/SET_END'
+  SET_LAUNCHES_DATA_STATIC = 'launches/SET_DATA_STATIC',
+  FETCH_LAUNCHES_DATA_SUCCESS = 'launches/FETCH_SUCCESS',
+  SET_OFFSET = 'launches/SET_OFFSET',
+  SET_LOADING = 'launches/SET_LOADING',
+  SET_LOADING_TRIGGER = 'launches/SET_LOADING_TRIGGER',
+  SET_ERROR = 'launches/SET_ERROR',
+  SET_END = 'launches/SET_END'
 }

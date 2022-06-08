@@ -16,6 +16,16 @@ export const transformLaunchesData = (data: any): Array<LaunchesData> => {
   return transformData;
 };
 
+export const transRecentEventsData = (data: any) => {
+  const staticEventsData = data.map((item: any) => {
+    const { id, name, date } = item;
+    const image = item.launches[0]?.image || null;
+    return { id, name, date, image };
+  });
+
+  return staticEventsData;
+};
+
 export const transformSingleLaunchData = (data: any): SingleLaunchData => {
   const { name, net: date } = data;
   const { latitude, longitude, name: launchComplex } = data.pad;

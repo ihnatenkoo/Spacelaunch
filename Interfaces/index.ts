@@ -2,7 +2,13 @@ export interface LaunchesData {
   name: string;
   image: string;
   id: string;
-  date: Date;
+  date: string;
+}
+export interface EventsData {
+  id: string;
+  name: string;
+  image: string;
+  date: string;
 }
 export interface SingleLaunchData {
   name: string;
@@ -50,6 +56,7 @@ export interface SingleRocketData {
 
 export interface HomePageProps {
   staticLaunchesData: Array<LaunchesData>;
+  staticEventsData: Array<EventsData>;
 }
 export interface RocketPageProps {
   singleRocketData: SingleRocketData;

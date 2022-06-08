@@ -6,5 +6,5 @@ export interface SingleRocketActions {
 }
 
 export enum ActionTypes {
-  SET_SINGLE_ROCKET_DATA = 'singleRocketData/SET_DATA'
+  SET_SINGLE_ROCKET_DATA = 'singleRocket/SET_DATA'
 }

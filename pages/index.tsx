@@ -11,9 +11,10 @@ import {
   setOffset,
   setLoadingTrigger
 } from '../redux/launches/actions/';
-import { transformLaunchesData } from '../utils';
+import { transformLaunchesData, transRecentEventsData } from '../utils';
+import { setRecentEventsData } from '../redux/recentEvents/actions';
 
-const Home: NextPage<HomePageProps> = ({ staticLaunchesData }) => {
+const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData }) => {
   const [initialData, setInitialData] = useState<Array<LaunchesData>>(
     staticLaunchesData.slice(0, 6)
   );
@@ -23,6 +24,7 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData }) => {
 
   useEffect(() => {
     dispatch(setLaunchesDataStatic(initialData));
+    dispatch(setRecentEventsData(staticEventsData));
   }, []);
 
   const getLaunchesDataStatic = () => {
@@ -67,14 +69,19 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const { data } = await axios.get(
+    const { data: launchesData } = await axios.get(
       `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=24&offset=0`
     );
 
-    const staticLaunchesData = transformLaunchesData(data.results);
+    const { data: eventsData } = await axios.get(
+      `https://spacelaunchnow.me/api/3.3.0/event/upcoming/?limit=12&offset=0`
+    );
+
+    const staticLaunchesData = transformLaunchesData(launchesData.results);
+    const staticEventsData = transRecentEventsData(eventsData.results);
 
     return {
-      props: { staticLaunchesData },
+      props: { staticLaunchesData, staticEventsData },
       revalidate: 43200
     };
   } catch (error) {

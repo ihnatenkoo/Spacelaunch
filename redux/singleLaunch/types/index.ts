@@ -6,5 +6,5 @@ export interface LaunchDataAction {
 }
 
 export enum ActionTypes {
-  SET_SINGLE_LAUNCH_DATA = 'singleLaunchData/SET_DATA'
+  SET_SINGLE_LAUNCH_DATA = 'singleLaunch/SET_DATA'
 }
