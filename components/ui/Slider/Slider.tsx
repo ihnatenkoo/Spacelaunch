@@ -1,16 +1,20 @@
 import { FC, useEffect, useState } from 'react';
-import { useAppSelector } from '../../../hooks';
 import { Card } from '../../Card/Card';
 import ArrowLeft from '../../../public/icons/arrow-left.svg';
 import ArrowRight from '../../../public/icons/arrow-right.svg';
 
 import styles from './Slider.module.scss';
+import { LaunchesData } from '../../../Interfaces';
 
-const Slider: FC = () => {
-  const { recentEventsData } = useAppSelector((state) => state.recentEvents);
+interface SliderProps {
+  data: Array<LaunchesData>;
+  path: string;
+}
+
+const Slider: FC<SliderProps> = ({ data, path }) => {
   const [position, setPosition] = useState<number>(0);
 
-  const maxViewWidth = -recentEventsData.length * 400 + 1200;
+  const maxViewWidth = -data.length * 400 + 1200;
 
   const next = (position: number) => {
     position - 400 < maxViewWidth ? setPosition(0) : setPosition((state) => state - 400);
@@ -42,8 +46,8 @@ const Slider: FC = () => {
           className={styles.slider__inner__view}
           style={{ transform: `translateX(${position}px)` }}
         >
-          {recentEventsData.map((event) => {
-            return <Card data={event} size="s" key={event.id} path={'event'} />;
+          {data.map((item) => {
+            return <Card data={item} size="s" key={item.id} path={path} />;
           })}
         </div>
       </div>

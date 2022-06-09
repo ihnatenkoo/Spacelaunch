@@ -22,6 +22,7 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
 
   const dispatch = useAppDispatch();
   const { loadingTrigger, offset, isError, isEnd } = useAppSelector((state) => state.launches);
+  const { recentEventsData } = useAppSelector((state) => state.recentEvents);
 
   useEffect(() => {
     dispatch(setLaunchesDataStatic(initialData));
@@ -60,7 +61,7 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
     <MainLayout header="homepage">
       <HomeIntro />
       <div className="container fill">
-        <Slider />
+        <Slider data={recentEventsData} path={'event'} />
         <HomeLaunches />
       </div>
     </MainLayout>
