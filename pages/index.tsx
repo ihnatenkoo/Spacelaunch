@@ -13,6 +13,7 @@ import {
 } from '../redux/launches/actions/';
 import { transformLaunchesData, transRecentEventsData } from '../utils';
 import { setRecentEventsData } from '../redux/recentEvents/actions';
+import Slider from '../components/ui/Slider/Slider';
 
 const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData }) => {
   const [initialData, setInitialData] = useState<Array<LaunchesData>>(
@@ -59,6 +60,7 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
     <MainLayout header="homepage">
       <HomeIntro />
       <div className="container fill">
+        <Slider />
         <HomeLaunches />
       </div>
     </MainLayout>

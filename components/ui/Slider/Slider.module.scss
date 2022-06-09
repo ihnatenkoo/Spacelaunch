@@ -1,0 +1,43 @@
+.slider {
+  margin-bottom: 100px;
+
+  &__header {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+      font-weight: 800;
+      font-size: 54px;
+      line-height: 64px;
+      color: var(--white);
+    }
+
+    &__navigation {
+      :first-child {
+        margin-right: 46px;
+      }
+      .arrow {
+        width: 56px;
+        fill: var(--white);
+        transition: all 0.15s linear;
+
+        cursor: pointer;
+
+        &:hover {
+          fill: var(--purple);
+        }
+      }
+    }
+  }
+
+  &__inner {
+    overflow: hidden;
+
+    &__view {
+      display: flex;
+      transition: transform 0.6s linear;
+    }
+  }
+}
