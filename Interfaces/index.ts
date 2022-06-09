@@ -54,6 +54,15 @@ export interface SingleRocketData {
   failed_launches: string;
 }
 
+export interface SingleEventData {
+  id: string;
+  name: string;
+  feature_image: string;
+  description: string;
+  date: string;
+  video_url: string;
+}
+
 export interface HomePageProps {
   staticLaunchesData: Array<LaunchesData>;
   staticEventsData: Array<EventsData>;
@@ -63,4 +72,7 @@ export interface RocketPageProps {
 }
 export interface LaunchPageProps {
   singleLaunchData: SingleLaunchData;
+}
+export interface EventPageProps {
+  singleEvent: SingleEventData;
 }
