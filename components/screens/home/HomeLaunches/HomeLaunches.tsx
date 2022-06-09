@@ -15,7 +15,7 @@ export const HomeLaunches: FC = () => {
       </h2>
       <div className={styles.inner}>
         {launchesData.map((launch: LaunchesData) => {
-          return <Card size="m" key={launch.id} launch={launch} />;
+          return <Card size="m" key={launch.id} data={launch} path={'launch'} />;
         })}
       </div>
       <div className={styles.end}>

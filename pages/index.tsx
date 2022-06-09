@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps = async () => {
     );
 
     const { data: eventsData } = await axios.get(
-      `https://spacelaunchnow.me/api/3.3.0/event/upcoming/?limit=12&offset=0`
+      `https://spacelaunchnow.me/api/3.3.0/event/upcoming/?limit=15&offset=0`
     );
 
     const staticLaunchesData = transformLaunchesData(launchesData.results);

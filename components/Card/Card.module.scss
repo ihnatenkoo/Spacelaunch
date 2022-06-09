@@ -1,7 +1,7 @@
 .card {
   display: block;
   margin-bottom: 50px;
-  max-width: 580px;
+  width: 580px;
   cursor: pointer;
 
   &__header {
@@ -24,7 +24,9 @@
   }
 
   &.small {
-    max-width: 380px;
+    margin-right: 20px;
+    margin-bottom: 0;
+    width: 380px;
     .card__tag {
       margin: 20px 0;
       position: static;

@@ -19,14 +19,16 @@ export const Header: FC<HeaderProps> = ({ header }) => {
           })}
         >
           <Link href="/">
-            <div
-              className={cn(styles.header__link, {
-                [styles.homepage]: header === 'homepage'
-              })}
-            >
-              <ArrowLeft className={styles.header__arrow} />
-              Back to home
-            </div>
+            <a>
+              <div
+                className={cn(styles.header__link, {
+                  [styles.homepage]: header === 'homepage'
+                })}
+              >
+                <ArrowLeft className={styles.header__arrow} />
+                Back to home
+              </div>
+            </a>
           </Link>
 
           <Logo className={styles.header__logo} />
