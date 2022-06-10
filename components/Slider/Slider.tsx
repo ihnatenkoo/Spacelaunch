@@ -1,17 +1,18 @@
 import { FC, useEffect, useState } from 'react';
-import { Card } from '../../Card/Card';
-import ArrowLeft from '../../../public/icons/arrow-left.svg';
-import ArrowRight from '../../../public/icons/arrow-right.svg';
+import { Card } from '../Card/Card';
+import ArrowLeft from '../../public/icons/arrow-left.svg';
+import ArrowRight from '../../public/icons/arrow-right.svg';
 
 import styles from './Slider.module.scss';
-import { LaunchesData } from '../../../Interfaces';
+import { LaunchesData } from '../../Interfaces';
+import { Title } from '../../components';
 
 interface SliderProps {
   data: Array<LaunchesData>;
   path: string;
 }
 
-const Slider: FC<SliderProps> = ({ data, path }) => {
+export const Slider: FC<SliderProps> = ({ data, path }) => {
   const [position, setPosition] = useState<number>(0);
 
   const maxViewWidth = -data.length * 400 + 1200;
@@ -34,7 +35,9 @@ const Slider: FC<SliderProps> = ({ data, path }) => {
   return (
     <div className={styles.slider}>
       <div className={styles.slider__header}>
-        <h2 className={styles.slider__header__title}>Recent Events</h2>
+        <Title mb={40} textAlign="left">
+          Recent Events
+        </Title>
         <div className={styles.slider__header__navigation}>
           <ArrowLeft onClick={() => prev(position)} className={styles.arrow} />
           <ArrowRight onClick={() => next(position)} className={styles.arrow} />
@@ -54,5 +57,3 @@ const Slider: FC<SliderProps> = ({ data, path }) => {
     </div>
   );
 };
-
-export default Slider;

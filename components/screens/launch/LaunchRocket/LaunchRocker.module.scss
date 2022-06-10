@@ -8,31 +8,20 @@
   font-weight: 500;
   font-size: 18px;
 
-  &__title {
-    margin-bottom: 20px;
-    font-weight: 800;
-    font-size: 54px;
-    line-height: 64px;
-  }
-
   &__subtitle {
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     font-weight: 700;
     font-size: 17px;
     line-height: 28px;
-    span {
-      font-weight: 400;
-    }
-  }
-
-  &__description {
-    margin: 25px 0 30px;
-    max-width: 865px;
-
-    font-family: 'Roboto';
-    font-size: 17px;
-    line-height: 28px;
     text-align: center;
-    color: var(--gray);
+    h3 {
+      span {
+        font-weight: 400;
+      }
+    }
+
+    :first-child {
+      margin-bottom: 5px;
+    }
   }
 }

@@ -2,7 +2,8 @@ import axios from 'axios';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { useEffect } from 'react';
-import Slider from '../../components/ui/Slider/Slider';
+import EventIntro from '../../components/screens/event/EventIntro';
+import { Slider } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { EventPageProps, SingleEventData } from '../../Interfaces';
 import { MainLayout } from '../../layout';
@@ -18,6 +19,7 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 
   return (
     <MainLayout header="secondary">
+      <EventIntro />
       <div className="container fill">
         <Slider data={recentEventsData} path={'event'} />
       </div>

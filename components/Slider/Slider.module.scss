@@ -2,17 +2,9 @@
   margin-bottom: 100px;
 
   &__header {
-    margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    &__title {
-      font-weight: 800;
-      font-size: 54px;
-      line-height: 64px;
-      color: var(--white);
-    }
 
     &__navigation {
       :first-child {

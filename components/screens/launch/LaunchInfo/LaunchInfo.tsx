@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { Tag } from '../../../../components';
+import { Tag, Title } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
+import { Description } from '../../../ui/Description/Description';
 import styles from './LaunchInfo.module.scss';
 
 export const LaunchInfo: FC = () => {
@@ -10,7 +11,7 @@ export const LaunchInfo: FC = () => {
 
   return (
     <div className={styles.launch}>
-      <h2 className={styles.launch__title}>Overview</h2>
+      <Title mb={20}>Overview</Title>
       <h3 className={styles.launch__subtitle}>
         Destination: <span>{orbit}</span>
       </h3>
@@ -29,7 +30,7 @@ export const LaunchInfo: FC = () => {
         </Tag>
       </div>
       <Tag className={styles.launch__location}>{location}</Tag>
-      <div className={styles.launch__description}>{missionDescr}</div>
+      <Description>{missionDescr}</Description>
     </div>
   );
 };

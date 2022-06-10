@@ -1,0 +1,11 @@
+.title {
+  font-weight: 800;
+  font-size: 76px;
+  line-height: 92px;
+  color: var(--white);
+
+  &.secondary {
+    font-size: 54px;
+    line-height: 64px;
+  }
+}

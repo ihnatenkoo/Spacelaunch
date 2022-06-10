@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { IntroLayout } from '../../../../layout';
-import { Button } from '../../../../components';
-import styles from './HomeIntro.module.scss';
+import { Button, Title, Description } from '../../../../components';
 
 interface HomeIntroProps {
   image?: string | undefined;
@@ -10,16 +9,16 @@ interface HomeIntroProps {
 
 export const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
   return (
-    <IntroLayout image={image} className={styles.home}>
-      <h1 className={styles.home__title}>
+    <IntroLayout image={image} style={{ paddingRight: 0, paddingLeft: 0 }}>
+      <Title view="main" mb={30} textAlign="left">
         Upcoming <br />
         Spaceflight Launches
-      </h1>
-      <h2 className={styles.home__subtitle}>
+      </Title>
+      <Description mb={50} textAlign="left">
         View all launches available - including launches from the past and utilize
         <br />
         powerful search filters.
-      </h2>
+      </Description>
       <Button>
         <Link href={'#launches'}>
           <a>Show All Launches</a>
