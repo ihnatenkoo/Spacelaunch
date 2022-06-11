@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useAppSelector } from '../../../../hooks';
 import { IntroLayout } from '../../../../layout';
 import { Title } from '../../../ui/Title/Title';
-import styles from './LaunchIntro.module.scss';
+import s from './LaunchIntro.module.scss';
 
 interface timeState {
   total: number | string;
@@ -69,10 +69,10 @@ export const LaunchIntro: FC = () => {
   }, []);
 
   return (
-    <IntroLayout image={image} className={styles.launch}>
-      <Title mb={20}>{name}</Title>
-      <h3 className={styles.launch__subtitle}>Go for Launch</h3>
-      <div className={styles.launch__start}>
+    <IntroLayout image={image} className={s.launch}>
+      <Title className={s.launch__title}>{name}</Title>
+      <h3 className={s.launch__subtitle}>Go for Launch</h3>
+      <div className={s.launch__start}>
         <span>{time.days}</span>:<span>{time.hours}</span>:<span>{time.minutes}</span>:
         <span>{time.seconds}</span>
       </div>

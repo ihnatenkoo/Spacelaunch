@@ -2,6 +2,10 @@
   color: var(--white);
   text-align: center;
 
+  &__title {
+    margin-bottom: 20px;
+  }
+
   &__subtitle {
     margin-bottom: 40px;
     font-weight: 700;

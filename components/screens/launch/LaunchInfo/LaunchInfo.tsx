@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Tag, Title } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
 import { Description } from '../../../ui/Description/Description';
-import styles from './LaunchInfo.module.scss';
+import s from './LaunchInfo.module.scss';
 
 export const LaunchInfo: FC = () => {
   const { orbit, type, launchComplex, rocketName, location, missionDescr } = useAppSelector(
@@ -10,26 +10,26 @@ export const LaunchInfo: FC = () => {
   );
 
   return (
-    <div className={styles.launch}>
-      <Title mb={20}>Overview</Title>
-      <h3 className={styles.launch__subtitle}>
+    <div className={s.launch}>
+      <Title className={s.launch__title}>Overview</Title>
+      <h3 className={s.launch__subtitle}>
         Destination: <span>{orbit}</span>
       </h3>
-      <h3 className={styles.launch__subtitle}>
+      <h3 className={s.launch__subtitle}>
         Mission: <span>{type}</span>
       </h3>
-      <div className={styles.launch__info}>
-        <Tag gradient className={styles.tag}>
+      <div className={s.launch__info}>
+        <Tag gradient className={s.tag}>
           {launchComplex}
         </Tag>
-        <Tag gradient className={styles.tag}>
+        <Tag gradient className={s.tag}>
           {orbit}
         </Tag>
-        <Tag gradient className={styles.tag}>
+        <Tag gradient className={s.tag}>
           {rocketName}
         </Tag>
       </div>
-      <Tag className={styles.launch__location}>{location}</Tag>
+      <Tag className={s.launch__location}>{location}</Tag>
       <Description>{missionDescr}</Description>
     </div>
   );

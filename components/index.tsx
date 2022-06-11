@@ -16,3 +16,4 @@ export * from './screens/launch/LaunchIntro/LaunchIntro';
 export * from './screens/launch/LaunchRocket/LaunchRocket';
 export * from './screens/rocket/RocketInfo/RocketInfo';
 export * from './screens/rocket/RocketIntro/RocketIntro';
+export * from './screens/event/EventIntro/EventIntro';

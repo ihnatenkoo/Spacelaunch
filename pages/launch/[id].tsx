@@ -1,12 +1,13 @@
-import axios from 'axios';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { MainLayout } from '../../layout';
-import { LaunchIntro, LaunchInfo, LaunchRocket, Map } from '../../components';
 import { LaunchPageProps } from '../../Interfaces';
-import { transformSingleLaunchData } from '../../utils';
+import { MainLayout } from '../../layout';
 import { useAppDispatch } from '../../hooks';
+import { transformSingleLaunchData } from '../../utils';
 import { setLaunchData } from '../../redux/singleLaunch/actions';
+import { LaunchIntro, LaunchInfo, LaunchRocket, Map } from '../../components';
+
+import axios from 'axios';
 
 const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
   const dispatch = useAppDispatch();

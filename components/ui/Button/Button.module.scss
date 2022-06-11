@@ -15,11 +15,19 @@
 
   &:hover {
     background: linear-gradient(94.97deg, #4a00e0 2.92%, #8e2de2 52.92%);
-    text-decoration: underline;
   }
 
-  & a {
-    padding: 30px 80px;
-    display: block;
+  &.disabled {
+    opacity: 0.65;
+    background: var(--gray);
+    cursor: default;
+  }
+}
+
+.link {
+  padding: 30px 80px;
+  display: block;
+  &.disabled {
+    pointer-events: none;
   }
 }

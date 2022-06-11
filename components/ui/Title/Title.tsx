@@ -1,44 +1,19 @@
-import { FC, ReactNode } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react';
 import s from './Title.module.scss';
 import cn from 'classnames';
 
-interface TitleProps {
-  children: ReactNode;
-  className?: string;
-  mb?: number;
-  textAlign?: TextAlign;
+interface TitleProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   view?: TitleView;
 }
 
 type TitleView = 'main' | 'secondary';
-type TextAlign = 'center' | 'left';
 
-export const Title: FC<TitleProps> = ({
-  children,
-  mb,
-  className,
-  view = 'secondary',
-  textAlign = 'center'
-}) => {
+export const Title: FC<TitleProps> = ({ children, className, view = 'secondary' }) => {
   switch (view) {
     case 'main':
-      return (
-        <h1
-          className={cn(s.title, className)}
-          style={{ marginBottom: `${mb}px`, textAlign: textAlign }}
-        >
-          {children}
-        </h1>
-      );
+      return <h1 className={cn(s.title, className)}>{children}</h1>;
 
     case 'secondary':
-      return (
-        <h2
-          className={cn(s.title, s.secondary, className)}
-          style={{ marginBottom: `${mb}px`, textAlign: textAlign }}
-        >
-          {children}
-        </h2>
-      );
+      return <h2 className={cn(s.title, s.secondary, className)}>{children}</h2>;
   }
 };

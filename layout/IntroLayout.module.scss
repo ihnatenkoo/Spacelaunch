@@ -2,7 +2,6 @@
   height: 962px;
   position: relative;
   z-index: 1;
-
   &::after {
     content: '';
     display: block;
@@ -17,5 +16,13 @@
 
   &__content {
     padding-top: 330px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.left {
+      align-items: start;
+    }
   }
 }

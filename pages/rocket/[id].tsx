@@ -1,12 +1,13 @@
-import axios from 'axios';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { MainLayout } from '../../layout';
-import { RocketInfo, RocketIntro } from '../../components';
-import { transformSingleRocketData } from '../../utils';
 import { RocketPageProps } from '../../Interfaces';
 import { useAppDispatch } from '../../hooks';
+import { MainLayout } from '../../layout';
+import { transformSingleRocketData } from '../../utils';
 import { setRocketData } from '../../redux/singleRocket/actions';
+import { RocketInfo, RocketIntro } from '../../components';
+
+import axios from 'axios';
 
 const Rocket: NextPage<RocketPageProps> = ({ singleRocketData }) => {
   const dispatch = useAppDispatch();

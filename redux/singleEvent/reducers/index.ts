@@ -7,7 +7,8 @@ const initialState = {
   feature_image: '',
   description: '',
   date: '',
-  video_url: ''
+  video_url: '',
+  news_url: ''
 };
 
 export const singleEventReducer = (

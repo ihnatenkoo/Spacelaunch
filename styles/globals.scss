@@ -48,6 +48,10 @@ h6 {
   max-width: 1190px;
   width: 100%;
 
+  &.intro {
+    max-width: 900px;
+  }
+
   &.fill {
     margin-top: 110px;
     margin-bottom: 100px;

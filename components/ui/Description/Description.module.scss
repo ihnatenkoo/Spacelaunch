@@ -1,14 +1,8 @@
 .description {
-  margin: 0 auto;
   max-width: 865px;
   font-family: 'Roboto';
   font-size: 17px;
   line-height: 28px;
   color: var(--gray);
   text-align: center;
-
-  &.left {
-    margin: 0;
-    text-align: left;
-  }
 }

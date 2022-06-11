@@ -1,22 +1,10 @@
-import { FC, ReactNode } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react';
 import styles from './Description.module.scss';
 import cn from 'classnames';
 
-interface DescriptionProps {
-  children: ReactNode;
-  mb?: number;
-  textAlign?: TextAlign;
-}
+interface DescriptionProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-type TextAlign = 'center' | 'left';
-
-export const Description: FC<DescriptionProps> = ({ children, mb, textAlign = 'center' }) => {
-  return (
-    <div
-      className={cn(styles.description, { [styles.left]: textAlign === 'left' })}
-      style={{ marginBottom: `${mb}px` }}
-    >
-      {children}
-    </div>
-  );
+export const Description: FC<DescriptionProps> = ({ children, className }) => {
+  return <div className={cn(styles.description, className)}>{children}</div>;
 };

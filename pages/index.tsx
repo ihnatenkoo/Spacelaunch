@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
-import axios from 'axios';
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { HomePageProps, LaunchesData } from '../Interfaces';
 import { MainLayout } from '../layout/';
-import { HomeIntro, HomeLaunches } from '../components';
 import {
   fetchLaunchesData,
   setLaunchesDataStatic,
   setOffset,
   setLoadingTrigger
 } from '../redux/launches/actions/';
-import { transformLaunchesData, transRecentEventsData } from '../utils';
 import { setRecentEventsData } from '../redux/recentEvents/actions';
-import { Slider } from '../components';
+import { transformLaunchesData, transRecentEventsData } from '../utils';
+import { HomeIntro, HomeLaunches, Slider } from '../components';
+
+import axios from 'axios';
 
 const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData }) => {
   const [initialData, setInitialData] = useState<Array<LaunchesData>>(

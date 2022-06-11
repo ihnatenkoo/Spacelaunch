@@ -61,6 +61,7 @@ export interface SingleEventData {
   description: string;
   date: string;
   video_url: string;
+  news_url: URL | string;
 }
 
 export interface HomePageProps {

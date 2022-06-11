@@ -1,9 +1,8 @@
-import Link from 'next/link';
 import React, { FC } from 'react';
 import { Button, Title } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
 import { Description } from '../../../ui/Description/Description';
-import styles from './LaunchRocker.module.scss';
+import s from './LaunchRocker.module.scss';
 
 export const LaunchRocket: FC = () => {
   const { rocketName, rocketFamily, rocketVariant, rocketDescr, rocketId } = useAppSelector(
@@ -11,9 +10,9 @@ export const LaunchRocket: FC = () => {
   );
 
   return (
-    <div className={styles.rocket}>
-      <Title mb={20}>{rocketName}</Title>
-      <div className={styles.rocket__subtitle}>
+    <div className={s.rocket}>
+      <Title className={s.rocket__title}>{rocketName}</Title>
+      <div className={s.rocket__subtitle}>
         <h3>
           Family: <span>{rocketFamily}</span>
         </h3>
@@ -22,13 +21,9 @@ export const LaunchRocket: FC = () => {
         </h3>
       </div>
 
-      <Description mb={30}>{rocketDescr}</Description>
+      <Description className={s.rocket__description}>{rocketDescr}</Description>
 
-      <Button>
-        <Link href={`/rocket/${[rocketId]}`}>
-          <a>See Rocket Details</a>
-        </Link>
-      </Button>
+      <Button href={`/rocket/${[rocketId]}`}>See Rocket Details</Button>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import cn from 'classnames';
 import styles from './Tag.module.scss';
 
 interface TagProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  children: ReactNode;
   gradient?: boolean;
 }
 

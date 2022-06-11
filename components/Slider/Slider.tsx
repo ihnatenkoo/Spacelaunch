@@ -1,11 +1,9 @@
 import { FC, useEffect, useState } from 'react';
-import { Card } from '../Card/Card';
 import ArrowLeft from '../../public/icons/arrow-left.svg';
 import ArrowRight from '../../public/icons/arrow-right.svg';
-
-import styles from './Slider.module.scss';
 import { LaunchesData } from '../../Interfaces';
-import { Title } from '../../components';
+import { Title, Card } from '../../components';
+import s from './Slider.module.scss';
 
 interface SliderProps {
   data: Array<LaunchesData>;
@@ -33,22 +31,17 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
   }, [position, maxViewWidth]);
 
   return (
-    <div className={styles.slider}>
-      <div className={styles.slider__header}>
-        <Title mb={40} textAlign="left">
-          Recent Events
-        </Title>
-        <div className={styles.slider__header__navigation}>
-          <ArrowLeft onClick={() => prev(position)} className={styles.arrow} />
-          <ArrowRight onClick={() => next(position)} className={styles.arrow} />
+    <div className={s.slider}>
+      <div className={s.slider__header}>
+        <Title className={s.slider__header__title}>Recent Events</Title>
+        <div className={s.slider__header__navigation}>
+          <ArrowLeft onClick={() => prev(position)} className={s.arrow} />
+          <ArrowRight onClick={() => next(position)} className={s.arrow} />
         </div>
       </div>
 
-      <div className={styles.slider__inner}>
-        <div
-          className={styles.slider__inner__view}
-          style={{ transform: `translateX(${position}px)` }}
-        >
+      <div className={s.slider__inner}>
+        <div className={s.slider__inner__view} style={{ transform: `translateX(${position}px)` }}>
           {data.map((item) => {
             return <Card data={item} size="s" key={item.id} path={path} />;
           })}
