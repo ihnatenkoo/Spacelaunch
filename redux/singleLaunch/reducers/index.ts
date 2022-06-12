@@ -27,6 +27,7 @@ export const singleLaunchReducer = (
   switch (action.type) {
     case ActionTypes.SET_SINGLE_LAUNCH_DATA:
       return {
+        ...state,
         ...action.payload
       };
 

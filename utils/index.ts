@@ -1,7 +1,16 @@
 import { LaunchesData, SingleLaunchData, SingleRocketData } from '../Interfaces';
 
-export const transformLaunchesData = (data: any): Array<LaunchesData> => {
-  const transformData = data.map((item: any) => {
+interface inputLaunchesData {
+  id: string;
+  name: string;
+  net: string;
+  rocket: {
+    configuration: { image_url: string | null };
+  };
+}
+
+export const transformLaunchesData = (data: Array<inputLaunchesData>): Array<LaunchesData> => {
+  const transformData = data.map((item: inputLaunchesData) => {
     const { id, name, net: date } = item;
     const { image_url: image } = item.rocket.configuration;
 
@@ -19,7 +28,7 @@ export const transformLaunchesData = (data: any): Array<LaunchesData> => {
 export const transRecentEventsData = (data: any) => {
   const staticEventsData = data.map((item: any) => {
     const { id, name, date } = item;
-    const image = item.launches[0]?.image || null;
+    const image = item.launches[0]?.image ?? null;
     return { id, name, date, image };
   });
 
@@ -34,7 +43,7 @@ export const transformSingleLaunchData = (data: any): SingleLaunchData => {
     type = 'No info',
     orbit = 'No info',
     description: missionDescr = 'Description not available'
-  } = data.mission || {};
+  } = data.mission ?? {};
 
   const {
     id: rocketId,

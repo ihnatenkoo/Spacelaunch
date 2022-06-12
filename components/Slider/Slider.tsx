@@ -13,14 +13,18 @@ interface SliderProps {
 export const Slider: FC<SliderProps> = ({ data, path }) => {
   const [position, setPosition] = useState<number>(0);
 
-  const maxViewWidth = -data.length * 400 + 1200;
+  const calculateMaxViewWidth = (length: number): number => length * 400 + 1200;
 
   const next = (position: number) => {
-    position - 400 < maxViewWidth ? setPosition(0) : setPosition((state) => state - 400);
+    position - 400 < calculateMaxViewWidth(-data.length)
+      ? setPosition(0)
+      : setPosition((prevState) => prevState - 400);
   };
 
   const prev = (position: number) => {
-    position + 400 > 0 ? setPosition(maxViewWidth) : setPosition((state) => state + 400);
+    position + 400 > 0
+      ? setPosition(calculateMaxViewWidth(-data.length))
+      : setPosition((prevState) => prevState + 400);
   };
 
   useEffect(() => {
@@ -28,15 +32,19 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
       next(position);
     }, 3000);
     return () => clearInterval(interval);
-  }, [position, maxViewWidth]);
+  }, [position, calculateMaxViewWidth(-data.length)]);
 
   return (
     <div className={s.slider}>
       <div className={s.slider__header}>
         <Title className={s.slider__header__title}>Recent Events</Title>
         <div className={s.slider__header__navigation}>
-          <ArrowLeft onClick={() => prev(position)} className={s.arrow} />
-          <ArrowRight onClick={() => next(position)} className={s.arrow} />
+          <button>
+            <ArrowLeft onClick={() => prev(position)} className={s.arrow} />
+          </button>
+          <button>
+            <ArrowRight onClick={() => next(position)} className={s.arrow} />
+          </button>
         </div>
       </div>
 

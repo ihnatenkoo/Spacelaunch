@@ -1,11 +1,12 @@
 import { Dispatch } from 'redux';
-import axios from 'axios';
 import { ActionTypes } from '../types/';
 import { LaunchesData } from '../../../Interfaces';
 import { transformLaunchesData } from '../../../utils';
 
+import axios from 'axios';
+
 export const fetchLaunchesData = (offset: number) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
       const { data } = await axios.get(

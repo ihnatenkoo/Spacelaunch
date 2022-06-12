@@ -12,9 +12,6 @@
     }
 
     &__navigation {
-      :first-child {
-        margin-right: 46px;
-      }
       .arrow {
         width: 56px;
         fill: var(--white);
@@ -25,6 +22,10 @@
         &:hover {
           fill: var(--purple);
         }
+      }
+
+      button:first-child {
+        margin-right: 46px;
       }
     }
   }

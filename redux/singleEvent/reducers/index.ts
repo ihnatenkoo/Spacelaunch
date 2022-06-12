@@ -18,6 +18,7 @@ export const singleEventReducer = (
   switch (action.type) {
     case ActionTypes.SET_SINGLE_EVENT_DATA:
       return {
+        ...state,
         ...action.payload
       };
 

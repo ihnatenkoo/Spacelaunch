@@ -29,6 +29,12 @@ export const RocketInfo: FC = () => {
     failed_launches
   } = useAppSelector((state) => state.singleRocket);
 
+  const renderText = (text: string, unit: string | null = null): string => {
+    if (!unit) return text ? text : '-';
+
+    return text ? `${text} ${unit}` : '-';
+  };
+
   return (
     <section className={styles.info}>
       <div className={styles.info__tags}>
@@ -45,80 +51,89 @@ export const RocketInfo: FC = () => {
         <div className={styles.feature__item}>
           <RocketIcon />
           <h2 className={styles.feature__item__title}>Family</h2>
-          <h3 className={styles.feature__item__spec}>
-            Name <span className={styles.feature__item__value}>{name || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Family <span className={styles.feature__item__value}>{family || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Varian <span className={styles.feature__item__value}>{variant || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Full name
-            <span className={styles.feature__item__value}>{fullName || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Alias <span className={styles.feature__item__value}>{alias || '-'}</span>
-          </h3>
+          <ul>
+            <li>
+              Name <span>{renderText(name)}</span>
+            </li>
+            <li>
+              Family <span>{renderText(family)}</span>
+            </li>
+            <li>
+              Varian <span>{renderText(variant)}</span>
+            </li>
+            <li>
+              Full name
+              <span>{renderText(fullName)}</span>
+            </li>
+            <li>
+              Alias <span>{renderText(alias)}</span>
+            </li>
+          </ul>
         </div>
 
         <div className={styles.feature__item}>
           <SpecificationIcon />
           <h2 className={styles.feature__item__title}>Specifications</h2>
-          <h3 className={styles.feature__item__spec}>
-            Minimum Stage
-            <span className={styles.feature__item__value}>{min_stage || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Max Stage
-            <span className={styles.feature__item__value}>{max_stage || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Length <span className={styles.feature__item__value}>{length || '-'} m</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Diameter
-            <span className={styles.feature__item__value}>{diameter || '-'} m</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Fairing Diameter
-            <span className={styles.feature__item__value}>{diameter || '-'} m</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Launch Mass <span className={styles.feature__item__value}>{launch_mass || '-'} T</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Thrust <span className={styles.feature__item__value}>{to_thrust || '-'} kN</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Apogee (Sub-Orbital)
-            <span className={styles.feature__item__value}>{apogee || '-'} km</span>
-          </h3>
+          <ul>
+            <li>
+              Minimum Stage
+              <span>{renderText(min_stage)}</span>
+            </li>
+            <li>
+              Max Stage
+              <span>{renderText(max_stage)}</span>
+            </li>
+            <li>
+              Length <span>{renderText(length, 'm')}</span>
+            </li>
+            <li>
+              Diameter
+              <span>{renderText(diameter, 'm')}</span>
+            </li>
+            <li>
+              Fairing Diameter
+              <span>{renderText(diameter, 'm')}</span>
+            </li>
+            <li>
+              Launch Mass
+              <span>{renderText(launch_mass, 'T')}</span>
+            </li>
+            <li>
+              Thrust
+              <span>{renderText(to_thrust, 'kN')}</span>
+            </li>
+            <li>
+              Apogee (Sub-Orbital)
+              <span>{renderText(apogee, 'km')}</span>
+            </li>
+          </ul>
         </div>
 
         <div className={styles.feature__item}>
           <PayloadIcon />
           <h2 className={styles.feature__item__title}>Payload Capacity</h2>
-          <h3 className={styles.feature__item__spec}>
-            Capacity <span className={styles.feature__item__value}>{leo_capacity || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Range
-            <span className={styles.feature__item__value}>{vehicle_range || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Total Launches
-            <span className={styles.feature__item__value}>{total_launch_count || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Successful Launches
-            <span className={styles.feature__item__value}>{successful_launches || '-'}</span>
-          </h3>
-          <h3 className={styles.feature__item__spec}>
-            Failed Launches
-            <span className={styles.feature__item__value}>{failed_launches || '-'}</span>
-          </h3>
+          <ul>
+            <li>
+              Capacity
+              <span className={styles.feature__item__value}>{renderText(leo_capacity)}</span>
+            </li>
+            <li>
+              Range
+              <span className={styles.feature__item__value}>{renderText(vehicle_range)}</span>
+            </li>
+            <li>
+              Total Launches
+              <span className={styles.feature__item__value}>{renderText(total_launch_count)}</span>
+            </li>
+            <li>
+              Successful Launches
+              <span className={styles.feature__item__value}>{renderText(successful_launches)}</span>
+            </li>
+            <li>
+              Failed Launches
+              <span className={styles.feature__item__value}>{renderText(failed_launches)}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

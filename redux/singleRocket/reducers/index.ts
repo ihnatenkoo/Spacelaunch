@@ -35,6 +35,7 @@ export const singleRocketReducer = (
   switch (action.type) {
     case ActionTypes.SET_SINGLE_ROCKET_DATA:
       return {
+        ...state,
         ...action.payload
       };
 

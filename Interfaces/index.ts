@@ -1,6 +1,6 @@
 export interface LaunchesData {
   name: string;
-  image: string;
+  image: string | null;
   id: string;
   date: string;
 }
