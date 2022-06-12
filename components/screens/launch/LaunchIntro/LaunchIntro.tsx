@@ -70,7 +70,9 @@ export const LaunchIntro: FC = () => {
 
   return (
     <IntroLayout image={image} className={s.launch}>
-      <Title className={s.launch__title}>{name}</Title>
+      <Title view="h1" className={s.launch__title}>
+        {name}
+      </Title>
       <h3 className={s.launch__subtitle}>Go for Launch</h3>
       <div className={s.launch__start}>
         <span>{time.days}</span>:<span>{time.hours}</span>:<span>{time.minutes}</span>:

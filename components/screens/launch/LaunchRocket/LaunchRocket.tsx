@@ -11,7 +11,9 @@ export const LaunchRocket: FC = () => {
 
   return (
     <div className={s.rocket}>
-      <Title className={s.rocket__title}>{rocketName}</Title>
+      <Title view="h2" className={s.rocket__title}>
+        {rocketName}
+      </Title>
       <div className={s.rocket__subtitle}>
         <h3>
           Family: <span>{rocketFamily}</span>

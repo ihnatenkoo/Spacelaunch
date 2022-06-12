@@ -9,7 +9,7 @@ interface HomeIntroProps {
 export const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
   return (
     <IntroLayout image={image} textAlignLeft>
-      <Title view="main" className={s.title}>
+      <Title view="h1" className={s.title}>
         Upcoming <br />
         Spaceflight Launches
       </Title>

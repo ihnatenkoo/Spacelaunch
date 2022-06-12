@@ -12,7 +12,9 @@ export const RocketIntro: FC = () => {
   );
   return (
     <IntroLayout image={image} className={s.rocket}>
-      <Title className={s.rocket__title}>{name}</Title>
+      <Title view="h1" className={s.rocket__title}>
+        {name}
+      </Title>
       <h3 className={s.rocket__subtitle}>{`${nameCompany} (${abbrevCompany})`}</h3>
       <div className={s.rocket__age}>
         {firstFlight ? dayjs(firstFlight).format('MMMM DD, YYYY') : <></>}

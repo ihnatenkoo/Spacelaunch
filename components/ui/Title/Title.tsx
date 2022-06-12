@@ -3,17 +3,23 @@ import s from './Title.module.scss';
 import cn from 'classnames';
 
 interface TitleProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  view?: TitleView;
+  view: TitleView;
 }
 
-type TitleView = 'main' | 'secondary';
+type TitleView = 'h1' | 'h2' | 'h3';
 
-export const Title: FC<TitleProps> = ({ children, className, view = 'secondary' }) => {
+export const Title: FC<TitleProps> = ({ children, className, view }) => {
   switch (view) {
-    case 'main':
+    case 'h1':
       return <h1 className={cn(s.title, className)}>{children}</h1>;
 
-    case 'secondary':
-      return <h2 className={cn(s.title, s.secondary, className)}>{children}</h2>;
+    case 'h2':
+      return <h2 className={cn(s.title, s.h2, className)}>{children}</h2>;
+
+    case 'h3':
+      return <h3 className={cn(s.title, s.h3, className)}>{children}</h3>;
+
+    default:
+      return <></>;
   }
 };

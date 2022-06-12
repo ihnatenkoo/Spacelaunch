@@ -11,7 +11,9 @@ export const LaunchInfo: FC = () => {
 
   return (
     <div className={s.launch}>
-      <Title className={s.launch__title}>Overview</Title>
+      <Title view="h2" className={s.launch__title}>
+        Overview
+      </Title>
       <h3 className={s.launch__subtitle}>
         Destination: <span>{orbit}</span>
       </h3>

@@ -1,4 +1,4 @@
-import { Tag } from '../../../../components';
+import { Tag, Title } from '../../../../components';
 import styles from './RocketInfo.module.scss';
 import RocketIcon from '/public/icons/rocket-icon.svg';
 import SpecificationIcon from '/public/icons/spec-icon.svg';
@@ -50,7 +50,9 @@ export const RocketInfo: FC = () => {
       <div className={styles.feature}>
         <div className={styles.feature__item}>
           <RocketIcon />
-          <h2 className={styles.feature__item__title}>Family</h2>
+          <Title view="h3" className={styles.feature__item__title}>
+            Family
+          </Title>
           <ul>
             <li>
               Name <span>{renderText(name)}</span>
@@ -73,7 +75,9 @@ export const RocketInfo: FC = () => {
 
         <div className={styles.feature__item}>
           <SpecificationIcon />
-          <h2 className={styles.feature__item__title}>Specifications</h2>
+          <Title view="h3" className={styles.feature__item__title}>
+            Specifications
+          </Title>
           <ul>
             <li>
               Minimum Stage
@@ -111,7 +115,9 @@ export const RocketInfo: FC = () => {
 
         <div className={styles.feature__item}>
           <PayloadIcon />
-          <h2 className={styles.feature__item__title}>Payload Capacity</h2>
+          <Title view="h3" className={styles.feature__item__title}>
+            Payload Capacity
+          </Title>
           <ul>
             <li>
               Capacity

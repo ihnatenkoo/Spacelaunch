@@ -9,7 +9,9 @@ export const HomeLaunches: FC = () => {
 
   return (
     <div id="launches">
-      <Title className={s.title}>Spaceflight Launches</Title>
+      <Title view="h2" className={s.title}>
+        Spaceflight Launches
+      </Title>
       <div id="launches" className={s.inner}>
         {launchesData.map((launch: LaunchesData) => {
           return <Card size="m" key={launch.id} data={launch} path={'launch'} />;

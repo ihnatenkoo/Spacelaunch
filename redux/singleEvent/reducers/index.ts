@@ -5,10 +5,16 @@ const initialState = {
   id: '',
   name: '',
   feature_image: '',
-  description: '',
+  mainDescr: '',
   date: '',
   video_url: '',
-  news_url: ''
+  news_url: '',
+  rocketName: '',
+  mission_type: '',
+  location: '',
+  eventImg: '',
+  missionDescr: '',
+  orbit: ''
 };
 
 export const singleEventReducer = (

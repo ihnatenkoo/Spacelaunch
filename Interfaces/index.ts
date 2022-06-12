@@ -58,10 +58,16 @@ export interface SingleEventData {
   id: string;
   name: string;
   feature_image: string;
-  description: string;
+  mainDescr: string;
   date: string;
   video_url: string;
+  rocketName: string;
   news_url: URL | string;
+  mission_type: string;
+  location: string;
+  eventImg: string;
+  missionDescr: string;
+  orbit: string;
 }
 
 export interface HomePageProps {

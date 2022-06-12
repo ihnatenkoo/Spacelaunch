@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { LaunchesData } from '../../Interfaces';
-import { Tag } from '../../components';
+import { Tag, Title } from '../../components';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
@@ -39,7 +39,9 @@ export const Card: FC<CardProps> = ({ data, size, path }) => {
               {dayjs.utc(date).format('MMM DD, YYYY, h:mm a')}
             </Tag>
           </div>
-          <h3 className={styles.card__title}>{name}</h3>
+          <Title view="h3" className={styles.card__title}>
+            {name}
+          </Title>
         </div>
       </a>
     </Link>

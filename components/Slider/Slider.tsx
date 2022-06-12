@@ -37,7 +37,9 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
   return (
     <div className={s.slider}>
       <div className={s.slider__header}>
-        <Title className={s.slider__header__title}>Recent Events</Title>
+        <Title view="h2" className={s.slider__header__title}>
+          Recent Events
+        </Title>
         <div className={s.slider__header__navigation}>
           <button>
             <ArrowLeft onClick={() => prev(position)} className={s.arrow} />

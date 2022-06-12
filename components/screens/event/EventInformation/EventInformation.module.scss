@@ -1,0 +1,43 @@
+.event {
+  &__title {
+    margin-bottom: 40px;
+  }
+
+  &__inner {
+    margin-top: 40px;
+    margin-bottom: 100px;
+    display: flex;
+  }
+
+  &__info {
+    max-width: 45%;
+    max-height: 329px;
+    margin-left: 22px;
+    overflow: hidden;
+
+    h3 {
+      text-align: left;
+    }
+  }
+
+  &__tag {
+    margin: 15px 0 30px;
+  }
+
+  &__descr {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  &__subtitle {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 28px;
+    color: var(--totalWhite);
+
+    > span {
+      font-weight: 400;
+    }
+  }
+}
