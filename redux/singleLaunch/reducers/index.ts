@@ -17,7 +17,8 @@ const initialState = {
   rocketWiki: '',
   eventCoordinates: { lat: 0, lng: 0 },
   rocketId: '',
-  date: ''
+  date: '',
+  vidURLs: ''
 };
 
 export const singleLaunchReducer = (

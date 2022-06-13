@@ -13,7 +13,6 @@ const initialState = {
   mission_type: '',
   location: '',
   eventImg: '',
-  missionDescr: '',
   orbit: ''
 };
 

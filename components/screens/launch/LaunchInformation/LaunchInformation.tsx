@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Tag, Title } from '../../../../components';
+import { Tag, Title } from '../../..';
 import { useAppSelector } from '../../../../hooks';
 import { Description } from '../../../ui/Description/Description';
-import s from './LaunchInfo.module.scss';
+import s from './LaunchInformation.module.scss';
 
 export const LaunchInfo: FC = () => {
   const { orbit, type, launchComplex, rocketName, location, missionDescr } = useAppSelector(

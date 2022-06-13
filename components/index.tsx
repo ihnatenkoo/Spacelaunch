@@ -11,7 +11,7 @@ export * from './ui/Spinner/Spinner';
 export * from './ui/Error/Error';
 export * from './screens/home/HomeIntro/HomeIntro';
 export * from './screens/home/HomeLaunches/HomeLaunches';
-export * from './screens/launch/LaunchInfo/LaunchInfo';
+export * from './screens/launch/LaunchInformation/LaunchInformation';
 export * from './screens/launch/LaunchIntro/LaunchIntro';
 export * from './screens/launch/LaunchRocket/LaunchRocket';
 export * from './screens/rocket/RocketInfo/RocketInfo';

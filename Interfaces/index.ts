@@ -25,6 +25,7 @@ export interface SingleLaunchData {
   eventCoordinates: { lat: number; lng: number };
   rocketId: string;
   date: string;
+  vidURLs: string;
 }
 
 export interface SingleRocketData {
@@ -66,7 +67,6 @@ export interface SingleEventData {
   mission_type: string;
   location: string;
   eventImg: string;
-  missionDescr: string;
   orbit: string;
 }
 

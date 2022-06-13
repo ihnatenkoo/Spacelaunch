@@ -7,7 +7,7 @@ import s from './EventIntro.module.scss';
 import dayjs from 'dayjs';
 
 export const EventIntro: FC = () => {
-  const { name, feature_image, date, mainDescr, news_url } = useAppSelector(
+  const { name, feature_image, date, news_url, location } = useAppSelector(
     (state) => state.singleEvent
   );
 
@@ -18,7 +18,7 @@ export const EventIntro: FC = () => {
       </Title>
 
       <Tag>{dayjs.utc(date).format('MMM DD, YYYY, h:mm a')}</Tag>
-      <Description className={s.description}>{mainDescr}</Description>
+      <Description className={s.subtitle}>{location}</Description>
       <Button disabled={!news_url} href={news_url || '#'} targetBlank>
         Read On Site
       </Button>

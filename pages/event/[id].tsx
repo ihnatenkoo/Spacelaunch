@@ -6,11 +6,15 @@ import { EventPageProps, SingleEventData } from '../../Interfaces';
 import { MainLayout } from '../../layout';
 import { EventInformation, EventIntro, Slider } from '../../components';
 import { setEventData } from '../../redux/singleEvent/actions';
+import MyYouTube from '../../components/MyYouTube/MyYouTube';
+
 import axios from 'axios';
+import { transformSingleEvent } from '../../utils';
 
 const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
   const dispatch = useAppDispatch();
-  const { recentEventsData } = useAppSelector((state) => state.recentEvents);
+  const recentEventsData = useAppSelector((state) => state.recentEvents.recentEventsData);
+  const videoUrl = useAppSelector((state) => state.singleEvent.video_url);
 
   useEffect(() => {
     dispatch(setEventData(singleEvent));
@@ -20,6 +24,7 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
     <MainLayout header="secondary">
       <EventIntro />
       <div className="container fill">
+        <MyYouTube videoUrl={videoUrl} />
         <EventInformation />
         <Slider data={recentEventsData} path={'event'} />
       </div>
@@ -40,30 +45,7 @@ export const getStaticProps: GetStaticProps = async ({
 
   try {
     const { data } = await axios.get(`https://spacelaunchnow.me/api/3.3.0/event/${params.id}`);
-
-    const { id, name, feature_image, description: mainDescr, date, video_url, news_url } = data;
-    const {
-      name: rocketName = '',
-      mission_type = '',
-      location = '',
-      image: eventImg = ''
-    } = data.launches[0] ?? {};
-    const { description: missionDescr = '', orbit = '' } = data.spacestations[0] ?? {};
-    const singleEvent = {
-      id,
-      name,
-      feature_image,
-      mainDescr,
-      date,
-      video_url,
-      news_url,
-      rocketName,
-      mission_type,
-      location,
-      eventImg,
-      missionDescr,
-      orbit
-    };
+    const singleEvent = transformSingleEvent(data);
 
     return {
       props: { singleEvent },

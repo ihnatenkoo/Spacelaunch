@@ -15,10 +15,10 @@ export const EventInformation: FC = () => {
   const date = useAppSelector((state) => state.singleEvent.date);
   const orbit = useAppSelector((state) => state.singleEvent.orbit);
   const mission_type = useAppSelector((state) => state.singleEvent.mission_type);
-  const missionDescr = useAppSelector((state) => state.singleEvent.missionDescr);
+  const mainDescr = useAppSelector((state) => state.singleEvent.mainDescr);
 
   const img = eventImg || placeholder;
-  const description = missionDescr.length > 200 ? missionDescr.slice(0, 200) + '...' : missionDescr;
+  const description: string = mainDescr.length > 260 ? mainDescr.slice(0, 260) + '...' : mainDescr;
 
   return (
     <section className={s.event}>

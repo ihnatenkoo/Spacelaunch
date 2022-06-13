@@ -2,22 +2,25 @@ import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { LaunchPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { transformSingleLaunchData } from '../../utils';
 import { setLaunchData } from '../../redux/singleLaunch/actions';
 import { LaunchIntro, LaunchInfo, LaunchRocket, Map } from '../../components';
 
 import axios from 'axios';
+import MyYouTube from '../../components/MyYouTube/MyYouTube';
 
 const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
   const dispatch = useAppDispatch();
-
   dispatch(setLaunchData(singleLaunchData));
+  const videoUrl = useAppSelector((state) => state.singleLaunch.vidURLs);
+  console.log(videoUrl);
 
   return (
     <MainLayout header="secondary">
       <LaunchIntro />
       <div className="container fill">
+        <MyYouTube videoUrl={videoUrl} />
         <LaunchInfo />
         <LaunchRocket />
         <Map />
