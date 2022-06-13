@@ -11,6 +11,7 @@ export interface EventsData {
   date: string;
 }
 export interface SingleLaunchData {
+  id: string;
   name: string;
   image: string;
   type: string;

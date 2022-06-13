@@ -36,7 +36,7 @@ export const transRecentEventsData = (data: any) => {
 };
 
 export const transformSingleLaunchData = (data: any): SingleLaunchData => {
-  const { name, net: date, vidURLs } = data;
+  const { id, name, net: date, vidURLs } = data;
   const { latitude, longitude, name: launchComplex } = data.pad;
   const { name: location } = data.pad.location;
   const {
@@ -55,6 +55,7 @@ export const transformSingleLaunchData = (data: any): SingleLaunchData => {
   } = data.rocket.configuration;
 
   const singleLaunchData = {
+    id,
     name,
     image,
     date,

@@ -1,6 +1,6 @@
-import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { LaunchPageProps } from '../../Interfaces';
+import { LaunchPageProps, SingleLaunchData } from '../../Interfaces';
 import { MainLayout } from '../../layout';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { transformSingleLaunchData } from '../../utils';
@@ -30,9 +30,9 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
 
 export default Launch;
 
-export const getServerSideProps: GetServerSideProps = async ({
+export const getStaticProps: GetStaticProps = async ({
   params
-}: GetServerSidePropsContext<ParsedUrlQuery>) => {
+}: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
     return {
       notFound: true
@@ -53,4 +53,19 @@ export const getServerSideProps: GetServerSideProps = async ({
       notFound: true
     };
   }
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data: launchesData } = await axios.get(
+    `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=24&offset=0`
+  );
+
+  const paths = launchesData.results.map(({ id }: SingleLaunchData) => ({
+    params: { id: id.toString() }
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking'
+  };
 };

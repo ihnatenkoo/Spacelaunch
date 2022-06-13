@@ -2,6 +2,7 @@ import { SingleLaunchData } from '../../../Interfaces';
 import { ActionTypes, LaunchDataAction } from '../types';
 
 const initialState = {
+  id: '',
   name: '',
   image: '',
   type: '',
