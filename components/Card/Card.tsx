@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { LaunchesData } from '../../Interfaces';
@@ -8,9 +8,10 @@ import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 import placeholder from '../../public/images/img-placeholder.jpg';
-import styles from './Card.module.scss';
+import s from './Card.module.scss';
 import cn from 'classnames';
-
+import { useAppSelector } from '../../hooks';
+import { useRouter } from 'next/router';
 interface CardProps {
   data: LaunchesData;
   size: CardSize;
@@ -20,14 +21,30 @@ interface CardProps {
 type CardSize = 's' | 'm';
 
 export const Card: FC<CardProps> = ({ data, size, path }) => {
+  const [isCurrent, setIsCurrent] = useState<boolean>(false);
+  const pageId = useAppSelector((state) => state.singleEvent.id);
   const { id, image, date, name } = data;
+  const { pathname } = useRouter();
+
   const cardImg = image || placeholder;
+
+  useEffect(() => {
+    if (pathname !== '/event/[id]') {
+      setIsCurrent(false);
+      return;
+    }
+    if (id === pageId) {
+      setIsCurrent(true);
+      return;
+    }
+    setIsCurrent(false);
+  }, [pathname, id, pageId]);
 
   return (
     <Link href={`/${path}/${[id]}`}>
-      <a>
-        <div className={cn(styles.card, { [styles.small]: size === 's' })}>
-          <div className={styles.card__header}>
+      <a className={cn({ [s.disabled]: isCurrent })}>
+        <div className={cn(s.card, { [s.small]: size === 's', [s.current]: isCurrent })}>
+          <div className={s.card__header}>
             <Image
               src={cardImg}
               alt={name}
@@ -35,11 +52,11 @@ export const Card: FC<CardProps> = ({ data, size, path }) => {
               height={size === 's' ? 264 : 324}
               draggable="false"
             />
-            <Tag className={styles.card__tag} gradient>
+            <Tag className={s.card__tag} gradient>
               {dayjs.utc(date).format('MMM DD, YYYY, h:mm a')}
             </Tag>
           </div>
-          <Title view="h3" className={styles.card__title}>
+          <Title view="h3" className={s.card__title}>
             {name}
           </Title>
         </div>

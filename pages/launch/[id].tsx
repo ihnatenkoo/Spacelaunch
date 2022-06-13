@@ -14,7 +14,6 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
   const dispatch = useAppDispatch();
   dispatch(setLaunchData(singleLaunchData));
   const videoUrl = useAppSelector((state) => state.singleLaunch.vidURLs);
-  console.log(videoUrl);
 
   return (
     <MainLayout header="secondary">

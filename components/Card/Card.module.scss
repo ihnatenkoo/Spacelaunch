@@ -3,6 +3,7 @@
   margin-bottom: 50px;
   width: 580px;
   cursor: pointer;
+  position: relative;
 
   &__header {
     position: relative;
@@ -34,4 +35,30 @@
       text-align: left;
     }
   }
+
+  &.current {
+    .card__header,
+    h3 {
+      opacity: 0.6;
+    }
+
+    &::after {
+      content: 'Current';
+      display: block;
+      width: 200px;
+      height: 200px;
+      color: var(--totalWhite);
+      font-size: 50px;
+      font-weight: 700;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+}
+
+.disabled {
+  pointer-events: none;
 }
