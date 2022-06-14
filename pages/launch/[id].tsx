@@ -57,11 +57,11 @@ export const getStaticProps: GetStaticProps = async ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data: launchesData } = await axios.get(
-    `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=24&offset=0`
+    `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=18&offset=0`
   );
 
-  const paths = launchesData.results.map(({ id }: SingleLaunchData) => ({
-    params: { id: id.toString() }
+  const paths = launchesData.results.map(({ id }: { id: string }) => ({
+    params: { id }
   }));
 
   return {

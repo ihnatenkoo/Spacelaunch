@@ -1,6 +1,6 @@
-import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { RocketPageProps } from '../../Interfaces';
+import { RocketPageProps, SingleRocketData } from '../../Interfaces';
 import { useAppDispatch } from '../../hooks';
 import { MainLayout } from '../../layout';
 import { transformSingleRocketData } from '../../utils';
@@ -26,9 +26,9 @@ const Rocket: NextPage<RocketPageProps> = ({ singleRocketData }) => {
 
 export default Rocket;
 
-export const getServerSideProps: GetServerSideProps = async ({
+export const getStaticProps: GetStaticProps = async ({
   params
-}: GetServerSidePropsContext<ParsedUrlQuery>) => {
+}: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
     return {
       notFound: true
@@ -43,5 +43,20 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return {
     props: { singleRocketData }
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await axios.get(
+    'https://spacelaunchnow.me/api/ll/2.1.0/config/launcher/?limit=15&offset=0'
+  );
+
+  const paths = data.results.map(({ id }: { id: number }) => ({
+    params: { id: id.toString() }
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking'
   };
 };

@@ -81,7 +81,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     `https://spacelaunchnow.me/api/3.3.0/event/upcoming/?limit=15&offset=0`
   );
 
-  const paths = eventsData.results.map(({ id }: SingleEventData) => ({
+  const paths = eventsData.results.map(({ id }: { id: number }) => ({
     params: { id: id.toString() }
   }));
 

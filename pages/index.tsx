@@ -6,7 +6,6 @@ import { MainLayout } from '../layout/';
 import {
   fetchLaunchesData,
   setLaunchesDataStatic,
-  setOffset,
   setLoadingTrigger
 } from '../redux/launches/actions/';
 import { setRecentEventsData } from '../redux/recentEvents/actions';
@@ -19,9 +18,10 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
   const [initialData, setInitialData] = useState<Array<LaunchesData>>(
     staticLaunchesData.slice(0, 6)
   );
+  const [offset, setOffset] = useState(12);
 
   const dispatch = useAppDispatch();
-  const { loadingTrigger, offset, isError, isEnd } = useAppSelector((state) => state.launches);
+  const { loadingTrigger, isError, isEnd } = useAppSelector((state) => state.launches);
   const { recentEventsData } = useAppSelector((state) => state.recentEvents);
 
   useEffect(() => {
@@ -32,16 +32,19 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
   const getLaunchesDataStatic = () => {
     const launchesData = staticLaunchesData.slice(0, offset);
     dispatch(setLaunchesDataStatic(launchesData));
-    dispatch(setOffset(6));
+    setOffset((prevState) => prevState + 6);
     dispatch(setLoadingTrigger(false));
   };
 
   useEffect(() => {
-    if (loadingTrigger && offset <= 24 && !isEnd) {
+    if (loadingTrigger && offset <= 18) {
+      console.log('static');
       getLaunchesDataStatic();
     }
-    if (loadingTrigger && offset > 24 && !isEnd) {
+    if (loadingTrigger && offset > 18) {
+      console.log('server');
       dispatch(fetchLaunchesData(offset));
+      setOffset((prevState) => prevState + 6);
     }
   }, [loadingTrigger]);
 
@@ -73,7 +76,7 @@ export default Home;
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const { data: launchesData } = await axios.get(
-      `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=24&offset=0`
+      `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=18&offset=0`
     );
 
     const { data: eventsData } = await axios.get(

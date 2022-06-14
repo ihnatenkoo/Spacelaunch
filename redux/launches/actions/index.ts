@@ -17,7 +17,6 @@ export const fetchLaunchesData = (offset: number) => {
 
       if (launchesData.length < 6) dispatch(setEnd());
       dispatch(fetchLaunchesDataSuccess(launchesData));
-      dispatch(setOffset(6));
       dispatch(setError(false));
     } catch (error) {
       console.error(error);
@@ -40,13 +39,6 @@ export const setLaunchesDataStatic = (launchesData: Array<LaunchesData>) => {
   return {
     type: ActionTypes.SET_LAUNCHES_DATA_STATIC,
     payload: launchesData
-  };
-};
-
-export const setOffset = (value: number) => {
-  return {
-    type: ActionTypes.SET_OFFSET,
-    payload: value
   };
 };
 

@@ -2,7 +2,6 @@ import { ActionTypes, LaunchesActionProps, LaunchesState } from '../types';
 
 const initialState = {
   launchesData: [],
-  offset: 12,
   loadingTrigger: false,
   isLoading: false,
   isError: false,
@@ -24,12 +23,6 @@ export const launchesReducer = (
       return {
         ...state,
         launchesData: [...state.launchesData, ...action.payload]
-      };
-
-    case ActionTypes.SET_OFFSET:
-      return {
-        ...state,
-        offset: state.offset + action.payload
       };
 
     case ActionTypes.SET_LOADING:
