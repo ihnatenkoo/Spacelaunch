@@ -1,0 +1,33 @@
+{
+  "orientation": "portrait",
+  "theme_color": "#181b48",
+  "background_color": "#1c2056",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Space Launch",
+  "short_name": "SL",
+  "description": "SPA application for Spacelaunch api",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

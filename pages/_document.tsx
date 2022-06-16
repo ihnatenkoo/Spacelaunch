@@ -10,6 +10,8 @@ export default function Document() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,500&family=Roboto:ital,wght@0,400;0,700;1,500&display=swap"
         />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon.png"></link>
       </Head>
       <body>
         <Main />

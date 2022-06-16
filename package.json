@@ -1,5 +1,5 @@
 {
-  "name": "spacelaunch",
+  "name": "space-launch",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "dayjs": "^1.11.2",
     "dayjs-plugin-utc": "^0.1.2",
     "next": "12.1.6",
+    "next-pwa": "^5.5.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "^8.0.2",

@@ -1,4 +1,6 @@
-const nextConfig = {
+const withPWA = require('next-pwa');
+
+module.exports = withPWA({
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
@@ -8,9 +10,15 @@ const nextConfig = {
 
     return config;
   },
+
   images: {
     domains: ['spacelaunchnow-prod-east.nyc3.cdn.digitaloceanspaces.com']
-  }
-};
+  },
 
-module.exports = nextConfig;
+  pwa: {
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === 'development'
+  }
+});
