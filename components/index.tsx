@@ -2,6 +2,7 @@ export * from './Card/Card';
 export * from './Footer/Footer';
 export * from './Header/Header';
 export * from './Map/Map';
+export * from './MyYouTube/MyYouTube';
 export * from './Slider/Slider';
 export * from './ui/Button/Button';
 export * from './ui/Tag/Tag';

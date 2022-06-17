@@ -1,30 +1,40 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { LaunchPageProps, SingleLaunchData } from '../../Interfaces';
+import { LaunchPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { transformSingleLaunchData } from '../../utils';
 import { setLaunchData } from '../../redux/singleLaunch/actions';
-import { LaunchIntro, LaunchInfo, LaunchRocket, Map } from '../../components';
+import { LaunchIntro, LaunchInfo, LaunchRocket, Map, MyYouTube } from '../../components';
 
 import axios from 'axios';
-import MyYouTube from '../../components/MyYouTube/MyYouTube';
+import Head from 'next/head';
 
 const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
   const dispatch = useAppDispatch();
-  dispatch(setLaunchData(singleLaunchData));
   const videoUrl = useAppSelector((state) => state.singleLaunch.vidURLs);
+  const metaTitle = useAppSelector((state) => state.singleLaunch.name);
+  const metaDescription = useAppSelector((state) => state.singleLaunch.missionDescr);
+
+  dispatch(setLaunchData(singleLaunchData));
 
   return (
-    <MainLayout header="secondary">
-      <LaunchIntro />
-      <div className="container fill">
-        <MyYouTube videoUrl={videoUrl} />
-        <LaunchInfo />
-        <LaunchRocket />
-        <Map />
-      </div>
-    </MainLayout>
+    <>
+      <Head>
+        <title>Launch - {metaTitle}</title>
+        <meta name="description" content={metaDescription} />
+      </Head>
+
+      <MainLayout header="secondary">
+        <LaunchIntro />
+        <div className="container fill">
+          <MyYouTube videoUrl={videoUrl} />
+          <LaunchInfo />
+          <LaunchRocket />
+          <Map />
+        </div>
+      </MainLayout>
+    </>
   );
 };
 

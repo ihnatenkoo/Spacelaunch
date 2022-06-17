@@ -6,7 +6,7 @@ interface MyYouTubeProps {
   videoUrl: string | null;
 }
 
-const MyYouTube: FC<MyYouTubeProps> = ({ videoUrl }) => {
+export const MyYouTube: FC<MyYouTubeProps> = ({ videoUrl }) => {
   const youtube_parser = (videoUrl: string): string | undefined => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     const match = videoUrl.match(regExp);
@@ -27,5 +27,3 @@ const MyYouTube: FC<MyYouTubeProps> = ({ videoUrl }) => {
 
   return videoId ? <YouTube videoId={videoId} opts={opts} className={s.youtube} /> : <></>;
 };
-
-export default MyYouTube;

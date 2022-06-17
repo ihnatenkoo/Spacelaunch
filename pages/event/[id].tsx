@@ -1,21 +1,24 @@
-import { useEffect } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
+import { useEffect } from 'react';
 import { ParsedUrlQuery } from 'querystring';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { EventPageProps, SingleEventData } from '../../Interfaces';
+import { EventPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
-import { EventInformation, EventIntro, Slider } from '../../components';
+import { MyYouTube, EventInformation, EventIntro, Slider } from '../../components';
 import { setEventData } from '../../redux/singleEvent/actions';
-import MyYouTube from '../../components/MyYouTube/MyYouTube';
 
 import axios from 'axios';
 import { transformSingleEvent, transRecentEventsData } from '../../utils';
 import { setRecentEventsData } from '../../redux/recentEvents/actions';
+import Head from 'next/head';
 
 const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
   const dispatch = useAppDispatch();
+
   const recentEventsData = useAppSelector((state) => state.recentEvents.recentEventsData);
   const videoUrl = useAppSelector((state) => state.singleEvent.video_url);
+  const metaTitle = useAppSelector((state) => state.singleEvent.name);
+  const metaDescription = useAppSelector((state) => state.singleEvent.mainDescr);
 
   const clientFetchSlides = async () => {
     try {
@@ -38,14 +41,21 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
   }, [singleEvent]);
 
   return (
-    <MainLayout header="secondary">
-      <EventIntro />
-      <div className="container fill">
-        <MyYouTube videoUrl={videoUrl} />
-        <EventInformation />
-        <Slider data={recentEventsData} path={'event'} />
-      </div>
-    </MainLayout>
+    <>
+      <Head>
+        <title>Event - {metaTitle}</title>
+        <meta name="description" content={metaDescription} />
+      </Head>
+
+      <MainLayout header="secondary">
+        <EventIntro />
+        <div className="container fill">
+          <MyYouTube videoUrl={videoUrl} />
+          <EventInformation />
+          <Slider data={recentEventsData} path={'event'} />
+        </div>
+      </MainLayout>
+    </>
   );
 };
 
