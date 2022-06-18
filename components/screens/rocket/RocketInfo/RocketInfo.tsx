@@ -1,10 +1,12 @@
+import { FC } from 'react';
 import { Tag, Title } from '../../../../components';
-import styles from './RocketInfo.module.scss';
+import { useAppSelector } from '../../../../hooks';
+import { renderText } from '../../../../utils/';
+
 import RocketIcon from '/public/icons/rocket-icon.svg';
 import SpecificationIcon from '/public/icons/spec-icon.svg';
 import PayloadIcon from '/public/icons/payload-icon.svg';
-import { FC } from 'react';
-import { useAppSelector } from '../../../../hooks';
+import styles from './RocketInfo.module.scss';
 
 export const RocketInfo: FC = () => {
   const {
@@ -29,22 +31,16 @@ export const RocketInfo: FC = () => {
     failed_launches
   } = useAppSelector((state) => state.singleRocket);
 
-  const renderText = (text: string, unit: string | null = null): string => {
-    if (!unit) return text ? text : '-';
-
-    return text ? `${text} ${unit}` : '-';
-  };
-
   return (
     <section className={styles.info}>
       <div className={styles.info__tags}>
         <Tag gradient className={styles.info__tag}>
-          {family}
+          {renderText(family)}
         </Tag>
         <Tag gradient className={styles.info__tag}>
-          {type}
+          {renderText(type)}
         </Tag>
-        <Tag>{country_code}</Tag>
+        <Tag>{renderText(country_code)}</Tag>
       </div>
 
       <div className={styles.feature}>

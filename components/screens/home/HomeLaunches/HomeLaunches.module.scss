@@ -16,3 +16,9 @@
     border: 1px solid var(--white);
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .inner {
+    justify-content: center;
+  }
+}

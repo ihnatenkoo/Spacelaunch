@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Button, Title } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
 import { Description } from '../../../ui/Description/Description';
-import s from './LaunchRocker.module.scss';
+import s from './LaunchRocket.module.scss';
 
 export const LaunchRocket: FC = () => {
   const { rocketName, rocketFamily, rocketVariant, rocketDescr, rocketId } = useAppSelector(

@@ -7,3 +7,10 @@
   margin-bottom: 50px;
   text-align: left;
 }
+
+@media screen and (max-width: 1200px) {
+  .title,
+  .description {
+    text-align-last: center;
+  }
+}

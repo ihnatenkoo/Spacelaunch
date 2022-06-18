@@ -68,6 +68,7 @@ button {
     &::after {
       content: '';
       display: block;
+      max-width: 100%;
       width: calc(100% + 260px - 10px);
       height: calc(100% + 190px);
       background: var(--content-layout);

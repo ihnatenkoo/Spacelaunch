@@ -19,7 +19,7 @@ export const IntroLayout: FC<IntroLayoutProps> = ({
   return (
     <div className={styles.intro} style={{ background: `url(${image}) center / cover` }}>
       <div className="container intro">
-        <div className={cn(styles.intro__content, className, { [styles.left]: textAlignLeft })}>
+        <div className={cn(styles.intro__content, className, { [styles.home]: textAlignLeft })}>
           {children}
         </div>
       </div>

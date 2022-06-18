@@ -45,15 +45,22 @@ export const getStaticProps: GetStaticProps = async ({
     };
   }
 
-  const { data } = await axios.get(
-    `https://spacelaunchnow.me/api/ll/2.1.0/config/launcher/${params.id}`
-  );
+  try {
+    const { data } = await axios.get(
+      `https://spacelaunchnow.me/api/ll/2.1.0/config/launcher/${params.id}`
+    );
 
-  const singleRocketData = transformSingleRocketData(data);
+    const singleRocketData = transformSingleRocketData(data);
 
-  return {
-    props: { singleRocketData }
-  };
+    return {
+      props: { singleRocketData }
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      notFound: true
+    };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

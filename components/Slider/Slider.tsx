@@ -30,7 +30,7 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       next(position);
-    }, 3000);
+    }, 300000);
     return () => clearInterval(interval);
   }, [position, calculateMaxViewWidth(-data.length)]);
 
@@ -41,10 +41,10 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
           Recent Events
         </Title>
         <div className={s.slider__header__navigation}>
-          <button>
+          <button type="button" name="previous slide">
             <ArrowLeft onClick={() => prev(position)} className={s.arrow} />
           </button>
-          <button>
+          <button type="button" name="next slide">
             <ArrowRight onClick={() => next(position)} className={s.arrow} />
           </button>
         </div>

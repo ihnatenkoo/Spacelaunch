@@ -18,18 +18,18 @@ export const Header: FC<HeaderProps> = ({ header }) => {
             [styles.homepage]: header === 'homepage'
           })}
         >
-          <Link href="/">
-            <a>
-              <div
-                className={cn(styles.header__link, {
-                  [styles.homepage]: header === 'homepage'
-                })}
-              >
-                <ArrowLeft className={styles.header__arrow} />
-                Back to home
-              </div>
-            </a>
-          </Link>
+          {header === 'secondary' ? (
+            <Link href="/">
+              <a>
+                <div className={styles.header__link}>
+                  <ArrowLeft className={styles.header__arrow} />
+                  <span>Back to home</span>
+                </div>
+              </a>
+            </Link>
+          ) : (
+            <></>
+          )}
 
           <Logo className={styles.header__logo} />
         </div>

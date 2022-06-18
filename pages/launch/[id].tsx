@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { LaunchPageProps } from '../../Interfaces';
@@ -8,7 +9,6 @@ import { setLaunchData } from '../../redux/singleLaunch/actions';
 import { LaunchIntro, LaunchInfo, LaunchRocket, Map, MyYouTube } from '../../components';
 
 import axios from 'axios';
-import Head from 'next/head';
 
 const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
   const dispatch = useAppDispatch();

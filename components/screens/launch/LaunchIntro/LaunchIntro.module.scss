@@ -16,7 +16,6 @@
   &__start {
     margin: 0 auto;
     padding: 50px 70px;
-    max-width: 780px;
 
     display: flex;
     justify-content: space-between;
@@ -24,13 +23,34 @@
     background-color: var(--purple);
     font-weight: 900;
     font-size: 76px;
-    line-height: 92px;
 
     span {
+      width: 120px;
       &:first-child {
         width: 140px;
       }
-      width: 120px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .launch__start {
+    padding: 20px 10px;
+    font-size: 55px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .launch__start {
+    padding: 10px 7px;
+    font-size: 40px;
+
+    span {
+      width: 65px;
+
+      &:first-child {
+        width: 70px;
+      }
     }
   }
 }

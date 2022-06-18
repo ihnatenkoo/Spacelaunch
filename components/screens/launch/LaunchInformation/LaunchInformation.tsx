@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Tag, Title } from '../../..';
 import { useAppSelector } from '../../../../hooks';
-import { Description } from '../../../ui/Description/Description';
+import { renderText } from '../../../../utils';
+import { Tag, Title, Description } from '../../../../components';
+
 import s from './LaunchInformation.module.scss';
 
 export const LaunchInfo: FC = () => {
@@ -22,16 +23,16 @@ export const LaunchInfo: FC = () => {
       </h3>
       <div className={s.launch__info}>
         <Tag gradient className={s.tag}>
-          {launchComplex}
+          {renderText(launchComplex)}
         </Tag>
         <Tag gradient className={s.tag}>
-          {orbit}
+          {renderText(orbit)}
         </Tag>
         <Tag gradient className={s.tag}>
-          {rocketName}
+          {renderText(rocketName)}
         </Tag>
       </div>
-      <Tag className={s.launch__location}>{location}</Tag>
+      <Tag className={s.launch__location}>{renderText(location)}</Tag>
       <Description>{missionDescr}</Description>
     </div>
   );

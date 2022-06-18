@@ -45,13 +45,16 @@ export const Card: FC<CardProps> = ({ data, size, path }) => {
       <a className={cn({ [s.disabled]: isCurrent })}>
         <div className={cn(s.card, { [s.small]: size === 's', [s.current]: isCurrent })}>
           <div className={s.card__header}>
-            <Image
-              src={cardImg}
-              alt={name}
-              width={size === 's' ? 380 : 580}
-              height={size === 's' ? 264 : 324}
-              draggable="false"
-            />
+            <div className={s.card__header_image}>
+              <Image
+                src={cardImg}
+                alt={name}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center 25%"
+                draggable="false"
+              />
+            </div>
             <Tag className={s.card__tag} gradient>
               {dayjs.utc(date).format('MMM DD, YYYY, h:mm a')}
             </Tag>

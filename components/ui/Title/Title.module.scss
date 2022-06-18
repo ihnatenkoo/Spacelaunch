@@ -4,7 +4,7 @@
   line-height: 92px;
   color: var(--white);
   text-align: center;
-
+  max-width: 100vw;
   &.h2 {
     font-size: 54px;
     line-height: 64px;
@@ -14,5 +14,44 @@
     font-weight: 700;
     font-size: 26px;
     line-height: 38px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .title {
+    font-size: 55px;
+    line-height: 65px;
+
+    &.h2 {
+      font-size: 45px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    font-size: 48px;
+    line-height: 50px;
+
+    &.h2 {
+      font-size: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .title {
+    font-size: 35px;
+    line-height: 45px;
+
+    &.h2 {
+      font-size: 30px;
+      line-height: 35px;
+    }
+
+    &.h3 {
+      font-size: 21px;
+      line-height: 30px;
+    }
   }
 }

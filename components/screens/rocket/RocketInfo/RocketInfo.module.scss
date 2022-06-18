@@ -26,6 +26,7 @@
     margin-bottom: 50px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   &__tag {
@@ -35,12 +36,28 @@
 
 .feature {
   display: flex;
+  flex-wrap: wrap;
   &__item {
+    margin-bottom: 40px;
     width: 33%;
     text-align: center;
     color: var(--white);
     &__title {
       margin: 20px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .info__tag {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .feature {
+    display: flex;
+    &__item {
+      width: 100%;
     }
   }
 }

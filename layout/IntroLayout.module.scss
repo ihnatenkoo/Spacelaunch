@@ -21,8 +21,27 @@
     flex-direction: column;
     align-items: center;
 
-    &.left {
+    &.home {
       align-items: start;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .intro {
+    &__content {
+      &.home {
+        align-items: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .intro {
+    height: 100vh;
+    &__content {
+      padding-top: 230px;
     }
   }
 }

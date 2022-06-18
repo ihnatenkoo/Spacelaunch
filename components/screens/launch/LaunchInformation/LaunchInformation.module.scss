@@ -23,6 +23,9 @@
   }
 
   &__info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     margin: 15px 0 10px;
 
     .tag {
@@ -38,5 +41,22 @@
   &__location {
     margin-bottom: 30px;
     font-style: italic;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .launch {
+    margin-bottom: 50px;
+    &__info {
+      margin: 15px 0 0 0;
+      .tag {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+    }
+
+    &__subtitle {
+      text-align: center;
+    }
   }
 }

@@ -7,6 +7,7 @@
   z-index: 2;
 
   &__inner {
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,10 +32,6 @@
     &:hover .header__arrow {
       transform: translateX(-7px);
     }
-
-    &.homepage {
-      display: none;
-    }
   }
 
   &__logo {
@@ -47,5 +44,36 @@
     width: 28px;
     fill: var(--white);
     transition: all 0.15s linear;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    padding: 0 30px;
+    &__logo {
+      width: 75px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    &__logo {
+      width: 50px;
+      transform: none;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .header {
+    &__arrow {
+      width: 45px;
+    }
+    &__link {
+      span {
+        display: none;
+      }
+    }
   }
 }
