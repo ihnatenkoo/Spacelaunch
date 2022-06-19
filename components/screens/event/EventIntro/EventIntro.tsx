@@ -11,6 +11,18 @@ export const EventIntro: FC = () => {
     (state) => state.singleEvent
   );
 
+  const isValidHttpUrl = (link: string | URL): URL | undefined => {
+    let url;
+
+    try {
+      url = new URL(link);
+    } catch (_) {
+      return undefined;
+    }
+
+    return url;
+  };
+
   return (
     <IntroLayout image={feature_image}>
       <Title view="h1" className={s.title}>
@@ -19,7 +31,7 @@ export const EventIntro: FC = () => {
 
       <Tag>{dayjs.utc(date).format('MMM DD, YYYY, h:mm a')}</Tag>
       <Description className={s.subtitle}>{location}</Description>
-      <Button disabled={!news_url} href={news_url || '#'} targetBlank>
+      <Button disabled={!isValidHttpUrl(news_url)} href={isValidHttpUrl(news_url)} targetBlank>
         Read On Site
       </Button>
     </IntroLayout>

@@ -5,10 +5,9 @@ import { ParsedUrlQuery } from 'querystring';
 import { LaunchPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setLaunchData } from '../../redux/singleLaunch/actions';
+import { transformSingleLaunchData, youtubeParser } from '../../utils';
 import { LaunchIntro, LaunchInfo, LaunchRocket, Map, MyYouTube } from '../../components';
-import { transformSingleLaunchData } from '../../utils';
-import { youtubeParser } from '../../utils/youtubeParser';
+import { setLaunchData } from '../../redux/singleLaunch/actions';
 
 import axios from 'axios';
 
