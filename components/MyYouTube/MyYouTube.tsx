@@ -1,32 +1,45 @@
-import { FC } from 'react';
+import { FC, MutableRefObject, useEffect, useRef, useState } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
+import { Spinner } from '../ui/Spinner/Spinner';
 import s from './MyYouTube.module.scss';
-
 interface MyYouTubeProps {
-  videoUrl: string | null;
+  youtubeUrl: string;
 }
 
-export const MyYouTube: FC<MyYouTubeProps> = ({ videoUrl }) => {
-  const youtube_parser = (videoUrl: string | null): string | undefined => {
-    if (videoUrl === null) return;
+export const MyYouTube: FC<MyYouTubeProps> = ({ youtubeUrl }) => {
+  const youtubeRef = useRef<HTMLDivElement | null>(null);
 
-    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    const match = videoUrl.match(regExp);
-
-    if (match && match[7].length === 11) {
-      const id = match[7];
-      return id;
-    } else {
-      return;
-    }
-  };
-
-  const opts: YouTubeProps['opts'] = {
+  const [opts, setOpts] = useState<YouTubeProps['opts']>({
     width: '100%',
-    height: '700'
+    height: ''
+  });
+
+  const calculateHeight = (ref: MutableRefObject<HTMLDivElement | null>): void => {
+    if (!ref.current) return;
+
+    setOpts((prevState: YouTubeProps['opts']) => ({
+      ...prevState,
+      height: (ref.current as HTMLDivElement).offsetWidth / 1.7
+    }));
   };
 
-  return youtube_parser(videoUrl) ? (
-    <YouTube videoId={youtube_parser(videoUrl)} opts={opts} className={s.youtube} />
-  ) : null;
+  const handleResize = (): void => {
+    calculateHeight(youtubeRef);
+  };
+
+  useEffect(() => {
+    setTimeout(() => calculateHeight(youtubeRef));
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <div ref={youtubeRef} className={s.youtube}>
+      {opts.height ? <YouTube videoId={youtubeUrl} opts={opts} /> : <Spinner />}
+    </div>
+  );
 };

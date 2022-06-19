@@ -1,21 +1,28 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { LaunchPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { transformSingleLaunchData } from '../../utils';
 import { setLaunchData } from '../../redux/singleLaunch/actions';
 import { LaunchIntro, LaunchInfo, LaunchRocket, Map, MyYouTube } from '../../components';
+import { transformSingleLaunchData } from '../../utils';
+import { youtubeParser } from '../../utils/youtubeParser';
 
 import axios from 'axios';
 
 const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
+  const [youtubeUrl, setYoutubeUrl] = useState<string | undefined>(undefined);
+
   const dispatch = useAppDispatch();
   const videoUrl = useAppSelector((state) => state.singleLaunch.vidURLs);
   const metaTitle = useAppSelector((state) => state.singleLaunch.name);
   const metaDescription = useAppSelector((state) => state.singleLaunch.missionDescr);
+
+  useEffect(() => {
+    setYoutubeUrl(youtubeParser(videoUrl));
+  }, [videoUrl]);
 
   useEffect(() => {
     dispatch(setLaunchData(singleLaunchData));
@@ -31,7 +38,7 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
       <MainLayout header="secondary">
         <LaunchIntro />
         <div className="container fill">
-          <MyYouTube videoUrl={videoUrl} />
+          {youtubeUrl && <MyYouTube youtubeUrl={youtubeUrl} />}
           <LaunchInfo />
           <LaunchRocket />
           <Map />

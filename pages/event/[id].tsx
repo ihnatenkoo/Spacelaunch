@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ParsedUrlQuery } from 'querystring';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { EventPageProps } from '../../Interfaces';
@@ -9,16 +9,22 @@ import { transformSingleEvent } from '../../utils';
 import { MyYouTube, EventInformation, EventIntro, Slider } from '../../components';
 import { clientFetchSlides } from '../../redux/recentEvents/actions';
 import { setEventData } from '../../redux/singleEvent/actions';
+import { youtubeParser } from '../../utils/';
 
 import axios from 'axios';
 
 const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
-  const dispatch = useAppDispatch();
+  const [youtubeUrl, setYoutubeUrl] = useState<string | undefined>(undefined);
 
+  const dispatch = useAppDispatch();
   const recentEventsData = useAppSelector((state) => state.recentEvents.recentEventsData);
   const videoUrl = useAppSelector((state) => state.singleEvent.video_url);
   const metaTitle = useAppSelector((state) => state.singleEvent.name);
   const metaDescription = useAppSelector((state) => state.singleEvent.mainDescr);
+
+  useEffect(() => {
+    setYoutubeUrl(youtubeParser(videoUrl));
+  }, [videoUrl]);
 
   useEffect(() => {
     dispatch(setEventData(singleEvent));
@@ -38,7 +44,7 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
       <MainLayout header="secondary">
         <EventIntro />
         <div className="container fill">
-          <MyYouTube videoUrl={videoUrl} />
+          {youtubeUrl && <MyYouTube youtubeUrl={youtubeUrl} />}
           <EventInformation />
           <Slider data={recentEventsData} path={'event'} />
         </div>

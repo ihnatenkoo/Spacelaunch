@@ -1,3 +1,10 @@
 .youtube {
   margin-bottom: 100px;
+  min-height: 182px;
+}
+
+@media screen and (max-width: 767px) {
+  .youtube {
+    margin-bottom: 50px;
+  }
 }
