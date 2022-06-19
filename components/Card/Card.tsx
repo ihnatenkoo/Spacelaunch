@@ -3,15 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { LaunchesData } from '../../Interfaces';
 import { Tag, Title } from '../../components';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-dayjs.extend(utc);
+import { useAppSelector } from '../../hooks';
+import { useRouter } from 'next/router';
 
 import placeholder from '../../public/images/img-placeholder.jpg';
 import s from './Card.module.scss';
 import cn from 'classnames';
-import { useAppSelector } from '../../hooks';
-import { useRouter } from 'next/router';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
 interface CardProps {
   data: LaunchesData;
   size: CardSize;

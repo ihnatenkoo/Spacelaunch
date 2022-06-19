@@ -1,9 +1,9 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react';
-import styles from './IntroLayout.module.scss';
+import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import Image from 'next/image';
+import s from './IntroLayout.module.scss';
 import cn from 'classnames';
 
 import introImage from '../public/images/home-intro.jpg';
-
 interface IntroLayoutProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   image: string | undefined;
@@ -12,14 +12,22 @@ interface IntroLayoutProps
 
 export const IntroLayout: FC<IntroLayoutProps> = ({
   children,
-  image = introImage.src,
+  image,
   className,
   textAlignLeft
 }) => {
   return (
-    <div className={styles.intro} style={{ background: `url(${image}) center / cover` }}>
+    <div className={s.intro}>
+      <Image
+        src={image || introImage}
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center"
+        alt="main page picture"
+        className={s.intro__bg}
+      />
       <div className="container intro">
-        <div className={cn(styles.intro__content, className, { [styles.home]: textAlignLeft })}>
+        <div className={cn(s.intro__content, className, { [s.home]: textAlignLeft })}>
           {children}
         </div>
       </div>

@@ -41,10 +41,10 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
           Recent Events
         </Title>
         <div className={s.slider__header__navigation}>
-          <button type="button" name="previous slide">
+          <button type="button" aria-label="previous picture">
             <ArrowLeft onClick={() => prev(position)} className={s.arrow} />
           </button>
-          <button type="button" name="next slide">
+          <button type="button" aria-label="next picture">
             <ArrowRight onClick={() => next(position)} className={s.arrow} />
           </button>
         </div>
