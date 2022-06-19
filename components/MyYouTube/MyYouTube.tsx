@@ -7,10 +7,13 @@ interface MyYouTubeProps {
 }
 
 export const MyYouTube: FC<MyYouTubeProps> = ({ videoUrl }) => {
-  const youtube_parser = (videoUrl: string): string | undefined => {
+  const youtube_parser = (videoUrl: string | null): string | undefined => {
+    if (videoUrl === null) return;
+
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     const match = videoUrl.match(regExp);
-    if (match && match[7].length == 11) {
+
+    if (match && match[7].length === 11) {
       const id = match[7];
       return id;
     } else {
@@ -18,12 +21,12 @@ export const MyYouTube: FC<MyYouTubeProps> = ({ videoUrl }) => {
     }
   };
 
-  const videoId = videoUrl ? youtube_parser(videoUrl) : undefined;
-
   const opts: YouTubeProps['opts'] = {
     width: '100%',
     height: '700'
   };
 
-  return videoId ? <YouTube videoId={videoId} opts={opts} className={s.youtube} /> : <></>;
+  return youtube_parser(videoUrl) ? (
+    <YouTube videoId={youtube_parser(videoUrl)} opts={opts} className={s.youtube} />
+  ) : null;
 };

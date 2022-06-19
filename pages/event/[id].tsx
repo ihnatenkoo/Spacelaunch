@@ -1,16 +1,16 @@
+import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { useEffect } from 'react';
 import { ParsedUrlQuery } from 'querystring';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { EventPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
+import { transformSingleEvent } from '../../utils';
 import { MyYouTube, EventInformation, EventIntro, Slider } from '../../components';
+import { clientFetchSlides } from '../../redux/recentEvents/actions';
 import { setEventData } from '../../redux/singleEvent/actions';
 
 import axios from 'axios';
-import { transformSingleEvent, transRecentEventsData } from '../../utils';
-import { setRecentEventsData } from '../../redux/recentEvents/actions';
-import Head from 'next/head';
 
 const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
   const dispatch = useAppDispatch();
@@ -20,25 +20,13 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
   const metaTitle = useAppSelector((state) => state.singleEvent.name);
   const metaDescription = useAppSelector((state) => state.singleEvent.mainDescr);
 
-  const clientFetchSlides = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://spacelaunchnow.me/api/3.3.0/event/upcoming/?limit=15&offset=0`
-      );
-      const eventsData = transRecentEventsData(data.results);
-      dispatch(setRecentEventsData(eventsData));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    if (recentEventsData.length === 0) clientFetchSlides();
-  }, [recentEventsData]);
-
   useEffect(() => {
     dispatch(setEventData(singleEvent));
   }, [singleEvent]);
+
+  useEffect(() => {
+    if (recentEventsData.length === 0) dispatch(clientFetchSlides());
+  }, [recentEventsData]);
 
   return (
     <>

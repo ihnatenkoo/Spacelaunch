@@ -15,7 +15,7 @@
     margin-left: 22px;
     overflow: hidden;
 
-    h3 {
+    &_title {
       text-align: left;
     }
   }
@@ -65,5 +65,11 @@
     &__descr {
       text-align: center;
     }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .event__info_title {
+    text-align: center;
   }
 }

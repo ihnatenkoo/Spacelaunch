@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
+import { useEffect } from 'react';
 import { ParsedUrlQuery } from 'querystring';
 import { RocketPageProps } from '../../Interfaces';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -15,7 +16,9 @@ const Rocket: NextPage<RocketPageProps> = ({ singleRocketData }) => {
   const metaTitle = useAppSelector((state) => state.singleRocket.fullName);
   const metaDescription = useAppSelector((state) => state.singleRocket.description);
 
-  dispatch(setRocketData(singleRocketData));
+  useEffect(() => {
+    dispatch(setRocketData(singleRocketData));
+  }, []);
 
   return (
     <>

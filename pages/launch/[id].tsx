@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { LaunchPageProps } from '../../Interfaces';
@@ -16,7 +17,9 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
   const metaTitle = useAppSelector((state) => state.singleLaunch.name);
   const metaDescription = useAppSelector((state) => state.singleLaunch.missionDescr);
 
-  dispatch(setLaunchData(singleLaunchData));
+  useEffect(() => {
+    dispatch(setLaunchData(singleLaunchData));
+  }, []);
 
   return (
     <>

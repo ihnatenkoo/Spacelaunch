@@ -4,7 +4,7 @@ import { IntroLayout } from '../../../../layout';
 import { Title } from '../../../ui/Title/Title';
 import s from './LaunchIntro.module.scss';
 
-interface timeState {
+interface TimeState {
   total: number | string;
   days: number | string;
   hours: number | string;
@@ -13,15 +13,15 @@ interface timeState {
 }
 
 export const LaunchIntro: FC = () => {
-  const { date, image, name } = useAppSelector((state) => state.singleLaunch);
-
-  const [time, setTime] = useState<timeState>({
+  const [time, setTime] = useState<TimeState>({
     total: 0,
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0
   });
+
+  const { date, image, name } = useAppSelector((state) => state.singleLaunch);
 
   const getTimeLeft = (date: string) => {
     const currentDate = Date.parse(new Date().toISOString());
@@ -66,17 +66,19 @@ export const LaunchIntro: FC = () => {
     const timer = setInterval(() => getTimeLeft(date), 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [date]);
 
   return (
     <IntroLayout image={image} className={s.launch}>
       <Title view="h1" className={s.launch__title}>
         {name}
       </Title>
-      <h3 className={s.launch__subtitle}>Go for Launch</h3>
+      <Title view="h3" className={s.launch__subtitle}>
+        Go for Launch
+      </Title>
       <div className={s.launch__start}>
-        <span>{time.days}</span>:<span>{time.hours}</span>:<span>{time.minutes}</span>:
-        <span>{time.seconds}</span>
+        <span>{time.days || '-'}</span>:<span>{time.hours || '-'}</span>:
+        <span>{time.minutes || '-'}</span>:<span>{time.seconds || '-'}</span>
       </div>
     </IntroLayout>
   );

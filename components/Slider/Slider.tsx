@@ -30,7 +30,7 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       next(position);
-    }, 300000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [position, calculateMaxViewWidth(-data.length)]);
 

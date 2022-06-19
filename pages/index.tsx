@@ -16,9 +16,6 @@ import axios from 'axios';
 import Head from 'next/head';
 
 const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData }) => {
-  const [initialData, setInitialData] = useState<Array<LaunchesData>>(
-    staticLaunchesData.slice(0, 6)
-  );
   const [offset, setOffset] = useState(12);
 
   const dispatch = useAppDispatch();
@@ -26,7 +23,7 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
   const { recentEventsData } = useAppSelector((state) => state.recentEvents);
 
   useEffect(() => {
-    dispatch(setLaunchesDataStatic(initialData));
+    dispatch(setLaunchesDataStatic(staticLaunchesData.slice(0, 6)));
     dispatch(setRecentEventsData(staticEventsData));
   }, []);
 
@@ -39,11 +36,9 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
 
   useEffect(() => {
     if (loadingTrigger && offset <= 18) {
-      console.log('static');
       getLaunchesDataStatic();
     }
     if (loadingTrigger && offset > 18) {
-      console.log('server');
       dispatch(fetchLaunchesData(offset));
       setOffset((prevState) => prevState + 6);
     }

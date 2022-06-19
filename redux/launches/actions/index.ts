@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from '@reduxjs/toolkit';
 import { ActionTypes } from '../types/';
 import { LaunchesData } from '../../../Interfaces';
 import { transformLaunchesData } from '../../../utils';

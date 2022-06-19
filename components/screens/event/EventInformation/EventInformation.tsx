@@ -28,7 +28,9 @@ export const EventInformation: FC = () => {
       <div className={s.event__inner}>
         <Image src={img} width={580} height={324} alt={rocketName} />
         <div className={s.event__info}>
-          <Title view="h3">{rocketName}</Title>
+          <Title view="h3" className={s.event__info_title}>
+            {rocketName}
+          </Title>
           <Tag className={s.event__tag}>{dayjs.utc(date).format('MMM DD, YYYY, h:mm a')}</Tag>
           <h4 className={s.event__subtitle}>
             Destination: <span>{orbit || 'No info'}</span>
