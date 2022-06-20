@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
@@ -6,7 +5,7 @@ import { LaunchPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { transformSingleLaunchData, youtubeParser } from '../../utils';
-import { LaunchIntro, LaunchInfo, LaunchRocket, Map, MyYouTube } from '../../components';
+import { LaunchIntro, LaunchInfo, LaunchRocket, Map, MyYouTube, Meta } from '../../components';
 import { setLaunchData } from '../../redux/singleLaunch/actions';
 
 import axios from 'axios';
@@ -29,10 +28,7 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
 
   return (
     <>
-      <Head>
-        <title>Launch - {metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-      </Head>
+      <Meta title={`Launch - ${metaTitle}`} description={metaDescription} />
 
       <MainLayout header="secondary">
         <LaunchIntro />

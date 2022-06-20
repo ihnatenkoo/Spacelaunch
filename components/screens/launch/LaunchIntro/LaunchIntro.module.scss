@@ -41,16 +41,21 @@
 }
 
 @media screen and (max-width: 575px) {
-  .launch__start {
-    padding: 10px 7px;
-    font-size: 40px;
+  .launch {
+    &__start {
+      padding: 20px 10px;
+      font-size: 40px;
 
-    span {
-      width: 65px;
+      span {
+        width: 65px;
 
-      &:first-child {
-        width: 70px;
+        &:first-child {
+          width: 70px;
+        }
       }
+    }
+    &__subtitle {
+      margin-bottom: 20px;
     }
   }
 }

@@ -19,7 +19,7 @@ export default function Document() {
         <meta name="msapplication-tooltip" content="SPA application for Spacelaunch api" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#181b48" />
+        <meta name="theme-color" content="#1c2056" />
 
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

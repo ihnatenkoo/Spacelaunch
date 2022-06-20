@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { HomePageProps, LaunchesData } from '../Interfaces';
+import { HomePageProps } from '../Interfaces';
 import { MainLayout } from '../layout/';
 import {
   fetchLaunchesData,
@@ -10,10 +10,9 @@ import {
 } from '../redux/launches/actions/';
 import { setRecentEventsData } from '../redux/recentEvents/actions';
 import { transformLaunchesData, transRecentEventsData } from '../utils';
-import { HomeIntro, HomeLaunches, Slider } from '../components';
+import { HomeIntro, HomeLaunches, Meta, Slider } from '../components';
 
 import axios from 'axios';
-import Head from 'next/head';
 
 const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData }) => {
   const [offset, setOffset] = useState(12);
@@ -58,10 +57,10 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
 
   return (
     <>
-      <Head>
-        <title>Space Launch App</title>
-        <meta name="description" content="SPA (single page application ) for Spacelaunch api" />
-      </Head>
+      <Meta
+        title="Space Launch App"
+        description="SPA (single page application) for Spacelaunch api"
+      />
 
       <MainLayout header="homepage">
         <HomeIntro />

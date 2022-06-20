@@ -1,12 +1,11 @@
-import Head from 'next/head';
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { useEffect, useState } from 'react';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { EventPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
 import { transformSingleEvent } from '../../utils';
-import { MyYouTube, EventInformation, EventIntro, Slider } from '../../components';
+import { MyYouTube, EventInformation, EventIntro, Slider, Meta } from '../../components';
 import { clientFetchSlides } from '../../redux/recentEvents/actions';
 import { setEventData } from '../../redux/singleEvent/actions';
 import { youtubeParser } from '../../utils/';
@@ -36,10 +35,7 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 
   return (
     <>
-      <Head>
-        <title>Event - {metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-      </Head>
+      <Meta title={`Event - ${metaTitle}`} description={metaDescription} />
 
       <MainLayout header="secondary">
         <EventIntro />

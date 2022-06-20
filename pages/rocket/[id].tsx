@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { useEffect } from 'react';
 import { ParsedUrlQuery } from 'querystring';
@@ -7,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { MainLayout } from '../../layout';
 import { transformSingleRocketData } from '../../utils';
 import { setRocketData } from '../../redux/singleRocket/actions';
-import { RocketInfo, RocketIntro } from '../../components';
+import { Meta, RocketInfo, RocketIntro } from '../../components';
 
 import axios from 'axios';
 
@@ -22,10 +21,7 @@ const Rocket: NextPage<RocketPageProps> = ({ singleRocketData }) => {
 
   return (
     <>
-      <Head>
-        <title>Rocket - {metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-      </Head>
+      <Meta title={`Rocket - ${metaTitle}`} description={metaDescription} />
 
       <MainLayout header="secondary">
         <RocketIntro />

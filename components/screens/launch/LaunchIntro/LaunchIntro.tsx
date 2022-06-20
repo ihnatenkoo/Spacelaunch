@@ -77,8 +77,8 @@ export const LaunchIntro: FC = () => {
         Go for Launch
       </Title>
       <div className={s.launch__start}>
-        <span>{time.days || '-'}</span>:<span>{time.hours || '-'}</span>:
-        <span>{time.minutes || '-'}</span>:<span>{time.seconds || '-'}</span>
+        <span>{time.days || ' '}</span>:<span>{time.hours || ' '}</span>:
+        <span>{time.minutes || ' '}</span>:<span>{time.seconds || ' '}</span>
       </div>
     </IntroLayout>
   );

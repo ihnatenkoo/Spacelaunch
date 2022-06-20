@@ -15,10 +15,16 @@ export const RocketIntro: FC = () => {
       <Title view="h1" className={s.rocket__title}>
         {name}
       </Title>
-      <h3 className={s.rocket__subtitle}>{`${nameCompany} (${abbrevCompany})`}</h3>
-      <div className={s.rocket__age}>
+      <Title view="h3" className={s.rocket__subtitle}>{`${nameCompany} (${abbrevCompany})`}</Title>
+      {/* <div className={s.rocket__age}>
         {firstFlight ? dayjs(firstFlight).format('MMMM DD, YYYY') : <></>}
-      </div>
+      </div> */}
+
+      {firstFlight && (
+        <Title view="h3" className={s.rocket__age}>
+          {dayjs(firstFlight).format('MMMM DD, YYYY')}
+        </Title>
+      )}
       <Description>{description}</Description>
     </IntroLayout>
   );

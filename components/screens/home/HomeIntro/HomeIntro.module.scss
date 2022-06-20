@@ -1,9 +1,10 @@
 .title {
   margin-bottom: 30px;
-  text-align-last: left;
+  text-align: left;
 }
 
 .description {
+  max-width: 595px;
   margin-bottom: 50px;
   text-align: left;
 }
@@ -11,6 +12,16 @@
 @media screen and (max-width: 1200px) {
   .title,
   .description {
-    text-align-last: center;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .title {
+    margin-bottom: 25px;
+  }
+  .description {
+    max-width: 90%;
+    margin-bottom: 35px;
   }
 }

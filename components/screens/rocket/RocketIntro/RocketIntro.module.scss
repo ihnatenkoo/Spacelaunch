@@ -7,16 +7,23 @@
   }
 
   &__subtitle {
+    font-weight: 400 !important;
     margin-bottom: 20px;
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 38px;
   }
 
   &__age {
+    font-weight: 800 !important;
     margin-bottom: 40px;
-    font-weight: 800;
-    font-size: 26px;
-    line-height: 38px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .rocket {
+    &__subtitle {
+      margin-bottom: 10px;
+    }
+    &__age {
+      margin-bottom: 25px;
+    }
   }
 }

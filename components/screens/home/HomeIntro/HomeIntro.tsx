@@ -14,9 +14,8 @@ export const HomeIntro: FC<HomeIntroProps> = ({ image }) => {
         Spaceflight Launches
       </Title>
       <Description className={s.description}>
-        View all launches available - including launches from the past and utilize
-        <br />
-        powerful search filters.
+        View all launches available - including launches from the past and utilize powerful search
+        filters.
       </Description>
       <Button href={'#launches'}>Show All Launches</Button>
     </IntroLayout>
