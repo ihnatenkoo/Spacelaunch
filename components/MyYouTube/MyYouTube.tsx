@@ -8,7 +8,6 @@ interface MyYouTubeProps {
 
 export const MyYouTube: FC<MyYouTubeProps> = ({ videoId }) => {
   const youtubeRef = useRef<HTMLDivElement | null>(null);
-  console.log(videoId);
   const [opts, setOpts] = useState<YouTubeProps['opts']>({
     width: '100%',
     height: ''
