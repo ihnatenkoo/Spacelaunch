@@ -7,7 +7,7 @@ export interface LaunchesData {
 export interface EventsData {
   id: string;
   name: string;
-  image: string;
+  image: string | null;
   date: string;
 }
 export interface SingleLaunchData {
@@ -28,7 +28,6 @@ export interface SingleLaunchData {
   date: string;
   vidURLs: string;
 }
-
 export interface SingleRocketData {
   name: string;
   description: string;
@@ -55,22 +54,20 @@ export interface SingleRocketData {
   successful_launches: string;
   failed_launches: string;
 }
-
 export interface SingleEventData {
   id: string;
   name: string;
   feature_image: string;
   mainDescr: string;
   date: string;
-  video_url: string;
+  video_url: string | null;
   rocketName: string;
-  news_url: URL | string;
+  news_url: string;
   mission_type: string;
   location: string;
   eventImg: string;
   orbit: string;
 }
-
 export interface HomePageProps {
   staticLaunchesData: Array<LaunchesData>;
   staticEventsData: Array<EventsData>;

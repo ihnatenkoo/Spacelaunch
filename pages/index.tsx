@@ -9,7 +9,7 @@ import {
   setLoadingTrigger
 } from '../redux/launches/actions/';
 import { setRecentEventsData } from '../redux/recentEvents/actions';
-import { transformLaunchesData, transRecentEventsData } from '../utils';
+import { transformLaunchesData, transformRecentEventsData } from '../utils';
 import { HomeIntro, HomeLaunches, Meta, Slider } from '../components';
 
 import axios from 'axios';
@@ -82,11 +82,11 @@ export const getStaticProps: GetStaticProps = async () => {
     );
 
     const { data: eventsData } = await axios.get(
-      `https://spacelaunchnow.me/api/3.3.0/event/upcoming/?limit=15&offset=0`
+      `https://spacelaunchnow.me/api/3.3.0/event/upcoming/?limit=12&offset=0`
     );
 
     const staticLaunchesData = transformLaunchesData(launchesData.results);
-    const staticEventsData = transRecentEventsData(eventsData.results);
+    const staticEventsData = transformRecentEventsData(eventsData.results);
 
     return {
       props: { staticLaunchesData, staticEventsData },

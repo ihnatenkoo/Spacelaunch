@@ -4,16 +4,15 @@ import { ParsedUrlQuery } from 'querystring';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { EventPageProps } from '../../Interfaces';
 import { MainLayout } from '../../layout';
-import { transformSingleEvent } from '../../utils';
+import { transformSingleEvent, youtubeParser } from '../../utils';
 import { MyYouTube, EventInformation, EventIntro, Slider, Meta } from '../../components';
 import { clientFetchSlides } from '../../redux/recentEvents/actions';
 import { setEventData } from '../../redux/singleEvent/actions';
-import { youtubeParser } from '../../utils/';
 
 import axios from 'axios';
 
 const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
-  const [youtubeUrl, setYoutubeUrl] = useState<string | undefined>(undefined);
+  const [videoId, setVideoId] = useState<string | undefined>(undefined);
 
   const dispatch = useAppDispatch();
   const recentEventsData = useAppSelector((state) => state.recentEvents.recentEventsData);
@@ -22,16 +21,16 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
   const metaDescription = useAppSelector((state) => state.singleEvent.mainDescr);
 
   useEffect(() => {
-    setYoutubeUrl(youtubeParser(videoUrl));
-  }, [videoUrl]);
+    if (recentEventsData.length === 0) dispatch(clientFetchSlides());
+  }, [recentEventsData]);
 
   useEffect(() => {
     dispatch(setEventData(singleEvent));
   }, [singleEvent]);
 
   useEffect(() => {
-    if (recentEventsData.length === 0) dispatch(clientFetchSlides());
-  }, [recentEventsData]);
+    setVideoId(youtubeParser(videoUrl));
+  }, [videoUrl]);
 
   return (
     <>
@@ -40,7 +39,7 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
       <MainLayout header="secondary">
         <EventIntro />
         <div className="container fill">
-          {youtubeUrl && <MyYouTube youtubeUrl={youtubeUrl} />}
+          {videoId && <MyYouTube videoId={videoId} />}
           <EventInformation />
           <Slider data={recentEventsData} path={'event'} />
         </div>

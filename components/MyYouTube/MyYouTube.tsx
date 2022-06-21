@@ -3,12 +3,12 @@ import YouTube, { YouTubeProps } from 'react-youtube';
 import { Spinner } from '../ui/Spinner/Spinner';
 import s from './MyYouTube.module.scss';
 interface MyYouTubeProps {
-  youtubeUrl: string;
+  videoId: string;
 }
 
-export const MyYouTube: FC<MyYouTubeProps> = ({ youtubeUrl }) => {
+export const MyYouTube: FC<MyYouTubeProps> = ({ videoId }) => {
   const youtubeRef = useRef<HTMLDivElement | null>(null);
-
+  console.log(videoId);
   const [opts, setOpts] = useState<YouTubeProps['opts']>({
     width: '100%',
     height: ''
@@ -39,7 +39,7 @@ export const MyYouTube: FC<MyYouTubeProps> = ({ youtubeUrl }) => {
 
   return (
     <div ref={youtubeRef} className={s.youtube}>
-      {opts.height ? <YouTube videoId={youtubeUrl} opts={opts} /> : <Spinner />}
+      {opts.height ? <YouTube videoId={videoId} opts={opts} /> : <Spinner />}
     </div>
   );
 };

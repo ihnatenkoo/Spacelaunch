@@ -1,5 +1,6 @@
 .intro {
-  height: 962px;
+  padding-bottom: 100px;
+  min-height: 962px;
   position: relative;
   z-index: 1;
   &::after {
@@ -43,7 +44,7 @@
 
 @media screen and (max-width: 767px) {
   .intro {
-    height: 100vh;
+    min-height: 100vh;
     &__content {
       padding-top: 230px;
     }

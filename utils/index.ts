@@ -4,4 +4,4 @@ export * from './transformLaunchesData';
 export * from './transformSingleEvent';
 export * from './transformSingleLaunchData';
 export * from './transformSingleRocketData';
-export * from './transRecentEventsData';
+export * from './transformRecentEventsData';

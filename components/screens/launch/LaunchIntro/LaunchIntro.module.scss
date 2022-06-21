@@ -25,9 +25,10 @@
     font-size: 76px;
 
     span {
-      width: 120px;
+      min-width: 120px;
       &:first-child {
-        width: 140px;
+        text-align: right;
+        margin-right: 20px;
       }
     }
   }
@@ -43,19 +44,26 @@
 @media screen and (max-width: 575px) {
   .launch {
     &__start {
-      padding: 20px 10px;
+      padding: 20px;
       font-size: 40px;
 
       span {
-        width: 65px;
-
+        min-width: 60px;
         &:first-child {
-          width: 70px;
+          margin-right: 10px;
         }
       }
     }
     &__subtitle {
       margin-bottom: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .launch {
+    &__start {
+      padding: 20px 10px;
     }
   }
 }

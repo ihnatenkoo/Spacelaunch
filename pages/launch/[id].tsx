@@ -11,7 +11,7 @@ import { setLaunchData } from '../../redux/singleLaunch/actions';
 import axios from 'axios';
 
 const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
-  const [youtubeUrl, setYoutubeUrl] = useState<string | undefined>(undefined);
+  const [videoId, setVideoId] = useState<string | undefined>(undefined);
 
   const dispatch = useAppDispatch();
   const videoUrl = useAppSelector((state) => state.singleLaunch.vidURLs);
@@ -19,7 +19,7 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
   const metaDescription = useAppSelector((state) => state.singleLaunch.missionDescr);
 
   useEffect(() => {
-    setYoutubeUrl(youtubeParser(videoUrl));
+    setVideoId(youtubeParser(videoUrl));
   }, [videoUrl]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
       <MainLayout header="secondary">
         <LaunchIntro />
         <div className="container fill">
-          {youtubeUrl && <MyYouTube youtubeUrl={youtubeUrl} />}
+          {videoId && <MyYouTube videoId={videoId} />}
           <LaunchInfo />
           <LaunchRocket />
           <Map />

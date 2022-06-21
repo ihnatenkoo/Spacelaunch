@@ -1,6 +1,39 @@
 import { SingleLaunchData } from '../Interfaces';
+interface InputSingleLaunch {
+  id: string;
+  name: string;
+  net: string;
+  vidURLs: string | [];
 
-export const transformSingleLaunchData = (data: any): SingleLaunchData => {
+  pad: LaunchPad;
+  mission: LaunchMission | null;
+  rocket: LaunchRocket;
+}
+interface LaunchPad {
+  name: string;
+  latitude: string;
+  longitude: string;
+
+  location: { name: string };
+}
+interface LaunchMission {
+  type: string;
+  orbit: string;
+  description: string;
+}
+
+interface LaunchRocket {
+  configuration: {
+    id: string;
+    image_url: string;
+    name: string;
+    family: string;
+    variant: string;
+    description: string;
+  };
+}
+
+export const transformSingleLaunchData = (data: InputSingleLaunch): SingleLaunchData => {
   const { id, name, net: date, vidURLs } = data;
   const { latitude, longitude, name: launchComplex } = data.pad;
   const { name: location } = data.pad.location;
