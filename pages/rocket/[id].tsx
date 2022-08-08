@@ -17,7 +17,7 @@ const Rocket: NextPage<RocketPageProps> = ({ singleRocketData }) => {
 
   useEffect(() => {
     dispatch(setRocketData(singleRocketData));
-  }, []);
+  }, [singleRocketData, dispatch]);
 
   return (
     <>
@@ -36,11 +36,11 @@ const Rocket: NextPage<RocketPageProps> = ({ singleRocketData }) => {
 export default Rocket;
 
 export const getStaticProps: GetStaticProps = async ({
-  params
+  params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
@@ -52,12 +52,11 @@ export const getStaticProps: GetStaticProps = async ({
     const singleRocketData = transformSingleRocketData(data);
 
     return {
-      props: { singleRocketData }
+      props: { singleRocketData },
     };
   } catch (error) {
-    console.error(error);
     return {
-      notFound: true
+      notFound: true,
     };
   }
 };
@@ -68,11 +67,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   );
 
   const paths = data.results.map(({ id }: { id: number }) => ({
-    params: { id: id.toString() }
+    params: { id: id.toString() },
   }));
 
   return {
     paths,
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 };

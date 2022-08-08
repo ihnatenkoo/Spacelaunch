@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import ArrowLeft from '../../public/icons/arrow-left.svg';
 import ArrowRight from '../../public/icons/arrow-right.svg';
 import { LaunchesData } from '../../Interfaces';
@@ -14,12 +14,16 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
   const [position, setPosition] = useState<number>(0);
 
   const calculateMaxViewWidth = (length: number): number => length * 400 + 1200;
+  const containerWidth = calculateMaxViewWidth(-data.length);
 
-  const next = (position: number) => {
-    position - 400 < calculateMaxViewWidth(-data.length)
-      ? setPosition(0)
-      : setPosition((prevState) => prevState - 400);
-  };
+  const next = useCallback(
+    (position: number) => {
+      position - 400 < calculateMaxViewWidth(-data.length)
+        ? setPosition(0)
+        : setPosition((prevState) => prevState - 400);
+    },
+    [data.length]
+  );
 
   const prev = (position: number) => {
     position + 400 > 0
@@ -32,7 +36,7 @@ export const Slider: FC<SliderProps> = ({ data, path }) => {
       next(position);
     }, 3000);
     return () => clearInterval(interval);
-  }, [position, calculateMaxViewWidth(-data.length)]);
+  }, [position, containerWidth, next]);
 
   return (
     <div className={s.slider}>

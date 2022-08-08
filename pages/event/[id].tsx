@@ -22,11 +22,11 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 
   useEffect(() => {
     if (recentEventsData.length === 0) dispatch(clientFetchSlides());
-  }, [recentEventsData]);
+  }, [recentEventsData, dispatch]);
 
   useEffect(() => {
     dispatch(setEventData(singleEvent));
-  }, [singleEvent]);
+  }, [singleEvent, dispatch]);
 
   useEffect(() => {
     setVideoId(youtubeParser(videoUrl));
@@ -51,11 +51,11 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 export default Event;
 
 export const getStaticProps: GetStaticProps = async ({
-  params
+  params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
@@ -65,12 +65,11 @@ export const getStaticProps: GetStaticProps = async ({
 
     return {
       props: { singleEvent },
-      revalidate: 43200
+      revalidate: 43200,
     };
   } catch (error) {
-    console.error(error);
     return {
-      notFound: true
+      notFound: true,
     };
   }
 };
@@ -81,11 +80,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   );
 
   const paths = eventsData.results.map(({ id }: { id: number }) => ({
-    params: { id: id.toString() }
+    params: { id: id.toString() },
   }));
 
   return {
     paths,
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 };

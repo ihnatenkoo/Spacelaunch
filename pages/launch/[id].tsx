@@ -24,7 +24,7 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
 
   useEffect(() => {
     dispatch(setLaunchData(singleLaunchData));
-  }, []);
+  }, [singleLaunchData, dispatch]);
 
   return (
     <>
@@ -46,11 +46,11 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
 export default Launch;
 
 export const getStaticProps: GetStaticProps = async ({
-  params
+  params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
@@ -60,12 +60,11 @@ export const getStaticProps: GetStaticProps = async ({
     const singleLaunchData = transformSingleLaunchData(data);
 
     return {
-      props: { singleLaunchData }
+      props: { singleLaunchData },
     };
   } catch (error) {
-    console.error(error);
     return {
-      notFound: true
+      notFound: true,
     };
   }
 };
@@ -76,11 +75,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   );
 
   const paths = launchesData.results.map(({ id }: { id: string }) => ({
-    params: { id }
+    params: { id },
   }));
 
   return {
     paths,
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 };

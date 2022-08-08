@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { HomePageProps } from '../Interfaces';
@@ -6,7 +6,7 @@ import { MainLayout } from '../layout/';
 import {
   fetchLaunchesData,
   setLaunchesDataStatic,
-  setLoadingTrigger
+  setLoadingTrigger,
 } from '../redux/launches/actions/';
 import { setRecentEventsData } from '../redux/recentEvents/actions';
 import { transformLaunchesData, transformRecentEventsData } from '../utils';
@@ -24,7 +24,7 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
   useEffect(() => {
     dispatch(setLaunchesDataStatic(staticLaunchesData.slice(0, 6)));
     dispatch(setRecentEventsData(staticEventsData));
-  }, []);
+  }, [staticLaunchesData, staticEventsData, dispatch]);
 
   const getLaunchesDataStatic = () => {
     const launchesData = staticLaunchesData.slice(0, offset);
@@ -41,19 +41,21 @@ const Home: NextPage<HomePageProps> = ({ staticLaunchesData, staticEventsData })
       dispatch(fetchLaunchesData(offset));
       setOffset((prevState) => prevState + 6);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingTrigger]);
 
-  const event = () => {
+  const event = useCallback(() => {
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
       dispatch(setLoadingTrigger(true));
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     window.addEventListener('scroll', event);
     if (isError || isEnd) window.removeEventListener('scroll', event);
     return () => window.removeEventListener('scroll', event);
-  }, [isError, isEnd]);
+  }, [isError, isEnd, event]);
 
   return (
     <>
@@ -90,12 +92,11 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return {
       props: { staticLaunchesData, staticEventsData },
-      revalidate: 43200
+      revalidate: 43200,
     };
   } catch (error) {
-    console.error(error);
     return {
-      notFound: true
+      notFound: true,
     };
   }
 };

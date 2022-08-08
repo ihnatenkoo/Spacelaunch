@@ -1,4 +1,4 @@
-import { FC, MutableRefObject, useEffect, useRef, useState } from 'react';
+import { FC, MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 import { Spinner } from '../ui/Spinner/Spinner';
 import s from './MyYouTube.module.scss';
@@ -8,10 +8,10 @@ interface MyYouTubeProps {
 
 export const MyYouTube: FC<MyYouTubeProps> = ({ videoId }) => {
   const youtubeRef = useRef<HTMLDivElement | null>(null);
-  console.log(videoId);
+
   const [opts, setOpts] = useState<YouTubeProps['opts']>({
     width: '100%',
-    height: ''
+    height: '',
   });
 
   const calculateHeight = (ref: MutableRefObject<HTMLDivElement | null>): void => {
@@ -19,13 +19,13 @@ export const MyYouTube: FC<MyYouTubeProps> = ({ videoId }) => {
 
     setOpts((prevState: YouTubeProps['opts']) => ({
       ...prevState,
-      height: (ref.current as HTMLDivElement).offsetWidth / 1.7
+      height: (ref.current as HTMLDivElement).offsetWidth / 1.7,
     }));
   };
 
-  const handleResize = (): void => {
+  const handleResize = useCallback((): void => {
     calculateHeight(youtubeRef);
-  };
+  }, []);
 
   useEffect(() => {
     setTimeout(() => calculateHeight(youtubeRef));
@@ -35,7 +35,7 @@ export const MyYouTube: FC<MyYouTubeProps> = ({ videoId }) => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
   return (
     <div ref={youtubeRef} className={s.youtube}>

@@ -19,7 +19,6 @@ export const fetchLaunchesData = (offset: number) => {
       dispatch(fetchLaunchesDataSuccess(launchesData));
       dispatch(setError(false));
     } catch (error) {
-      console.error(error);
       dispatch(setError(true));
     } finally {
       dispatch(setLoading(false));
@@ -31,40 +30,40 @@ export const fetchLaunchesData = (offset: number) => {
 export const fetchLaunchesDataSuccess = (launchesData: Array<LaunchesData>) => {
   return {
     type: ActionTypes.FETCH_LAUNCHES_DATA_SUCCESS,
-    payload: launchesData
+    payload: launchesData,
   };
 };
 
 export const setLaunchesDataStatic = (launchesData: Array<LaunchesData>) => {
   return {
     type: ActionTypes.SET_LAUNCHES_DATA_STATIC,
-    payload: launchesData
+    payload: launchesData,
   };
 };
 
 export const setLoading = (status: boolean) => {
   return {
     type: ActionTypes.SET_LOADING,
-    payload: status
+    payload: status,
   };
 };
 
 export const setLoadingTrigger = (status: boolean) => {
   return {
     type: ActionTypes.SET_LOADING_TRIGGER,
-    payload: status
+    payload: status,
   };
 };
 
 export const setError = (status: boolean) => {
   return {
     type: ActionTypes.SET_ERROR,
-    payload: status
+    payload: status,
   };
 };
 
 export const setEnd = () => {
   return {
-    type: ActionTypes.SET_END
+    type: ActionTypes.SET_END,
   };
 };
