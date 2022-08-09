@@ -22,16 +22,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-
-*.test.js
-*.test.ts
-setupTests.js
-/public
-/build
-.prettierrc.json
-package.json
-package-lock.json
-tsconfig.json
-tailwind.config.js
-next.config.js
+vite.config.ts
