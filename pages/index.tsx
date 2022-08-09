@@ -3,10 +3,10 @@ import type { GetStaticProps, NextPage } from 'next';
 import { useCallback, useEffect, useState } from 'react';
 
 import {
+	SET_DATA_STATIC,
+	SET_LOADING_TRIGGER,
 	fetchLaunchesData,
-	setLaunchesDataStatic,
-	setLoadingTrigger,
-} from '../redux/launches/actions/';
+} from '../redux/launches/launches.slice';
 import { setRecentEventsData } from '../redux/recentEvents/actions';
 
 import { HomePageProps } from '../Interfaces';
@@ -26,21 +26,21 @@ const Home: NextPage<HomePageProps> = ({
 	const [offset, setOffset] = useState(12);
 
 	const dispatch = useAppDispatch();
-	const { loadingTrigger, isError, isEnd } = useAppSelector(
+	const { loadingTrigger, isLoading, isError, isEnd } = useAppSelector(
 		(state) => state.launches
 	);
 	const { recentEventsData } = useAppSelector((state) => state.recentEvents);
 
 	useEffect(() => {
-		dispatch(setLaunchesDataStatic(staticLaunchesData.slice(0, 6)));
+		dispatch(SET_DATA_STATIC(staticLaunchesData.slice(0, 6)));
 		dispatch(setRecentEventsData(staticEventsData));
 	}, [staticLaunchesData, staticEventsData, dispatch]);
 
 	const getLaunchesDataStatic = () => {
 		const launchesData = staticLaunchesData.slice(0, offset);
-		dispatch(setLaunchesDataStatic(launchesData));
+		dispatch(SET_DATA_STATIC(launchesData));
 		setOffset((prevState) => prevState + 6);
-		dispatch(setLoadingTrigger(false));
+		dispatch(SET_LOADING_TRIGGER(false));
 	};
 
 	useEffect(() => {
@@ -56,13 +56,14 @@ const Home: NextPage<HomePageProps> = ({
 	}, [loadingTrigger]);
 
 	const event = useCallback(() => {
+		if (isLoading) return;
 		if (
 			window.innerHeight + window.scrollY >=
 			document.body.scrollHeight - 100
 		) {
-			dispatch(setLoadingTrigger(true));
+			dispatch(SET_LOADING_TRIGGER(true));
 		}
-	}, [dispatch]);
+	}, [dispatch, isLoading]);
 
 	useEffect(() => {
 		window.addEventListener('scroll', event);

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { FC } from 'react';
 
-import { setLoadingTrigger } from '../../../redux/launches/actions/';
+import { SET_LOADING_TRIGGER } from '../../../redux/launches/launches.slice';
 
 import { useAppDispatch } from '../../../hooks';
 
@@ -24,7 +24,7 @@ export const Error: FC = () => {
 			<h2 className={styles.error__title}>Data loading error</h2>
 
 			<a
-				onClick={() => dispatch(setLoadingTrigger(true))}
+				onClick={() => dispatch(SET_LOADING_TRIGGER(true))}
 				className={styles.error__link}
 			>
 				Upload again
