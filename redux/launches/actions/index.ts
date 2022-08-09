@@ -1,69 +1,71 @@
 import { Dispatch } from '@reduxjs/toolkit';
-import { ActionTypes } from '../types/';
-import { LaunchesData } from '../../../Interfaces';
-import { transformLaunchesData } from '../../../utils';
-
 import axios from 'axios';
 
+import { LaunchesData } from '../../../Interfaces';
+
+import { transformLaunchesData } from '../../../utils';
+
+import { ActionTypes } from '../types/';
+
 export const fetchLaunchesData = (offset: number) => {
-  return async (dispatch: Dispatch) => {
-    try {
-      dispatch(setLoading(true));
-      const { data } = await axios.get(
-        `https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
-      );
+	return async (dispatch: Dispatch) => {
+		try {
+			dispatch(setLoading(true));
+			const { data } = await axios.get(
+				`https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
+			);
 
-      const launchesData = transformLaunchesData(data.results);
+			const launchesData = transformLaunchesData(data.results);
 
-      if (launchesData.length < 6) dispatch(setEnd());
-      dispatch(fetchLaunchesDataSuccess(launchesData));
-      dispatch(setError(false));
-    } catch (error) {
-      dispatch(setError(true));
-    } finally {
-      dispatch(setLoading(false));
-      dispatch(setLoadingTrigger(false));
-    }
-  };
+			if (launchesData.length < 6) dispatch(setEnd());
+			dispatch(fetchLaunchesDataSuccess(launchesData));
+			dispatch(setError(false));
+		} catch (error) {
+			dispatch(setError(true));
+		} finally {
+			dispatch(setLoading(false));
+			dispatch(setLoadingTrigger(false));
+		}
+	};
 };
 
 export const fetchLaunchesDataSuccess = (launchesData: Array<LaunchesData>) => {
-  return {
-    type: ActionTypes.FETCH_LAUNCHES_DATA_SUCCESS,
-    payload: launchesData,
-  };
+	return {
+		type: ActionTypes.FETCH_LAUNCHES_DATA_SUCCESS,
+		payload: launchesData,
+	};
 };
 
 export const setLaunchesDataStatic = (launchesData: Array<LaunchesData>) => {
-  return {
-    type: ActionTypes.SET_LAUNCHES_DATA_STATIC,
-    payload: launchesData,
-  };
+	return {
+		type: ActionTypes.SET_LAUNCHES_DATA_STATIC,
+		payload: launchesData,
+	};
 };
 
 export const setLoading = (status: boolean) => {
-  return {
-    type: ActionTypes.SET_LOADING,
-    payload: status,
-  };
+	return {
+		type: ActionTypes.SET_LOADING,
+		payload: status,
+	};
 };
 
 export const setLoadingTrigger = (status: boolean) => {
-  return {
-    type: ActionTypes.SET_LOADING_TRIGGER,
-    payload: status,
-  };
+	return {
+		type: ActionTypes.SET_LOADING_TRIGGER,
+		payload: status,
+	};
 };
 
 export const setError = (status: boolean) => {
-  return {
-    type: ActionTypes.SET_ERROR,
-    payload: status,
-  };
+	return {
+		type: ActionTypes.SET_ERROR,
+		payload: status,
+	};
 };
 
 export const setEnd = () => {
-  return {
-    type: ActionTypes.SET_END,
-  };
+	return {
+		type: ActionTypes.SET_END,
+	};
 };

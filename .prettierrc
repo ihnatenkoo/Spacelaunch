@@ -7,5 +7,20 @@
 	"singleQuote": true,
 	"semi": true,
 	"newline-per-chained-call": false,
-	"trailingComma": "es5"
+	"trailingComma": "es5",
+	"importOrder": [
+		"<THIRD_PARTY_MODULES>",
+		"/redux/(.*)$",
+		"/Interfaces",
+		"/utils",
+		"/hooks",
+		"/components",
+		"/ui/(.*)$",
+		"/public/(.*)$",
+		"^../(.*)",
+		"^./(.*)",
+		"(.scss)$"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
 }
