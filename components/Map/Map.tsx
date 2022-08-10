@@ -15,7 +15,9 @@ const defaultOptions = {
 };
 
 export const Map: FC = () => {
-	const { eventCoordinates } = useAppSelector((state) => state.singleLaunch);
+	const { eventCoordinates } = useAppSelector(
+		(state) => state.singleLaunch.launchInfo
+	);
 
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',

@@ -8,7 +8,7 @@ import {
 import { ParsedUrlQuery } from 'querystring';
 import { useEffect, useState } from 'react';
 
-import { setLaunchData } from '../../redux/singleLaunch/actions';
+import { SET_SINGLE_LAUNCH } from '../../redux/singleLaunch/singleLaunch.slice';
 
 import { LaunchPageProps } from '../../Interfaces';
 
@@ -31,18 +31,18 @@ const Launch: NextPage<LaunchPageProps> = ({ singleLaunchData }) => {
 	const [videoId, setVideoId] = useState<string | undefined>(undefined);
 
 	const dispatch = useAppDispatch();
-	const videoUrl = useAppSelector((state) => state.singleLaunch.vidURLs);
-	const metaTitle = useAppSelector((state) => state.singleLaunch.name);
-	const metaDescription = useAppSelector(
-		(state) => state.singleLaunch.missionDescr
-	);
+	const {
+		vidURLs: videoUrl,
+		name: metaTitle,
+		missionDescr: metaDescription,
+	} = useAppSelector((state) => state.singleLaunch.launchInfo);
 
 	useEffect(() => {
 		setVideoId(youtubeParser(videoUrl));
 	}, [videoUrl]);
 
 	useEffect(() => {
-		dispatch(setLaunchData(singleLaunchData));
+		dispatch(SET_SINGLE_LAUNCH(singleLaunchData));
 	}, [singleLaunchData, dispatch]);
 
 	return (

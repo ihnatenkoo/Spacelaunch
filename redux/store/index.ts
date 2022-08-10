@@ -3,13 +3,13 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import launches from '../launches/launches.slice';
 import recentEvents from '../recentEvents/recentEvents.slice';
 import singleEvent from '../singleEvent/singleEvent.slice';
-import { singleLaunchReducer } from '../singleLaunch/reducers';
+import singleLaunch from '../singleLaunch/singleLaunch.slice';
 import { singleRocketReducer } from '../singleRocket/reducers';
 
 const reducers = combineReducers({
 	launches,
 	recentEvents,
-	singleLaunch: singleLaunchReducer,
+	singleLaunch,
 	singleRocket: singleRocketReducer,
 	singleEvent,
 });

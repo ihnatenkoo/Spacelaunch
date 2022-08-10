@@ -10,7 +10,7 @@ import s from './LaunchRocket.module.scss';
 
 export const LaunchRocket: FC = () => {
 	const { rocketName, rocketFamily, rocketVariant, rocketDescr, rocketId } =
-		useAppSelector((state) => state.singleLaunch);
+		useAppSelector((state) => state.singleLaunch.launchInfo);
 
 	return (
 		<div className={s.rocket}>

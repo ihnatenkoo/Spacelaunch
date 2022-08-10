@@ -10,7 +10,7 @@ import s from './LaunchInformation.module.scss';
 
 export const LaunchInfo: FC = () => {
 	const { orbit, type, launchComplex, rocketName, location, missionDescr } =
-		useAppSelector((state) => state.singleLaunch);
+		useAppSelector((state) => state.singleLaunch.launchInfo);
 
 	return (
 		<div className={s.launch}>

@@ -25,7 +25,9 @@ export const LaunchIntro: FC = () => {
 		seconds: 0,
 	});
 
-	const { date, image, name } = useAppSelector((state) => state.singleLaunch);
+	const { date, image, name } = useAppSelector(
+		(state) => state.singleLaunch.launchInfo
+	);
 
 	const getTimeLeft = (date: string) => {
 		const currentDate = Date.parse(new Date().toISOString());
