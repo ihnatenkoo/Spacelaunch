@@ -9,6 +9,6 @@ export interface LaunchesState {
 }
 
 export enum ActionTypes {
-	SET_DATA_STATIC = 'SET_DATA_STATIC',
+	SET_LAUNCHES_STATIC = 'SET_LAUNCHES_STATIC',
 	SET_LOADING_TRIGGER = 'SET_LOADING_TRIGGER',
 }

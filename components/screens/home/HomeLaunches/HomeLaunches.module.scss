@@ -1,24 +1,26 @@
-.inner {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+.launches {
+	text-align: center;
+	&__inner {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
 
-.title {
-  margin-bottom: 40px;
-}
+	&__title {
+		margin-bottom: 40px;
+	}
 
-.end {
-  text-align: center;
-  &__title {
-    display: inline-block;
-    padding: 25px 50px;
-    border: 1px solid var(--white);
-  }
+	&__alert {
+		margin: 0 auto;
+		display: inline-block;
+		padding: 25px 50px;
+		border: 1px solid var(--white);
+		font-weight: 700;
+	}
 }
 
 @media screen and (max-width: 1200px) {
-  .inner {
-    justify-content: center;
-  }
+	.inner {
+		justify-content: center;
+	}
 }

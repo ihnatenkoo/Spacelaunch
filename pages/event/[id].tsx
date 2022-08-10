@@ -8,7 +8,7 @@ import {
 import { ParsedUrlQuery } from 'querystring';
 import { useEffect, useState } from 'react';
 
-import { clientFetchSlides } from '../../redux/recentEvents/actions';
+import { FETCH_RECENT_EVENTS } from '../../redux/recentEvents/recentEvents.slice';
 import { setEventData } from '../../redux/singleEvent/actions';
 
 import { EventPageProps } from '../../Interfaces';
@@ -18,11 +18,13 @@ import { transformSingleEvent, youtubeParser } from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import {
+	Error,
 	EventInformation,
 	EventIntro,
 	Meta,
 	MyYouTube,
 	Slider,
+	Spinner,
 } from '../../components';
 
 import { MainLayout } from '../../layout';
@@ -31,8 +33,8 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 	const [videoId, setVideoId] = useState<string | undefined>(undefined);
 
 	const dispatch = useAppDispatch();
-	const recentEventsData = useAppSelector(
-		(state) => state.recentEvents.recentEventsData
+	const { recentEventsData, isLoading, isError } = useAppSelector(
+		(state) => state.recentEvents
 	);
 	const videoUrl = useAppSelector((state) => state.singleEvent.video_url);
 	const metaTitle = useAppSelector((state) => state.singleEvent.name);
@@ -41,7 +43,7 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 	);
 
 	useEffect(() => {
-		if (recentEventsData.length === 0) dispatch(clientFetchSlides());
+		if (recentEventsData.length === 0) dispatch(FETCH_RECENT_EVENTS());
 	}, [recentEventsData, dispatch]);
 
 	useEffect(() => {
@@ -61,7 +63,12 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 				<div className="container fill">
 					{videoId && <MyYouTube videoId={videoId} />}
 					<EventInformation />
-					<Slider data={recentEventsData} path={'event'} />
+
+					{isLoading && <Spinner />}
+					{isError && <Error refreshCallback={FETCH_RECENT_EVENTS} />}
+					{!isLoading && !isError && (
+						<Slider data={recentEventsData} path={'event'} />
+					)}
 				</div>
 			</MainLayout>
 		</>

@@ -1,17 +1,17 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import launches from '../launches/launches.slice';
-import { recentEventsReducer } from '../recentEvents/reducers';
+import recentEvents from '../recentEvents/recentEvents.slice';
 import { singleEventReducer } from '../singleEvent/reducers';
 import { singleLaunchReducer } from '../singleLaunch/reducers';
 import { singleRocketReducer } from '../singleRocket/reducers';
 
 const reducers = combineReducers({
 	launches,
+	recentEvents,
 	singleLaunch: singleLaunchReducer,
 	singleRocket: singleRocketReducer,
 	singleEvent: singleEventReducer,
-	recentEvents: recentEventsReducer,
 });
 
 export const store = configureStore({

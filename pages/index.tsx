@@ -3,11 +3,11 @@ import type { GetStaticProps, NextPage } from 'next';
 import { useCallback, useEffect, useState } from 'react';
 
 import {
-	SET_DATA_STATIC,
+	FETCH_LAUNCHES_DATA,
+	SET_LAUNCHES_STATIC,
 	SET_LOADING_TRIGGER,
-	fetchLaunchesData,
 } from '../redux/launches/launches.slice';
-import { setRecentEventsData } from '../redux/recentEvents/actions';
+import { SET_RECENT_EVENTS_DATA } from '../redux/recentEvents/recentEvents.slice';
 
 import { HomePageProps } from '../Interfaces';
 
@@ -32,13 +32,13 @@ const Home: NextPage<HomePageProps> = ({
 	const { recentEventsData } = useAppSelector((state) => state.recentEvents);
 
 	useEffect(() => {
-		dispatch(SET_DATA_STATIC(staticLaunchesData.slice(0, 6)));
-		dispatch(setRecentEventsData(staticEventsData));
+		dispatch(SET_LAUNCHES_STATIC(staticLaunchesData.slice(0, 6)));
+		dispatch(SET_RECENT_EVENTS_DATA(staticEventsData));
 	}, [staticLaunchesData, staticEventsData, dispatch]);
 
 	const getLaunchesDataStatic = () => {
 		const launchesData = staticLaunchesData.slice(0, offset);
-		dispatch(SET_DATA_STATIC(launchesData));
+		dispatch(SET_LAUNCHES_STATIC(launchesData));
 		setOffset((prevState) => prevState + 6);
 		dispatch(SET_LOADING_TRIGGER(false));
 	};
@@ -48,7 +48,7 @@ const Home: NextPage<HomePageProps> = ({
 			getLaunchesDataStatic();
 		}
 		if (loadingTrigger && offset > 18) {
-			dispatch(fetchLaunchesData(offset));
+			dispatch(FETCH_LAUNCHES_DATA(offset));
 			setOffset((prevState) => prevState + 6);
 		}
 

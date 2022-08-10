@@ -8,8 +8,8 @@ import { transformLaunchesData } from '../../utils';
 
 import { ActionTypes, LaunchesState } from './types';
 
-export const fetchLaunchesData = createAsyncThunk(
-	'launches/fetchLaunches',
+export const FETCH_LAUNCHES_DATA = createAsyncThunk(
+	'launches/FETCH_DATA',
 	async (offset: number) => {
 		const { data } = await axios.get(
 			`https://spacelaunchnow.me/api/3.3.0/launch/upcoming?mode=detailed&limit=6&offset=${offset}`
@@ -30,7 +30,7 @@ const launchesSlice = createSlice({
 	name: 'launches',
 	initialState,
 	reducers: {
-		[ActionTypes.SET_DATA_STATIC]: (
+		[ActionTypes.SET_LAUNCHES_STATIC]: (
 			state,
 			action: PayloadAction<Array<LaunchesData>>
 		) => {
@@ -45,12 +45,12 @@ const launchesSlice = createSlice({
 	},
 	extraReducers(builder) {
 		builder
-			.addCase(fetchLaunchesData.pending, (state) => {
+			.addCase(FETCH_LAUNCHES_DATA.pending, (state) => {
 				state.isLoading = true;
 				state.isError = false;
 				state.loadingTrigger = false;
 			})
-			.addCase(fetchLaunchesData.fulfilled, (state, action) => {
+			.addCase(FETCH_LAUNCHES_DATA.fulfilled, (state, action) => {
 				const launchesData = transformLaunchesData(action.payload.results);
 				if (launchesData.length < 6) {
 					state.isEnd = true;
@@ -58,7 +58,7 @@ const launchesSlice = createSlice({
 				state.launchesData = [...state.launchesData, ...launchesData];
 				state.isLoading = false;
 			})
-			.addCase(fetchLaunchesData.rejected, (state) => {
+			.addCase(FETCH_LAUNCHES_DATA.rejected, (state) => {
 				state.isError = true;
 				state.isLoading = false;
 			});
@@ -68,4 +68,4 @@ const launchesSlice = createSlice({
 const { actions, reducer } = launchesSlice;
 
 export default reducer;
-export const { SET_DATA_STATIC, SET_LOADING_TRIGGER } = actions;
+export const { SET_LAUNCHES_STATIC, SET_LOADING_TRIGGER } = actions;

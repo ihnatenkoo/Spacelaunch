@@ -1,20 +1,22 @@
 .error {
-  &__title {
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: 400;
-  }
-  &__link {
-    margin: 20px 0 30px;
-    display: block;
-    font-size: 25px;
-    font-weight: 700;
-    text-decoration: underline;
-    transition: color 0.1s linear;
-    cursor: pointer;
+	text-align: center;
+	min-height: 300px;
+	&__title {
+		margin-top: 15px;
+		font-size: 20px;
+		font-weight: 400;
+	}
+	&__link {
+		margin: 20px 0 30px;
+		display: block;
+		font-size: 25px;
+		font-weight: 700;
+		text-decoration: underline;
+		transition: color 0.1s linear;
+		cursor: pointer;
 
-    &:hover {
-      color: rgb(158, 177, 211);
-    }
-  }
+		&:hover {
+			color: rgb(158, 177, 211);
+		}
+	}
 }
