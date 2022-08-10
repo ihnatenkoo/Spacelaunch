@@ -33,7 +33,7 @@ export const RocketInfo: FC = () => {
 		total_launch_count,
 		successful_launches,
 		failed_launches,
-	} = useAppSelector((state) => state.singleRocket);
+	} = useAppSelector((state) => state.singleRocket.rocketInfo);
 
 	return (
 		<section className={styles.info}>

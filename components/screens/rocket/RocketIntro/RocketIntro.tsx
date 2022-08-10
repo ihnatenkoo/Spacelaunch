@@ -12,7 +12,7 @@ import s from './RocketIntro.module.scss';
 
 export const RocketIntro: FC = () => {
 	const { name, image, description, firstFlight, nameCompany, abbrevCompany } =
-		useAppSelector((state) => state.singleRocket);
+		useAppSelector((state) => state.singleRocket.rocketInfo);
 	return (
 		<IntroLayout image={image} className={s.rocket}>
 			<Title view="h1" className={s.rocket__title}>
@@ -22,9 +22,6 @@ export const RocketIntro: FC = () => {
 				view="h3"
 				className={s.rocket__subtitle}
 			>{`${nameCompany} (${abbrevCompany})`}</Title>
-			{/* <div className={s.rocket__age}>
-        {firstFlight ? dayjs(firstFlight).format('MMMM DD, YYYY') : <></>}
-      </div> */}
 
 			{firstFlight && (
 				<Title view="h3" className={s.rocket__age}>

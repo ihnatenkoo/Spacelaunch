@@ -8,7 +8,7 @@ import {
 import { ParsedUrlQuery } from 'querystring';
 import { useEffect } from 'react';
 
-import { setRocketData } from '../../redux/singleRocket/actions';
+import { SET_SINGLE_ROCKET } from '../../redux/singleRocket/singleRocket.slice';
 
 import { RocketPageProps } from '../../Interfaces';
 
@@ -22,13 +22,12 @@ import { MainLayout } from '../../layout';
 
 const Rocket: NextPage<RocketPageProps> = ({ singleRocketData }) => {
 	const dispatch = useAppDispatch();
-	const metaTitle = useAppSelector((state) => state.singleRocket.fullName);
-	const metaDescription = useAppSelector(
-		(state) => state.singleRocket.description
+	const { fullName: metaTitle, description: metaDescription } = useAppSelector(
+		(state) => state.singleRocket.rocketInfo
 	);
 
 	useEffect(() => {
-		dispatch(setRocketData(singleRocketData));
+		dispatch(SET_SINGLE_ROCKET(singleRocketData));
 	}, [singleRocketData, dispatch]);
 
 	return (
