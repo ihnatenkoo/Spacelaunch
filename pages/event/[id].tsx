@@ -9,7 +9,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { useEffect, useState } from 'react';
 
 import { FETCH_RECENT_EVENTS } from '../../redux/recentEvents/recentEvents.slice';
-import { setEventData } from '../../redux/singleEvent/actions';
+import { SET_SINGLE_EVENT } from '../../redux/singleEvent/singleEvent.slice';
 
 import { EventPageProps } from '../../Interfaces';
 
@@ -36,10 +36,14 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 	const { recentEventsData, isLoading, isError } = useAppSelector(
 		(state) => state.recentEvents
 	);
-	const videoUrl = useAppSelector((state) => state.singleEvent.video_url);
-	const metaTitle = useAppSelector((state) => state.singleEvent.name);
-	const metaDescription = useAppSelector(
-		(state) => state.singleEvent.mainDescr
+	const { video_url: videoUrl } = useAppSelector(
+		(state) => state.singleEvent.eventInfo
+	);
+	const { name: metaTitle } = useAppSelector(
+		(state) => state.singleEvent.eventInfo
+	);
+	const { mainDescr: metaDescription } = useAppSelector(
+		(state) => state.singleEvent.eventInfo
 	);
 
 	useEffect(() => {
@@ -47,7 +51,7 @@ const Event: NextPage<EventPageProps> = ({ singleEvent }) => {
 	}, [recentEventsData, dispatch]);
 
 	useEffect(() => {
-		dispatch(setEventData(singleEvent));
+		dispatch(SET_SINGLE_EVENT(singleEvent));
 	}, [singleEvent, dispatch]);
 
 	useEffect(() => {

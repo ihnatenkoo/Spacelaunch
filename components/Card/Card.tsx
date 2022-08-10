@@ -27,7 +27,7 @@ type CardSize = 's' | 'm';
 
 export const Card: FC<CardProps> = ({ data, size, path }) => {
 	const [isCurrent, setIsCurrent] = useState<boolean>(false);
-	const pageId = useAppSelector((state) => state.singleEvent.id);
+	const pageId = useAppSelector((state) => state.singleEvent.eventInfo.id);
 	const { id, image, date, name } = data;
 	const { pathname } = useRouter();
 

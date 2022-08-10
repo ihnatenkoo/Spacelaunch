@@ -13,14 +13,8 @@ import placeholder from '../../../../public/images/img-placeholder.jpg';
 import s from './EventInformation.module.scss';
 
 export const EventInformation: FC = () => {
-	const eventImg = useAppSelector((state) => state.singleEvent.eventImg);
-	const rocketName = useAppSelector((state) => state.singleEvent.rocketName);
-	const date = useAppSelector((state) => state.singleEvent.date);
-	const orbit = useAppSelector((state) => state.singleEvent.orbit);
-	const mission_type = useAppSelector(
-		(state) => state.singleEvent.mission_type
-	);
-	const mainDescr = useAppSelector((state) => state.singleEvent.mainDescr);
+	const { rocketName, eventImg, date, orbit, mission_type, mainDescr } =
+		useAppSelector((state) => state.singleEvent.eventInfo);
 
 	const img = eventImg || placeholder;
 	const description: string =

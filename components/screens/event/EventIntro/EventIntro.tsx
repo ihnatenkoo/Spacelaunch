@@ -13,7 +13,7 @@ import s from './EventIntro.module.scss';
 
 export const EventIntro: FC = () => {
 	const { name, feature_image, date, news_url, location } = useAppSelector(
-		(state) => state.singleEvent
+		(state) => state.singleEvent.eventInfo
 	);
 
 	return (
